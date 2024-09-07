@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "795870733108",
+    "project_id": "vista-market",
+    "storage_bucket": "vista-market.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795870733108:android:8d6a1b0be965aec0487b61",
+        "android_client_info": {
+          "package_name": "com.example.visita_market"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATkdyMQJIlhCL1RuuruJ3bCP6o3TNiL7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795870733108:android:79a2264d349c6f33487b61",
+        "android_client_info": {
+          "package_name": "com.example.vista_market"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATkdyMQJIlhCL1RuuruJ3bCP6o3TNiL7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
