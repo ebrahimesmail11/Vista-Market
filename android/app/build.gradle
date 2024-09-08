@@ -32,6 +32,19 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    flavorDimensions += "default"
+    productFlavors {
+        create("resident") {
+            dimension = "default"
+            resValue( "string",  "app_name",  "Vista Market resident")
+            applicationIdSuffix = ".resident"
+        }
+        create("admin"){
+            dimension = "default"
+            resValue( "string", "app_name",  "Vista Market admin")
+            applicationIdSuffix = ".admin"
+        }
+    }
 
     buildTypes {
         release {

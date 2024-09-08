@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyATkdyMQJIlhCL1RuuruJ3bCP6o3TNiL7w',
-    appId: '1:795870733108:android:8d6a1b0be965aec0487b61',
+    appId: '1:795870733108:android:42ebfa203237fd98487b61',
     messagingSenderId: '795870733108',
     projectId: 'vista-market',
     storageBucket: 'vista-market.appspot.com',
@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'vista-market.appspot.com',
     iosBundleId: 'com.example.vistaMarket',
   );
+
 }
