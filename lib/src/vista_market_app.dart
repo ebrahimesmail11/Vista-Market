@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vista_market/src/common/base/text_styles.dart';
+import 'package:vista_market/src/common/routing/route_manger.dart';
+
+import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/env.dart';
 import 'package:vista_market/src/utils/no_network_screen.dart';
+
 
 class VistaMarketApp extends StatelessWidget {
   const VistaMarketApp({super.key});
@@ -33,11 +36,8 @@ class VistaMarketApp extends StatelessWidget {
                   ),
                 );
               },
-              home:  Scaffold(
-                body: Center(
-                  child: Text('Vista Market',style: TextStyles.defaultStyle,),
-                ),
-              ),
+              onGenerateRoute: RouteManger.generateRoute,
+              initialRoute: Routes.initialRoute,
             ),
           );
         } else {
