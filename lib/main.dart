@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:vista_market/firebase_options.dart';
 import 'package:vista_market/src/utils/env.dart';
-import 'package:vista_market/src/utils/vista_market_app.dart';
+import 'package:vista_market/src/vista_market_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
