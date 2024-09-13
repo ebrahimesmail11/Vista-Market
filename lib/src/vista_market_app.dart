@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/env.dart';
 import 'package:vista_market/src/utils/no_network_screen.dart';
@@ -32,9 +33,9 @@ class VistaMarketApp extends StatelessWidget {
                   ),
                 );
               },
-              home: const Scaffold(
+              home:  Scaffold(
                 body: Center(
-                  child: Text('Vista Market'),
+                  child: Text('Vista Market',style: TextStyles.defaultStyle,),
                 ),
               ),
             ),
