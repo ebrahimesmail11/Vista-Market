@@ -6,6 +6,7 @@ import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/env.dart';
 import 'package:vista_market/src/utils/no_network_screen.dart';
+import 'package:vista_market/src/utils/theme/app_theme.dart';
 
 
 class VistaMarketApp extends StatelessWidget {
@@ -22,10 +23,7 @@ class VistaMarketApp extends StatelessWidget {
             child: MaterialApp(
               debugShowCheckedModeBanner: Env.instance.depugMode,
               title: 'Vista Market',
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                useMaterial3: true,
-              ),
+              theme: themeDark(),
               builder: (context, child) {
                 return Scaffold(
                   body: Builder(
