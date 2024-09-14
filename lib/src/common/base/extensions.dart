@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vista_market/src/common/generated/app_localizations.dart';
 import 'package:vista_market/src/utils/theme/colors_extensions.dart';
 import 'package:vista_market/src/utils/theme/image_extensions.dart';
 
@@ -11,6 +12,12 @@ extension Navigation on BuildContext {
 
   //Images
   MyAssets get images => Theme.of(this).extension<MyAssets>()!;
+
+  
+  //Localization
+
+  AppLocalizations get tr => AppLocalizations.of(this);
+
 
   //Navigation
   Future<dynamic> pushNamed(String routeName, {required Object? arguments}) {
