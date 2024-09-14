@@ -41,6 +41,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/src/common/generated
 # 
 
 /linux/flutter/generated_plugin_registrant.cc
@@ -51,3 +52,5 @@ app.*.map.json
 /windows/flutter/generated_plugin_registrant.h
 /windows/flutter/generated_plugins.cmake
 lib/firebase_options.dart
+.env.admin
+.env.resident
