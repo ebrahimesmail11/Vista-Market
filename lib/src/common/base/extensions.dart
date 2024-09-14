@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:vista_market/src/utils/theme/colors_extensions.dart';
+import 'package:vista_market/src/utils/theme/image_extensions.dart';
+
+
 
 extension Navigation on BuildContext {
+
+  //Colors
+  MyColors get colors => Theme.of(this).extension<MyColors>()!;
+
+  //Images
+  MyAssets get images => Theme.of(this).extension<MyAssets>()!;
+
+  //Navigation
   Future<dynamic> pushNamed(String routeName, {required Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
