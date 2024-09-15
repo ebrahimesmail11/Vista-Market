@@ -24,7 +24,7 @@ class VistaMarketApp extends StatelessWidget {
             child: MaterialApp(
               debugShowCheckedModeBanner: Env.instance.depugMode,
               title: 'Vista Market',
-              theme: themeLight(),
+              theme: themeDark(),
               locale: const Locale('en'),
               supportedLocales: AppLocalizations.supportedLocales,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -37,12 +37,17 @@ class VistaMarketApp extends StatelessWidget {
                     return supportedLocales.first;
                   },
               builder: (context, child) {
-                return Scaffold(
-                  body: Builder(
-                    builder: (context) {
-                      ConnectivityController.instance.init();
-                      return child!;
-                    },
+                return GestureDetector(
+                  onTap: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  child: Scaffold(
+                    body: Builder(
+                      builder: (context) {
+                        ConnectivityController.instance.init();
+                        return child!;
+                      },
+                    ),
                   ),
                 );
               },

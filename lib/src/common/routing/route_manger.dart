@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vista_market/src/resident/presentation/view/login/login_screen.dart';
+import 'package:vista_market/src/resident/presentation/view/login/screens/login_screen.dart';
 
 class RouteManger {
   static Route<dynamic> generateRoute(RouteSettings settings) {
