@@ -24,7 +24,7 @@ class VistaMarketApp extends StatelessWidget {
             child: MaterialApp(
               debugShowCheckedModeBanner: Env.instance.depugMode,
               title: 'Vista Market',
-              theme: themeLight(),
+              theme: themeDark(),
               locale: const Locale('en'),
               supportedLocales: AppLocalizations.supportedLocales,
               localizationsDelegates: AppLocalizations.localizationsDelegates,

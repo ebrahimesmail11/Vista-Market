@@ -80,30 +80,30 @@ class MyColors extends ThemeExtension<MyColors> {
   }
 
   static const MyColors dark = MyColors(
-    mainColor: AppColorsDark.mainColor,
+     mainColor: AppColorsDark.mainColor,
     bluePinkDark: AppColorsDark.blueDark,
     bluePinkLight: AppColorsDark.blueLight,
-    textColor: AppColorsDark.black1,
-    textFormBorder: AppColorsDark.black2,
+    textColor: AppColorsDark.white,
+    textFormBorder: AppColorsDark.blueLight,
     navBarbg: AppColorsDark.navBarDark,
-    navBarSelectedTab: AppColorsDark.black1,
-    containerShadow1: AppColorsDark.blueLight,
-    containerShadow2: AppColorsDark.blueDark,
-    containerLinear1: AppColorsDark.blueLight,
-    containerLinear2: AppColorsDark.blueDark,
+    navBarSelectedTab: AppColorsDark.white,
+    containerShadow1: AppColorsDark.black1,
+    containerShadow2: AppColorsDark.black2,
+    containerLinear1: AppColorsDark.black1,
+    containerLinear2: AppColorsDark.black2,
   );
 
   static const MyColors light = MyColors(
-    mainColor: AppColorsLight.mainColor,
+       mainColor: AppColorsLight.mainColor,
     bluePinkDark: AppColorsLight.pinkDark,
     bluePinkLight: AppColorsLight.pinkLight,
     textColor: AppColorsLight.black,
     textFormBorder: AppColorsLight.pinkLight,
     navBarbg: AppColorsLight.mainColor,
-    navBarSelectedTab: AppColorsLight.pinkDark,
-    containerShadow1: AppColorsLight.white,
+    navBarSelectedTab:AppColorsLight.pinkDark,
+    containerShadow1:AppColorsLight.white,
     containerShadow2: AppColorsLight.white,
     containerLinear1: AppColorsLight.pinkDark,
-    containerLinear2: AppColorsLight.pinkLight,
+    containerLinear2:AppColorsLight.pinkLight,
   );
 }
