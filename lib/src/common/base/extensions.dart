@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/generated/app_localizations.dart';
 import 'package:vista_market/src/utils/theme/colors_extensions.dart';
-import 'package:vista_market/src/utils/theme/image_extensions.dart';
+import 'package:vista_market/src/utils/theme/assets_extensions.dart';
 
 
 
