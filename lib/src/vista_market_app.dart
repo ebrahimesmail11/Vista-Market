@@ -52,7 +52,7 @@ class VistaMarketApp extends StatelessWidget {
                 );
               },
               onGenerateRoute: RouteManger.generateRoute,
-              initialRoute: Routes.initialRoute,
+              initialRoute: Routes.login,
             ),
           );
         } else {
