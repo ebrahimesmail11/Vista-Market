@@ -21,7 +21,7 @@ extension Navigation on BuildContext {
 
 
   //Navigation
-  Future<dynamic> pushNamed(String routeName, {required Object? arguments}) {
+  Future<dynamic> pushNamed(String routeName, { Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
 
@@ -81,7 +81,7 @@ extension Navigation on BuildContext {
 
   Future<dynamic> pushReplacementNamed(
     String routeName, {
-    required Object? arguments,
+     Object? arguments,
   }) {
     return Navigator.of(this)
         .pushReplacementNamed(routeName, arguments: arguments);
