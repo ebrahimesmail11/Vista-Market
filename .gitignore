@@ -41,7 +41,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-lib/src/common/generated
+lib/src/common/generated/*
+*.freezed.dart 
+*.g.dart
 # 
 
 /linux/flutter/generated_plugin_registrant.cc
