@@ -24,19 +24,22 @@ class VistaMarketApp extends StatelessWidget {
         if (value) {
           return BlocProvider(
             create: (context) => getIt<AppCubit>()
-              ..changeTheme(sharedMode: SharedPref().getBoolean('mode'),),
+              ..changeTheme(
+                sharedMode: SharedPref().getBoolean('mode'),
+              )
+              ..savedlanguage(),
             child: ScreenUtilInit(
               designSize: const Size(375, 812),
               minTextAdapt: true,
               child: BlocBuilder<AppCubit, AppState>(
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) {
-                final  ctx=context.read<AppCubit>();
+                  final ctx = context.read<AppCubit>();
                   return MaterialApp(
                     debugShowCheckedModeBanner: Env.instance.depugMode,
                     title: 'Vista Market',
-                    theme:ctx.isDark ? themeLight() : themeDark(),
-                    locale: const Locale('en'),
+                    theme: ctx.isDark ? themeLight() : themeDark(),
+                    locale: Locale(ctx.currentLanguage),
                     supportedLocales: AppLocalizations.supportedLocales,
                     localizationsDelegates:
                         AppLocalizations.localizationsDelegates,

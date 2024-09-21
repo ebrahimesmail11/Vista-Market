@@ -18,7 +18,8 @@ extension Navigation on BuildContext {
   //Localization
 
   AppLocalizations get tr => AppLocalizations.of(this);
-
+// Localizations.localeOf(context)
+ Locale get currentLocale => Localizations.localeOf(this);
 
   //Navigation
   Future<dynamic> pushNamed(String routeName, { Object? arguments}) {
