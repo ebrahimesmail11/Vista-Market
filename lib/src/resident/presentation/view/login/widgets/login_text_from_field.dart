@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/animations/animate_do.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
