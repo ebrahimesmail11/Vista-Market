@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 
 class CustomFadeInDown extends StatelessWidget {
@@ -62,7 +63,7 @@ class CustomFadeInLeft extends StatelessWidget {
     //   duration: Duration(milliseconds: duration),
     //   child: child,
     // );
-    return SharedPref().getString('lang') == 'ar'
+    return SharedPref().getString(PrefKeys.languageKey) == 'ar'
         ? FadeInLeft(
             delay: const Duration(milliseconds: 300),
             duration: Duration(milliseconds: duration),
@@ -94,7 +95,7 @@ class CustomFadeInRight extends StatelessWidget {
     //   duration: Duration(milliseconds: duration),
     //   child: child,
     // );
-    return SharedPref().getString('lang') == 'ar'
+    return SharedPref().getString(PrefKeys.languageKey) == 'ar'
         ? FadeInRight(
             delay: const Duration(milliseconds: 300),
             duration: Duration(milliseconds: duration),
