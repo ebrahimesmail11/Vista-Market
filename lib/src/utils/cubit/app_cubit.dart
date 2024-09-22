@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 
 part 'app_state.dart';
@@ -17,7 +18,7 @@ class AppCubit extends Cubit<AppState> {
       emit(AppState.themeChangeMode(isDark: isDark));
     } else {
       isDark = !isDark;
-      await SharedPref().setBoolean('mode', isDark).then((value) {
+      await SharedPref().setBoolean(PrefKeys.themeMode, isDark).then((value) {
         emit(AppState.themeChangeMode(isDark: isDark));
       });
     }
@@ -25,15 +26,15 @@ class AppCubit extends Cubit<AppState> {
 
   // Change Language
   Future<void> savedlanguage() async {
-    final result =  SharedPref().containPreference('lang')
-        ? SharedPref().getString('lang')
+    final result =  SharedPref().containPreference(PrefKeys.languageKey)
+        ? SharedPref().getString(PrefKeys.languageKey)
         : 'en';
         currentLanguage=result??'en';
        emit(AppState.langChange(local: Locale(currentLanguage))); 
   }
 
   Future<void> _changeLanguage({required String lang}) async {
-   await SharedPref().setString('lang', lang);
+   await SharedPref().setString(PrefKeys.languageKey, lang);
     currentLanguage = lang;
     emit(AppState.langChange(local: Locale(currentLanguage)));
   }
