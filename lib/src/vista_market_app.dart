@@ -7,6 +7,7 @@ import 'package:vista_market/src/common/generated/app_localizations.dart';
 import 'package:vista_market/src/common/routing/route_manger.dart';
 
 import 'package:vista_market/src/common/routing/routes.dart';
+import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
@@ -25,7 +26,7 @@ class VistaMarketApp extends StatelessWidget {
           return BlocProvider(
             create: (context) => getIt<AppCubit>()
               ..changeTheme(
-                sharedMode: SharedPref().getBoolean('mode'),
+                sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
               )
               ..savedlanguage(),
             child: ScreenUtilInit(

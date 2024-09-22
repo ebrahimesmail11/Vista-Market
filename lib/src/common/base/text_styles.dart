@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 
 class TextStyles {
@@ -6,7 +7,7 @@ class TextStyles {
   static const String cairoArabic = 'Cairo';
   static const String poppinsEnglish = 'Poppins';
   static String getLocatedFontFamily() {
-    final getCurrentLanguage = SharedPref().getString('lang');
+    final getCurrentLanguage = SharedPref().getString(PrefKeys.languageKey);
     if (getCurrentLanguage == 'ar') {
       return cairoArabic;
     } else {
