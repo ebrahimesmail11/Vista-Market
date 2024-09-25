@@ -6,12 +6,12 @@ import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_cutom_pointer.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_header.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_titles_section.dart';
-import 'package:vista_market/src/resident/presentation/view/registration/widgets/registration_button.dart';
-import 'package:vista_market/src/resident/presentation/view/registration/widgets/text_form_field_registration.dart';
-import 'package:vista_market/src/resident/presentation/view/registration/widgets/user_avtar.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_cutom_pointer.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_header.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_titles_section.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/registration_button.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/text_form_field_registration.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/user_avtar.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vista_market/src/common/network/service/graphql/api_service.dart';
 import 'package:vista_market/src/common/network/service/graphql/dio_factory.dart';
