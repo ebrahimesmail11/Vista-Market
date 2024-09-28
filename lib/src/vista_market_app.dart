@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vista_market/flavor.dart';
+import 'package:vista_market/src/common/base/app_constants.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/generated/app_localizations.dart';
 
 import 'package:vista_market/src/common/routing/route_manger.dart';
 
 import 'package:vista_market/src/common/routing/routes.dart';
+import 'package:vista_market/src/common/storage/local_storage_helper.dart';
 import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
@@ -16,7 +20,36 @@ import 'package:vista_market/src/utils/no_network_screen.dart';
 import 'package:vista_market/src/utils/theme/app_theme.dart';
 
 class VistaMarketApp extends StatelessWidget {
-  const VistaMarketApp({super.key});
+  const VistaMarketApp({
+    super.key,
+    required this.flavor,
+  });
+  final Flavor flavor;
+
+  Future<List<String>> get userInfo async {
+   await checkUserLoggiedIn();
+     var jwt = await LocalStorageHelper.read(PrefKeys.tokenKey);
+    var userId = await LocalStorageHelper.read(PrefKeys.userId);
+    var userType = await LocalStorageHelper.read(AppConstants.user);
+
+    jwt ??= '';
+    userId ??= '';
+    userType ??= '';
+
+    if (jwt == '' && userId == '' && userType == '') return [];
+
+    return [jwt, userId, userType];
+  }
+
+  Future<void> checkUserLoggiedIn()async {
+      final prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey(PrefKeys.tokenKey)) {
+      await LocalStorageHelper.deleteAll();
+      isLoggedInUser = false;
+    }
+    await LocalStorageHelper.read(PrefKeys.tokenKey);
+      isLoggedInUser =true;
+  }
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -68,7 +101,7 @@ class VistaMarketApp extends StatelessWidget {
                       );
                     },
                     onGenerateRoute: RouteManger.generateRoute,
-                    initialRoute: Routes.login,
+                     initialRoute: Routes.login,
                   );
                 },
               ),

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/firebase_options.dart';
+import 'package:vista_market/flavor.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
+import 'package:vista_market/src/common/base/user_type.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/bloc_observer.dart';
 import 'package:vista_market/src/utils/env.dart';
@@ -23,6 +25,6 @@ void main() async {
  await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],
   ).then((_) {
-    runApp(const VistaMarketApp());
+    runApp(const  VistaMarketApp(flavor: Flavor.admin,));
   });
 }
