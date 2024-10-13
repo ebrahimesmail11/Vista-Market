@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_cutom_pointer.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_header.dart';
+import 'package:vista_market/src/auth/presentation/view/login/widgets/login_titles_section.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/registration_button.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/text_form_field_registration.dart';
+import 'package:vista_market/src/auth/presentation/view/registration/widgets/user_avtar.dart';
 import 'package:vista_market/src/common/animations/animate_do.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_button.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_cutom_pointer.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_header.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_text_from_field.dart';
-import 'package:vista_market/src/resident/presentation/view/login/widgets/login_titles_section.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+
+
+
+class RegistrationScreen extends StatelessWidget {
+  const RegistrationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       bottomNavigationBar: CustomPaint(
         size: Size(
           MediaQuery.of(context).size.width,
-          150.h,
+          100.h,
         ),
         painter: AuthCustomPainter(
           gradient: LinearGradient(
@@ -46,28 +51,30 @@ class LoginScreen extends StatelessWidget {
             height: 50.h,
           ),
           LoginTitlesSection(
-            title: context.tr.login,
-            description: context.tr.welcome,
+            title: context.tr.sign_up,
+            description: context.tr.sign_up_welcome,
           ),
+          SizedBox(
+            height: 10.h,
+          ),
+          const UserAvtar(),
           SizedBox(
             height: 30.h,
           ),
-          const LoginTextFromField(),
+          const TextFormFieldRegistration(),
           SizedBox(
             height: 30.h,
           ),
-          const LoginButton(),
+          const RegistrationButton(),
           SizedBox(
             height: 30.h,
           ),
           CustomFadeInDown(
             duration: 400,
             child: TextButton(
-              onPressed: () => context.pushReplacementNamed(
-                Routes.registration,
-              ),
+              onPressed: () => context.pushReplacementNamed(Routes.login),
               child: TextApp(
-                text: context.tr.create_account,
+                text: context.tr.you_have_account,
                 theme: context.displaySmall!.copyWith(
                   color: context.colors.bluePinkLight,
                   fontSize: 16.h,
