@@ -4,6 +4,7 @@ bool isLoggedInUser = false;
 
 class AppConstants {
   static const String appName = 'Vista Market';
+  static const String userAlreadyLoggedInKey = 'USER_LOGGED_IN';
   static const String user = 'userType';
   static UserTypes userType = UserTypes.none;
   static const String resident = 'resident';

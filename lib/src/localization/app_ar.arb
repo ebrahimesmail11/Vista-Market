@@ -1,6 +1,7 @@
 {
     "language": "English",
-    "app_name": "متجر آسرو",
+    "app_name_admin": "فزيتا ماركت ادمن ",
+    "app_name":" فويتا ماركت ",
     "login": "تسجيل الدخول",
     "welcome": "مرحباً! الرجاء إدخال بريدك إلكتروني والبدء.",
     "your_email":   "بريدك الالكتروني",
@@ -35,5 +36,10 @@
     "notifications": "إشعارات",
     "subscribed_to_notifications": "تم الاشتراك في إشعارات",
     "unsubscribed_to_notifications": "تم إلغاء الاشتراك في إشعارات",
-    "view_all": "شاهد الكل"
+    "view_all": "شاهد الكل",
+    "error_msg": "من فضلك حاول مرة أخرى هناك خطأ",
+    "failure_role":" فشل في الحصول على دور المستخدم. ",
+    "occurred_error":" حدث خطأ غير متوقع. ",
+    "failure_login": " كلمه المرور او البريد الالكتروني غير صحيحة " 
+
 }

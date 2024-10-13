@@ -45,7 +45,7 @@ class _ApiService implements ApiService {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        )));
+        ),),);
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late LoginResponse _value;
     try {
@@ -78,7 +78,7 @@ class _ApiService implements ApiService {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        )));
+        ),),);
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late UserRoleModel _value;
     try {

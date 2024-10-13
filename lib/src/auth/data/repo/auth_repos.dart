@@ -1,3 +1,4 @@
+
 import 'package:vista_market/src/auth/data/remote/auth_remote_source.dart';
 import 'package:vista_market/src/common/network/models/login/login_request_body.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
@@ -15,12 +16,16 @@ class AuthRepos {
       final response = await _remoteSource.login(body: body);
       return ApiResult.success(response);
     } catch (e) {
-      return   ApiResult.error(e.toString());
+      return ApiResult.error(e.toString());
     }
   }
-  Future<UserRoleModel> userRole(String token) async {
-      final response =await _remoteSource.userRole(token);
-      return response;
 
+  Future<ApiResult<UserRoleModel>> userRole(String token) async {
+    try {
+      final response = await _remoteSource.userRole(token);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.error(e.toString());
+    }
   }
 }

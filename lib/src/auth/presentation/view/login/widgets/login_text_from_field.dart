@@ -14,6 +14,7 @@ class LoginTextFromField extends StatefulWidget {
   State<LoginTextFromField> createState() => _LoginTextFromFieldState();
 }
 bool isShowPassword = true;
+
 class _LoginTextFromFieldState extends State<LoginTextFromField> {
   @override
   Widget build(BuildContext context) {
@@ -52,9 +53,9 @@ class _LoginTextFromFieldState extends State<LoginTextFromField> {
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
-                    
+                     isShowPassword = !isShowPassword;
                   });
-                  isShowPassword = !isShowPassword;
+                 
                 },
                 icon: Icon(isShowPassword
                     ? Icons.visibility

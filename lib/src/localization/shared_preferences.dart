@@ -33,6 +33,7 @@ class SharedPref {
   ///Below method is to set the boolean value in the SharedPreferences.
   Future<dynamic> setBoolean(
     String key,
+    // ignore: avoid_positional_boolean_parameters
     bool booleanValue,
   ) async {
     await sharedPreferences.setBool(key, booleanValue);

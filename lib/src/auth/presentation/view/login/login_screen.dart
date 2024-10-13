@@ -12,6 +12,7 @@ import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 
 
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -64,9 +65,12 @@ class LoginScreen extends StatelessWidget {
           CustomFadeInDown(
             duration: 400,
             child: TextButton(
-              onPressed: () => context.pushReplacementNamed(
-                Routes.registration,
-              ),
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed(Routes.registration);
+              },
+              // onPressed: () => context.pushReplacementNamed(
+              //   Routes.registration,
+              // ),
               child: TextApp(
                 text: context.tr.create_account,
                 theme: context.displaySmall!.copyWith(
