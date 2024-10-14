@@ -45,7 +45,7 @@ class _ApiService implements ApiService {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ),),);
+        )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late LoginResponse _value;
     try {
@@ -78,11 +78,44 @@ class _ApiService implements ApiService {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ),),);
+        )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late UserRoleModel _value;
     try {
       _value = UserRoleModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<UploadImagePickerModel> uploadImage(FormData file) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = file;
+    final _options = _setStreamType<UploadImagePickerModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/v1/files/upload',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late UploadImagePickerModel _value;
+    try {
+      _value = UploadImagePickerModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
