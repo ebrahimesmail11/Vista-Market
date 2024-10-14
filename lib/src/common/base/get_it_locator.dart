@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vista_market/src/auth/data/remote/auth_remote_source.dart';
 import 'package:vista_market/src/auth/data/repo/auth_repos.dart';
@@ -14,9 +15,11 @@ Future<void> initGetIt() async {
 
 Future<void> _initCore() async {
   final dio = DioFactory.getDio();
+  final  navigatorKey = GlobalKey<NavigatorState>();
   getIt
     ..registerFactory(AppCubit.new)
-    ..registerLazySingleton<ApiService>(() => ApiService(dio));
+    ..registerLazySingleton<ApiService>(() => ApiService(dio))
+    ..registerSingleton<GlobalKey <NavigatorState>>(navigatorKey);
 }
 
 Future<void> _initAuth() async {

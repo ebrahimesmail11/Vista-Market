@@ -135,6 +135,7 @@ class VistaMarketApp extends StatelessWidget {
                     );
                   },
                 ),
+                navigatorKey: getIt<GlobalKey<NavigatorState>>(),
                 onGenerateRoute: RouteManger.generateRoute,
               );
             },
