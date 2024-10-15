@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/src/auth/data/repo/login/auth_repos.dart';
-import 'package:vista_market/src/auth/presentation/cubit/cubit/auth_state.dart';
+import 'package:vista_market/src/auth/presentation/cubit/login/auth_state.dart';
 import 'package:vista_market/src/common/base/app_constants.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 

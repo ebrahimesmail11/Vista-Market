@@ -25,7 +25,7 @@ class RegistrationScreen extends StatelessWidget {
       bottomNavigationBar: CustomPaint(
         size: Size(
           MediaQuery.of(context).size.width,
-          100.h,
+          40.h,
         ),
         painter: AuthCustomPainter(
           gradient: LinearGradient(

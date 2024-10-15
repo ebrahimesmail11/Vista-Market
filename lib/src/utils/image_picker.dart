@@ -11,7 +11,9 @@ class PickImage {
 
   Future<XFile?> pickImage() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
       if (image != null) {
         return XFile(image.path);
       } else {

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vista_market/flavor.dart';
 import 'package:vista_market/src/admin/presentation/view/home_page/home_page_screen_admin.dart';
-import 'package:vista_market/src/auth/presentation/cubit/cubit/auth_cubit.dart';
+import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
 import 'package:vista_market/src/auth/presentation/view/login/login_screen.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/generated/app_localizations.dart';
@@ -85,14 +85,8 @@ class VistaMarketApp extends StatelessWidget {
                             ConnectivityController.instance.isConnected,
                         builder: (context, isConnected, child) {
                           if (!isConnected) {
-                            return MaterialApp(
-                              debugShowCheckedModeBanner:
-                                  Env.instance.depugMode,
-                              title: appTitle,
-                              theme:
-                                  appCubit.isDark ? themeLight() : themeDark(),
-                              home: const NoNetworkScreen(),
-                            );
+                            return  const NoNetworkScreen();
+                            
                           } else {
                             return FutureBuilder<String?>(
                               future: getUserRole(),

@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:vista_market/flavor.dart';
 
-import 'package:vista_market/src/auth/presentation/cubit/cubit/auth_cubit.dart';
-import 'package:vista_market/src/auth/presentation/cubit/cubit/auth_state.dart';
+import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
+import 'package:vista_market/src/auth/presentation/cubit/login/auth_state.dart';
 import 'package:vista_market/src/common/animations/animate_do.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
