@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:vista_market/src/auth/data/repo/registation/upload_repos.dart';
+import 'package:vista_market/src/auth/data/repo/registration/upload_repos.dart';
 import 'package:vista_market/src/utils/image_picker.dart';
 
 part 'upload_image_state.dart';

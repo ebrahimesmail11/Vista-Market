@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:vista_market/src/auth/data/remote/login/auth_remote_source.dart';
+import 'package:vista_market/src/auth/data/remote/login/login_remote_source.dart';
 import 'package:vista_market/src/auth/data/remote/registration/upload_remote_source.dart';
-import 'package:vista_market/src/auth/data/repo/login/auth_repos.dart';
-import 'package:vista_market/src/auth/data/repo/registation/upload_repos.dart';
+import 'package:vista_market/src/auth/data/repo/login/login_repos.dart';
+import 'package:vista_market/src/auth/data/repo/registration/upload_repos.dart';
 import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
 import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/network/service/graphql/api_service.dart';

@@ -1,5 +1,5 @@
 
-import 'package:vista_market/src/auth/data/remote/login/auth_remote_source.dart';
+import 'package:vista_market/src/auth/data/remote/login/login_remote_source.dart';
 import 'package:vista_market/src/common/network/models/login/login_request_body.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
 import 'package:vista_market/src/common/network/models/profile/user_role_model.dart';
