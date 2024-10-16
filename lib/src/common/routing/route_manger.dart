@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/src/admin/presentation/view/home_page/home_page_screen_admin.dart';
+import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
 import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/auth/presentation/view/login/login_screen.dart';
 import 'package:vista_market/src/auth/presentation/view/registration/registration_screen.dart';
@@ -23,6 +24,9 @@ class RouteManger {
             providers: [
               BlocProvider(
                 create: (_) => getIt<UploadImageCubit>(),
+              ),
+              BlocProvider(
+                create: (_) => getIt<AuthCubit>(),
               ),
             ],
             child: const RegistrationScreen(),
