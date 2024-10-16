@@ -47,7 +47,6 @@ class RegistrationButton extends StatelessWidget {
                 ),
               ),
             ).show(context);
-            context.pushReplacementNamed(Routes.homePageScreen);
           },
           failure: (message) {
             _showErrorToast(context, message);
