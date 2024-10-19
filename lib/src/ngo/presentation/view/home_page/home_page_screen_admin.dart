@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/network/models/admin_drawer/admin_drawer_model.dart';
-import 'package:vista_market/src/common/widgets/admin_app_bar_widget.dart';
+import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/dashboard/dash_board_screen.dart';
 
 class HomePageScreenAdmin extends StatefulWidget {

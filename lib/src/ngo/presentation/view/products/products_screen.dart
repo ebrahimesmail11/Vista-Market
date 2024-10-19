@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
-import 'package:vista_market/src/common/widgets/admin_app_bar_widget.dart';
+import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
