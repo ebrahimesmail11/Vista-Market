@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/widget/dashboard_body/dash_board_body.dart';
+import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/widget/dashboard_body/dash_board_body.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});

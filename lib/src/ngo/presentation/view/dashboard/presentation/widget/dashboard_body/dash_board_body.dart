@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/base/app_images.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/widget/dashboard_body/dash_board_container.dart';
+import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/widget/dashboard_body/dash_board_container.dart';
 
 
 class DashBoardBody extends StatelessWidget {
