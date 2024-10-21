@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:vista_market/src/common/base/app_constants.dart';
 import 'package:vista_market/src/common/network/models/categories/categories_response.dart';
