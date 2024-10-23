@@ -8,7 +8,7 @@ part 'categories_number_cubit.freezed.dart';
 
 class CategoriesNumberCubit extends Cubit<CategoriesNumberState> {
   CategoriesNumberCubit(this._dashboardRepo)
-      : super(const CategoriesNumberState.initial());
+      : super(const CategoriesNumberState.loading());
   final DashboardRepo _dashboardRepo;
 
   Future<void> getNumberOfCategories(BuildContext context) async {

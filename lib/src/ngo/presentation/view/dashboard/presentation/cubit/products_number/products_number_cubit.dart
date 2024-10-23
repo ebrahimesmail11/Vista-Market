@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,12 +10,13 @@ part 'products_number_cubit.freezed.dart';
 
 class ProductsNumberCubit extends Cubit<ProductsNumberState> {
   ProductsNumberCubit(this._dashboardRepo)
-      : super(const ProductsNumberState.initial());
+      : super(const ProductsNumberState.loading());
  final  DashboardRepo _dashboardRepo;
 
   Future<void> getNumberOfProducts(BuildContext context) async {
     emit(const ProductsNumberState.loading());
     final result = await _dashboardRepo.numberofProducts(context);
+    log('result: $result');
     result.when(
       success: (productNumber) {
         emit(

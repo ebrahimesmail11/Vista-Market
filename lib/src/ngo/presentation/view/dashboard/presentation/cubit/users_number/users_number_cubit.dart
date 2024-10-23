@@ -8,7 +8,7 @@ part 'users_number_cubit.freezed.dart';
 
 class UsersNumberCubit extends Cubit<UsersNumberState> {
   UsersNumberCubit(this._dashboardRepo)
-      : super(const UsersNumberState.initial());
+      : super(const UsersNumberState.loading());
   final DashboardRepo _dashboardRepo;
 
   Future<void> getNumberOfUsers(BuildContext context) async {
