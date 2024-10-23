@@ -9,7 +9,7 @@ import 'package:vista_market/src/common/widgets/admin_widget/custom_dialogs.dart
 import 'package:vista_market/src/common/widgets/text_app.dart';
 import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/categories_screen.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/dash_board_screen.dart';
+import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/dash_board_screen.dart';
 import 'package:vista_market/src/ngo/presentation/view/notifications/notificatins_screen.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/products_screen.dart';
 import 'package:vista_market/src/ngo/presentation/view/users/users_screen.dart';
