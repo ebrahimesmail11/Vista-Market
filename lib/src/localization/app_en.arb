@@ -41,5 +41,7 @@
     "failure_role":"Failed to obtain user role.",
     "occurred_error": " An unexpected error occurred. ",
     "failure_login": " Password or email is incorrect ",
-    "dashboard":"DashBoard"
+    "dashboard":"DashBoard",
+    "create_categories":"Get All Categories",
+    "add":"Add"
 }
