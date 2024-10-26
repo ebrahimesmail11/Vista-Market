@@ -5,7 +5,9 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
+import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/view/categories/widget/update_category_bottom_widget.dart';
 
 class AddCategoriesItem extends StatelessWidget {
   const AddCategoriesItem({
@@ -54,7 +56,11 @@ class AddCategoriesItem extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          CustomBottomSheet.showModelBottomSheetContainer(
+                              context: context,
+                              widget: const UpdateCategoryBottomWidget(),);
+                        },
                         icon: Icon(
                           Icons.edit,
                           color: Colors.green,

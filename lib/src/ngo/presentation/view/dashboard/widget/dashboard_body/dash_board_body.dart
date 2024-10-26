@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vista_market/src/auth/data/repo/auth_repo/auth_repos.dart';
 import 'package:vista_market/src/common/base/app_images.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/categories_number/categories_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/products_number/products_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/users_number/users_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/widget/dashboard_body/dash_board_container.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/view/dashboard/widget/dashboard_body/dash_board_container.dart';
 
 class DashBoardBody extends StatelessWidget {
   const DashBoardBody({super.key});

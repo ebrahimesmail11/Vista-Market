@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:vista_market/src/common/base/app_constants.dart';
+import 'package:vista_market/src/common/network/models/all_category/get_all_categories_response.dart';
 import 'package:vista_market/src/common/network/models/categories/categories_response.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
 import 'package:vista_market/src/common/network/models/products/products_response.dart';
@@ -35,6 +36,10 @@ abstract class ApiService {
   );
   @POST(AppConstants.graphql)
   Future<UsersResponse> numberOfUsers(
+    @Body() Map<String, dynamic> query,
+  );
+  @POST(AppConstants.graphql)
+  Future<GetAllCategoriesResponse> getAllCategories(
     @Body() Map<String, dynamic> query,
   );
 }

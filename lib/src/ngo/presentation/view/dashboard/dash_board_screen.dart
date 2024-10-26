@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/categories_number/categories_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/products_number/products_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/cubit/users_number/users_number_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/presentation/widget/dashboard_body/dash_board_body.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/view/dashboard/widget/dashboard_body/dash_board_body.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({super.key});
