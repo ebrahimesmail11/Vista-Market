@@ -22,7 +22,7 @@ class AddCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
-      height: 130.h,
+      height: 133.h,
       width: MediaQuery.sizeOf(context).width,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),

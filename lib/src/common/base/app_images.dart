@@ -4,7 +4,7 @@ class AppImages {
 //Images
   static const noNetwork = 'assets/images/no_network.jpg';
   static const pageUnderBuild = 'assets/images/core/page_under_build.jpg';
-  static const emptyScreen = 'assets/images/core/empty_screen.png';
+  static const emptyScreen = 'assets/images/empty_screen.png';
   static const userAvtar='assets/images/user.png';
   // Customer
 

@@ -18,8 +18,12 @@ class GetAllCategoriesCubit extends Cubit<GetAllCategoriesState> {
     emit(const GetAllCategoriesState.loading());
     final result = await _repo.getAllCategories(context);
     result.when(
-      success: (response) {
-        emit(GetAllCategoriesState.success(categoriesList: response));
+      success: (data) {
+        if(data.categoriesList.isEmpty) {
+          emit(const GetAllCategoriesState.empty());
+        }else{
+           emit(GetAllCategoriesState.success(categoriesList: data));
+        }
       },
       error: (message) {
         emit(GetAllCategoriesState.failure(error: message));
