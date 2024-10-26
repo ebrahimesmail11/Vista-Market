@@ -4,7 +4,7 @@ import 'package:vista_market/src/common/network/models/categories/categories_res
 import 'package:vista_market/src/common/network/models/products/products_response.dart';
 import 'package:vista_market/src/common/network/models/users/users_response.dart';
 import 'package:vista_market/src/common/network/service/graphql/api_result.dart';
-import 'package:vista_market/src/ngo/presentation/view/dashboard/data/remote/dashboard_remote_source.dart';
+import 'package:vista_market/src/ngo/data/remote/dashboard_remote_source.dart';
 
 class DashboardRepo {
   const DashboardRepo(this._remoteSource);

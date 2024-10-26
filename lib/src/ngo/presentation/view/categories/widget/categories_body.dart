@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vista_market/src/common/widgets/admin_widget/empty_screen.dart';
+import 'package:vista_market/src/common/widgets/loading_shimmer.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/add_categories_item.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/create_categories.dart';
 
@@ -15,7 +19,11 @@ class CategoriesBody extends StatelessWidget {
           const CreateCategories(),
           Expanded(
             child: RefreshIndicator(
-              onRefresh: () async {},
+              onRefresh: () async {
+                await context.read<GetAllCategoriesCubit>().getAllCategories(
+                      context,
+                    );
+              },
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(
@@ -24,21 +32,50 @@ class CategoriesBody extends StatelessWidget {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return const AddCategoriesItem(
-                          name: 'Grocery',
-                          image:
-                              'https://gratisography.com/wp-content/uploads/2024/01/gratisography-covered-in-confetti-1170x780.jpg',
-                          categoriesId: '1',
-                        );
-                      },
-                      itemCount: 3,
-                      separatorBuilder: (context, index) {
-                        return SizedBox(
-                          height: 15.h,
+                    child: BlocBuilder<GetAllCategoriesCubit,
+                        GetAllCategoriesState>(
+                      builder: (context, state) {
+                        return state.when(
+                          loading: () {
+                            return ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return LoadingShimmer(
+                                  height: 130.h,
+                                  borderRadius: 15,
+                                );
+                              },
+                              itemCount: 3,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  height: 15.h,
+                                );
+                              },
+                            );
+                          },
+                          success: (data) {
+                            return ListView.separated(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return AddCategoriesItem(
+                                  name: data.categoriesList[index].name ?? '',
+                                  image: data.categoriesList[index].image ?? '',
+                                  categoriesId:
+                                      data.categoriesList[index].id ?? '',
+                                );
+                              },
+                              itemCount: data.categoriesList.length,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(
+                                  height: 15.h,
+                                );
+                              },
+                            );
+                          },
+                          empty: EmptyScreen.new,
+                          failure: Text.new,
                         );
                       },
                     ),
