@@ -10,14 +10,16 @@ import 'package:vista_market/src/common/network/service/graphql/api_service.dart
 import 'package:vista_market/src/common/network/service/graphql/dio_factory.dart';
 import 'package:vista_market/src/ngo/data/remote/categories_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/dashboard_remote_source.dart';
+import 'package:vista_market/src/ngo/data/repo/categories_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/dashboard_repo.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
 
-import '../../ngo/data/repo/categories_repo.dart';
+
 
 final getIt = GetIt.instance;
 Future<void> initGetIt() async {
@@ -63,5 +65,6 @@ Future<void> _initCategories() async {
   getIt
     ..registerLazySingleton(() => CategoriesRemoteSource(getIt()))
     ..registerLazySingleton(() => CategoriesRepo(getIt()))
-    ..registerFactory(()=>GetAllCategoriesCubit(getIt()));
+    ..registerFactory(()=>GetAllCategoriesCubit(getIt()))
+    ..registerFactory(() => CreateAddCategoryCubit(getIt()));
 }
