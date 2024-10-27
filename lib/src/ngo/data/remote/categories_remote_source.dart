@@ -22,4 +22,10 @@ class CategoriesRemoteSource {
         .createCategory(CategoriesQuires().createAddCategory(body: body));
     return response;
   }
+  Future<void> deleteCategory({required String categoryId})async{
+    final response =await _apiService.deleteCategory(
+      CategoriesQuires().deleteCategoryMapQuery(categoryId: categoryId),);
+
+    return response;
+  }
 }

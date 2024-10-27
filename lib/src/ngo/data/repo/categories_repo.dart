@@ -38,4 +38,20 @@ class CategoriesRepo {
       return const ApiResult.error('An unexpected error occurred');
     }
   }
+
+  Future<ApiResult<void>> deleteCategory(
+    BuildContext context, {
+    required String categoryId,
+  }) async {
+    try {
+      final response =
+          await _remoteSource.deleteCategory(categoryId: categoryId);
+      return ApiResult.success(response);
+    } catch (e) {
+      if (context.mounted) {
+        return ApiResult.error(context.tr.error_msg);
+      }
+      return const ApiResult.error('An unexpected error occurred');
+    }
+  }
 }
