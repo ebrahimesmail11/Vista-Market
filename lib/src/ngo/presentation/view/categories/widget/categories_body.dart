@@ -22,6 +22,7 @@ class CategoriesBody extends StatelessWidget {
               onRefresh: () async {
                 await context.read<GetAllCategoriesCubit>().getAllCategories(
                       context,
+                      isNotLoading: true,
                     );
               },
               child: CustomScrollView(

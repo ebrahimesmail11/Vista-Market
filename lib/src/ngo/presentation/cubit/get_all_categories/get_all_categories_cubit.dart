@@ -14,15 +14,18 @@ class GetAllCategoriesCubit extends Cubit<GetAllCategoriesState> {
         );
   final CategoriesRepo _repo;
 
-  Future<void> getAllCategories(BuildContext context) async {
-    emit(const GetAllCategoriesState.loading());
+  Future<void> getAllCategories(BuildContext context,
+      {required bool isNotLoading,}) async {
+        if (isNotLoading) {
+          emit(const GetAllCategoriesState.loading());
+        }
     final result = await _repo.getAllCategories(context);
     result.when(
       success: (data) {
-        if(data.categoriesList.isEmpty) {
+        if (data.categoriesList.isEmpty) {
           emit(const GetAllCategoriesState.empty());
-        }else{
-           emit(GetAllCategoriesState.success(categoriesList: data));
+        } else {
+          emit(GetAllCategoriesState.success(categoriesList: data));
         }
       },
       error: (message) {

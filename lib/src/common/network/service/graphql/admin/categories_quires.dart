@@ -35,6 +35,7 @@ class CategoriesQuires {
               name
               image
             }
+          }
           ''',
       'variables': {
         'name': body.name,
