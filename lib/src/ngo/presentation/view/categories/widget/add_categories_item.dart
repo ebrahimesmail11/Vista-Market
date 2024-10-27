@@ -7,6 +7,7 @@ import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/view/categories/widget/delete_category_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/update_category_bottom_widget.dart';
 
 class AddCategoriesItem extends StatelessWidget {
@@ -22,7 +23,7 @@ class AddCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
-      height: 133.h,
+      height: 160.h,
       width: MediaQuery.sizeOf(context).width,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -47,14 +48,7 @@ class AddCategoriesItem extends StatelessWidget {
                   const Spacer(),
                   Row(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                          size: 25.h,
-                        ),
-                      ),
+                       DeleteCategoryWidget(categoryId:categoriesId,),
                       IconButton(
                         onPressed: () {
                           CustomBottomSheet.showModelBottomSheetContainer(
@@ -100,3 +94,4 @@ class AddCategoriesItem extends StatelessWidget {
     );
   }
 }
+

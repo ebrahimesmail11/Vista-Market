@@ -51,15 +51,20 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: TextApp(
-          theme: context.bodySmall!.copyWith(
-            color: textColor ?? Colors.white,
-            fontWeight: TextStyles.medium,
-            fontFamily: TextStyles.poppinsEnglish,
-            fontSize: 16.sp,
-          ),
-          text: text,
-          textAlign: textAlign,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextApp(
+              theme: context.bodySmall!.copyWith(
+                color: textColor ?? Colors.white,
+                fontWeight: TextStyles.medium,
+                fontFamily: TextStyles.poppinsEnglish,
+                fontSize: 14.sp,
+              ),
+              text: text,
+              textAlign: textAlign,
+            ),
+          ],
         ),
       ),
     );
