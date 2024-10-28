@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
+import 'package:vista_market/src/common/network/models/update_category/update_category_request_body.dart';
 import 'package:vista_market/src/common/widgets/custom_button.dart';
 import 'package:vista_market/src/common/widgets/custom_text_field.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/update_upload_image.dart';
 
 class UpdateCategoryBottomWidget extends StatefulWidget {
-  const UpdateCategoryBottomWidget({super.key});
-  
-
+  const UpdateCategoryBottomWidget({
+    required this.categoryId,
+    required this.categoryName,
+    required this.categoryImage,
+    super.key,
+  });
+  final String categoryId;
+  final String categoryName;
+  final String categoryImage;
 
   @override
   State<UpdateCategoryBottomWidget> createState() =>
@@ -21,6 +32,18 @@ class _UpdateCategoryBottomWidgetState
     extends State<UpdateCategoryBottomWidget> {
   final fromKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.categoryName;
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,17 +66,19 @@ class _UpdateCategoryBottomWidgetState
               ),
             ),
             SizedBox(height: 20.h),
-           TextApp(
-                  text: 'Update a photo',
-                  theme: context.displaySmall!.copyWith(
-                    color: context.colors.textColor,
-                    fontSize: 16.h,
-                    fontWeight: TextStyles.medium,
-                    fontFamily: TextStyles.poppinsEnglish,
-                  ),
-                ),
+            TextApp(
+              text: 'Update a photo',
+              theme: context.displaySmall!.copyWith(
+                color: context.colors.textColor,
+                fontSize: 16.h,
+                fontWeight: TextStyles.medium,
+                fontFamily: TextStyles.poppinsEnglish,
+              ),
+            ),
             SizedBox(height: 10.h),
-          const   UpdateUploadImage(imageUrl: 'https://images.unsplash.com/photo-1576158113928-4c240eaaf360?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',),
+            UpdateUploadImage(
+              imageUrl: widget.categoryImage,
+            ),
             20.verticalSpace,
             TextApp(
               text: 'Update the Category Name',
@@ -77,20 +102,75 @@ class _UpdateCategoryBottomWidgetState
               },
             ),
             20.verticalSpace,
-            CustomButton(
-              onPressed: () {},
-              text: 'Update a new category',
-              textColor: context.colors.bluePinkDark,
-              backgroundColor: context.colors.textColor,
-              width: MediaQuery.sizeOf(context).width,
-              height: 50.h,
-              lastRadius: 20,
-              threeRadius: 20,
+            BlocConsumer<UpdateCategoryCubit, UpdateCategoryState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: () {
+                    context.pop();
+                    MotionToast.success(
+                      description: Text(
+                        '${nameController.text} update Successfully',
+                      ),
+                    ).show(context);
+                  },
+                  failure: (error) {
+                    MotionToast.error(description: Text(error)).show(context);
+                  },
+                );
+              },
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () {
+                    return Container(
+                      height: 50.h,
+                      width: MediaQuery.sizeOf(context).width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: context.colors.bluePinkDark,
+                        ),
+                      ),
+                    );
+                  },
+                  orElse: () {
+                    return CustomButton(
+                      onPressed: () async {
+                        await _validateThenDoUpdate(context);
+                      },
+                      text: 'Update a new category',
+                      textColor: context.colors.bluePinkDark,
+                      backgroundColor: context.colors.textColor,
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 50.h,
+                      lastRadius: 20,
+                      threeRadius: 20,
+                    );
+                  },
+                );
+              },
             ),
             20.verticalSpace,
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _validateThenDoUpdate(BuildContext context) async {
+    if (fromKey.currentState!.validate()) {
+      await context.read<UpdateCategoryCubit>().updateCategory(
+            context,
+            body: UpdateCategoryRequestBody(
+              id: widget.categoryId,
+              name: nameController.text.trim(),
+              image: context.read<UploadImageCubit>().getimageUrl.isEmpty
+                  ? widget.categoryImage
+                  : context.read<UploadImageCubit>().getimageUrl,
+            ),
+          );
+    }
   }
 }

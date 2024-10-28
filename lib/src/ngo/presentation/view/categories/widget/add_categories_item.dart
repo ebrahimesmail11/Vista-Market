@@ -1,12 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/delete_category_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/categories/widget/update_category_bottom_widget.dart';
 
@@ -48,12 +53,12 @@ class AddCategoriesItem extends StatelessWidget {
                   const Spacer(),
                   Row(
                     children: [
-                       DeleteCategoryWidget(categoryId:categoriesId,),
+                      DeleteCategoryWidget(
+                        categoryId: categoriesId,
+                      ),
                       IconButton(
                         onPressed: () {
-                          CustomBottomSheet.showModelBottomSheetContainer(
-                              context: context,
-                              widget: const UpdateCategoryBottomWidget(),);
+                          _updateCategoryBottomSheet(context);
                         },
                         icon: Icon(
                           Icons.edit,
@@ -93,5 +98,30 @@ class AddCategoriesItem extends StatelessWidget {
       ),
     );
   }
-}
 
+  void _updateCategoryBottomSheet(BuildContext context) {
+    CustomBottomSheet.showModelBottomSheetContainer(
+      context: context,
+      widget: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => getIt<UpdateCategoryCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => getIt<UploadImageCubit>(),
+          ),
+        ],
+        child: UpdateCategoryBottomWidget(
+          categoryId: categoriesId,
+          categoryName: name,
+          categoryImage: image,
+        ),
+      ),
+      whenComplete: () {
+        context
+            .read<GetAllCategoriesCubit>()
+            .getAllCategories(context, isNotLoading: false);
+      },
+    );
+  }
+}

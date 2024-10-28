@@ -18,7 +18,7 @@ class UpdateCategoryCubit extends Cubit<UpdateCategoryState> {
     emit(const UpdateCategoryState.loading());
     final result =await _repo.updateCategory(context, body: body);
     result.when(
-      success: (response) {
+      success: (_) {
         emit(const UpdateCategoryState.success());
       },
       error: (error) {
