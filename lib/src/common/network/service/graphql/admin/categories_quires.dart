@@ -1,4 +1,5 @@
 import 'package:vista_market/src/common/network/models/create_category/create_category_request.dart';
+import 'package:vista_market/src/common/network/models/update_category/update_category_request_body.dart';
 
 class CategoriesQuires {
   factory CategoriesQuires() {
@@ -52,6 +53,22 @@ class CategoriesQuires {
           }
           ''',
       'variables': {'categoryId': categoryId},
+    };
+  }
+
+  Map<String, dynamic> updateCategoryMapQuery(
+      {required UpdateCategoryRequestBody body,}) {
+    return {
+      'query': r'''
+          mutation updateCategory($id: ID!,$name: String!, $image: String!) {
+            updateCategory(id: $id, changes: { name: $name, image: $image }) {
+              id
+              name
+              image
+            }
+          }
+          ''',
+      'variables': {'id': body.id, 'name': body.name, 'image': body.image},
     };
   }
 }
