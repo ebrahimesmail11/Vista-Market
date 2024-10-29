@@ -31,7 +31,6 @@ class _CreateCategoryBottomSheetState extends State<CreateCategoryBottomSheet> {
       child: Form(
         key: fromKey,
         child: Column(
-          // mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
