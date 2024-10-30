@@ -5,7 +5,9 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
+import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
@@ -42,7 +44,12 @@ class ProductAdminItem extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    CustomBottomSheet.showModelBottomSheetContainer(
+                      context: context,
+                      widget: const UpdateProductBottomSheet(),
+                    );
+                  },
                   icon: const Icon(
                     Icons.edit,
                     color: Colors.green,

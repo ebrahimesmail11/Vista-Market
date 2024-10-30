@@ -6,26 +6,33 @@ import 'package:vista_market/src/common/widgets/custom_button.dart';
 import 'package:vista_market/src/common/widgets/custom_drop_down.dart';
 import 'package:vista_market/src/common/widgets/custom_text_field.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/ngo/presentation/view/products/widgets/create_product_image.dart';
+import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_image.dart';
 
-class CreateProductBottomSheet extends StatefulWidget {
-  const CreateProductBottomSheet({super.key});
+class UpdateProductBottomSheet extends StatefulWidget {
+  const UpdateProductBottomSheet({super.key});
 
   @override
-  State<CreateProductBottomSheet> createState() =>
-      _CreateProductBottomSheetState();
+  State<UpdateProductBottomSheet> createState() =>
+      _UpdateProductBottomSheetState();
 }
 
-class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
+class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
   final fromKey = GlobalKey<FormState>();
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _priceController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   String? categoryName;
+  @override
+  void dispose() {
+    titleController.dispose();
+    priceController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.7,
+      height: 600.h,
       child: Form(
         key: fromKey,
         child: SingleChildScrollView(
@@ -34,7 +41,7 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
             children: [
               Center(
                 child: TextApp(
-                  text: 'Create Product',
+                  text: 'Update Product',
                   theme: context.displaySmall!.copyWith(
                     color: context.colors.textColor,
                     fontSize: 20.h,
@@ -43,18 +50,18 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
                   ),
                 ),
               ),
-              SizedBox(height: 20.h),
+              20.verticalSpace,
               TextApp(
-                text: 'Create a photo',
-                theme: context.displaySmall!.copyWith(
-                  color: context.colors.textColor,
-                  fontSize: 16.h,
-                  fontWeight: TextStyles.medium,
-                  fontFamily: TextStyles.poppinsEnglish,
-                ),
-              ),
+                    text: 'Update a photo',
+                    theme: context.displaySmall!.copyWith(
+                      color: context.colors.textColor,
+                      fontSize: 16.h,
+                      fontWeight: TextStyles.medium,
+                      fontFamily: TextStyles.poppinsEnglish,
+                    ),
+                  ),
               SizedBox(height: 10.h),
-              const CreateProductImage(),
+              const UpdateProductImage(),
               15.verticalSpace,
               TextApp(
                 text: 'Title',
@@ -67,7 +74,7 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               ),
               10.verticalSpace,
               CustomTextField(
-                controller: _titleController,
+                controller: titleController,
                 hintText: 'title',
                 keyboardType: TextInputType.emailAddress,
                 validator: (p0) {
@@ -89,7 +96,7 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               ),
               10.verticalSpace,
               CustomTextField(
-                controller: _priceController,
+                controller: priceController,
                 hintText: 'Price',
                 keyboardType: TextInputType.emailAddress,
                 validator: (p0) {
@@ -111,7 +118,7 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               ),
               10.verticalSpace,
               CustomTextField(
-                controller: _descriptionController,
+                controller: descriptionController,
                 hintText: 'description',
                 keyboardType: TextInputType.multiline,
                 maxLines: 4,
@@ -134,8 +141,8 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               ),
               10.verticalSpace,
               CustomCreateDropDown(
-                items: const [],
-                hintText: 'Select a Category',
+                items: const ['Mobile', 'Laptop', 'Tablet'],
+                hintText: 'MacBook',
                 onChanged: (p0) {
                   setState(() {
                     categoryName = p0;
@@ -146,7 +153,7 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               15.verticalSpace,
               CustomButton(
                 onPressed: () {},
-                text: 'Create  product',
+                text: 'Update  product',
                 textColor: context.colors.bluePinkDark,
                 backgroundColor: context.colors.textColor,
                 width: MediaQuery.sizeOf(context).width,
