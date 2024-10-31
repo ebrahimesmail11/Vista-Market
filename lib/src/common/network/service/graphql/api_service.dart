@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:vista_market/src/common/base/app_constants.dart';
 import 'package:vista_market/src/common/network/models/all_category/get_all_categories_response.dart';
+import 'package:vista_market/src/common/network/models/all_products/all_products_response.dart';
 import 'package:vista_market/src/common/network/models/categories/categories_response.dart';
 import 'package:vista_market/src/common/network/models/create_category/create_category_response.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
@@ -54,5 +55,9 @@ abstract class ApiService {
   @POST(AppConstants.graphql)
   Future<void> updateCategory(
     @Body() Map<String, dynamic> mutation,
+  );
+  @POST(AppConstants.graphql)
+  Future<AllProductsResponse> getAllProducts(
+    @Body() Map<String, dynamic> query,
   );
 }
