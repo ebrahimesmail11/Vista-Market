@@ -98,3 +98,8 @@ extension StringExtension on String? {
 extension ListExtension<T> on List<T>? {
   bool isNullOrEmpty() => this == null || this!.isEmpty;
 }
+extension StringFormatting on String {
+  String imageProductFormat() {
+    return replaceAll(RegExp(r'^\["?|"\]?|"$'), '');
+  }
+}

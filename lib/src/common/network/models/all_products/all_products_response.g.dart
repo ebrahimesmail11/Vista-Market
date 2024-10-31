@@ -35,11 +35,15 @@ Map<String, dynamic> _$AllProductsResponseDataToJson(
 AllProductsResponseProduct _$AllProductsResponseProductFromJson(
         Map<String, dynamic> json) =>
     AllProductsResponseProduct(
-      json['id'] as String,
-      json['title'] as String,
-      json['description'] as String,
-      (json['price'] as num).toInt(),
-      json['image'] as String,
+      json['id'] as String?,
+      json['title'] as String?,
+      json['description'] as String?,
+      (json['price'] as num?)?.toDouble(),
+      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['category'] == null
+          ? null
+          : CategoryProductModel.fromJson(
+              json['category'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AllProductsResponseProductToJson(
@@ -49,5 +53,20 @@ Map<String, dynamic> _$AllProductsResponseProductToJson(
       'title': instance.title,
       'description': instance.description,
       'price': instance.price,
-      'image': instance.image,
+      'images': instance.images,
+      'category': instance.category,
+    };
+
+CategoryProductModel _$CategoryProductModelFromJson(
+        Map<String, dynamic> json) =>
+    CategoryProductModel(
+      json['id'] as String?,
+      json['name'] as String?,
+    );
+
+Map<String, dynamic> _$CategoryProductModelToJson(
+        CategoryProductModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };

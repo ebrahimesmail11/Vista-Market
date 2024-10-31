@@ -63,7 +63,7 @@ class ProductAdminItem extends StatelessWidget {
               child: CachedNetworkImage(
                 height: 200.h,
                 width: 120.w,
-                imageUrl: imageUrl,
+                imageUrl: imageUrl.imageProductFormat(),
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,

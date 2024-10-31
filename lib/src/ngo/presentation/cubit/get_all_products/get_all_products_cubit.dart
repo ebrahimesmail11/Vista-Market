@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,6 +22,7 @@ class GetAllProductsCubit extends Cubit<GetAllProductsState> {
     final result = await _repo.getAllProducts(context);
     result.when(
       success: (data) {
+       
         if (data.products.isEmpty) {
           emit(const GetAllProductsState.empty());
         } else {

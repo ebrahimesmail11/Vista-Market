@@ -11,9 +11,9 @@ class AllProductsResponse {
       _$AllProductsResponseFromJson(json);
   final AllProductsResponseData data;
   List<AllProductsResponseProduct> get products {
-    if(data.products.isEmpty){
+    if (data.products.isEmpty) {
       return [];
-    }else{
+    } else {
       return data.products;
     }
   }
@@ -36,13 +36,26 @@ class AllProductsResponseProduct {
     this.title,
     this.description,
     this.price,
-    this.image,
+    this.images,
+    this.category,
   );
   factory AllProductsResponseProduct.fromJson(Map<String, dynamic> json) =>
       _$AllProductsResponseProductFromJson(json);
-  final String id;
-  final String title;
-  final String description;
-  final int price;
-  final String image;
+  final String? id;
+  final String? title;
+  final String? description;
+  final double? price;
+  final List<String>? images;
+  final CategoryProductModel? category;
+}
+
+@JsonSerializable()
+class CategoryProductModel {
+  CategoryProductModel(this.id, this.name);
+
+  factory CategoryProductModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryProductModelFromJson(json);
+
+  final String? id;
+  final String? name;
 }

@@ -9,10 +9,13 @@ class ProductsQuires {
       'query': '''
         {
           products{
+            id
             title
             description
             price
+            images
             category{
+              id
               name
             }
           }
