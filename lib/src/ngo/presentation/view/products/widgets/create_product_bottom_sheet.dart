@@ -145,7 +145,9 @@ class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
               ),
               15.verticalSpace,
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
                 text: 'Create  product',
                 textColor: context.colors.bluePinkDark,
                 backgroundColor: context.colors.textColor,

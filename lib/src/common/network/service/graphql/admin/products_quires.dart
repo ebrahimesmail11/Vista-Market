@@ -1,3 +1,5 @@
+import 'package:vista_market/src/common/network/models/create_product/create_product_request_body.dart';
+
 class ProductsQuires {
   factory ProductsQuires() {
     return _instance;
@@ -21,6 +23,30 @@ class ProductsQuires {
           }
         }
       ''',
+    };
+  }
+
+  Map<String, dynamic> creatProductsMapQuery({
+    required CreateProductRequestBody body,
+  }) {
+    return {
+      'query': r'''
+        mutation AddProduct($title:String!,$description:String!,$price:Float!,$images:[String]!,$categoryId:Float!){
+          addProduct(
+          data: {
+            title: $title, 
+            description: $description,
+            price: $price,
+            images: $images, 
+            category: $categoryId
+          }) {
+            title
+          }
+        }
+      ''',
+      'variables': {
+        'title': body.title,
+      },
     };
   }
 }

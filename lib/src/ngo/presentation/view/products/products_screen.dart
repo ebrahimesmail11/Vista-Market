@@ -19,6 +19,7 @@ class ProductsScreen extends StatelessWidget {
               context,
               isNotLoading: true,
             ),
+            
         ),
       ],
       child: Scaffold(

@@ -20,6 +20,7 @@ mixin _$UploadImageState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -29,6 +30,7 @@ mixin _$UploadImageState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -38,6 +40,7 @@ mixin _$UploadImageState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -48,6 +51,7 @@ mixin _$UploadImageState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -57,6 +61,7 @@ mixin _$UploadImageState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -66,6 +71,7 @@ mixin _$UploadImageState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
@@ -144,6 +150,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -156,6 +163,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -168,6 +176,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -184,6 +193,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -196,6 +206,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -208,6 +219,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
@@ -273,6 +285,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -285,6 +298,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -297,6 +311,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -313,6 +328,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -325,6 +341,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -337,6 +354,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
@@ -351,6 +369,178 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements Loading {
 
 abstract class Loading implements UploadImageState {
   const factory Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadingListImplCopyWith<$Res> {
+  factory _$$LoadingListImplCopyWith(
+          _$LoadingListImpl value, $Res Function(_$LoadingListImpl) then) =
+      __$$LoadingListImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$LoadingListImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res, _$LoadingListImpl>
+    implements _$$LoadingListImplCopyWith<$Res> {
+  __$$LoadingListImplCopyWithImpl(
+      _$LoadingListImpl _value, $Res Function(_$LoadingListImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$LoadingListImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadingListImpl with DiagnosticableTreeMixin implements LoadingList {
+  const _$LoadingListImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UploadImageState.loadingList(index: $index)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UploadImageState.loadingList'))
+      ..add(DiagnosticsProperty('index', index));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingListImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadingListImplCopyWith<_$LoadingListImpl> get copyWith =>
+      __$$LoadingListImplCopyWithImpl<_$LoadingListImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(int index) loadingList,
+    required TResult Function() success,
+    required TResult Function(String imageUrl) removeImage,
+    required TResult Function(String error) failure,
+  }) {
+    return loadingList(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
+    TResult? Function()? success,
+    TResult? Function(String imageUrl)? removeImage,
+    TResult? Function(String error)? failure,
+  }) {
+    return loadingList?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(int index)? loadingList,
+    TResult Function()? success,
+    TResult Function(String imageUrl)? removeImage,
+    TResult Function(String error)? failure,
+    required TResult orElse(),
+  }) {
+    if (loadingList != null) {
+      return loadingList(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
+    required TResult Function(Success value) success,
+    required TResult Function(RemoveImage value) removeImage,
+    required TResult Function(Failure value) failure,
+  }) {
+    return loadingList(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
+    TResult? Function(Success value)? success,
+    TResult? Function(RemoveImage value)? removeImage,
+    TResult? Function(Failure value)? failure,
+  }) {
+    return loadingList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
+    TResult Function(Success value)? success,
+    TResult Function(RemoveImage value)? removeImage,
+    TResult Function(Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (loadingList != null) {
+      return loadingList(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingList implements UploadImageState {
+  const factory LoadingList(final int index) = _$LoadingListImpl;
+
+  int get index;
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadingListImplCopyWith<_$LoadingListImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -402,6 +592,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -414,6 +605,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -426,6 +618,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -442,6 +635,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -454,6 +648,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -466,6 +661,7 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
@@ -561,6 +757,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -573,6 +770,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -585,6 +783,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -601,6 +800,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -613,6 +813,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -625,6 +826,7 @@ class _$RemoveImageImpl with DiagnosticableTreeMixin implements RemoveImage {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
@@ -728,6 +930,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(int index) loadingList,
     required TResult Function() success,
     required TResult Function(String imageUrl) removeImage,
     required TResult Function(String error) failure,
@@ -740,6 +943,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(int index)? loadingList,
     TResult? Function()? success,
     TResult? Function(String imageUrl)? removeImage,
     TResult? Function(String error)? failure,
@@ -752,6 +956,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(int index)? loadingList,
     TResult Function()? success,
     TResult Function(String imageUrl)? removeImage,
     TResult Function(String error)? failure,
@@ -768,6 +973,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
+    required TResult Function(LoadingList value) loadingList,
     required TResult Function(Success value) success,
     required TResult Function(RemoveImage value) removeImage,
     required TResult Function(Failure value) failure,
@@ -780,6 +986,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
+    TResult? Function(LoadingList value)? loadingList,
     TResult? Function(Success value)? success,
     TResult? Function(RemoveImage value)? removeImage,
     TResult? Function(Failure value)? failure,
@@ -792,6 +999,7 @@ class _$FailureImpl with DiagnosticableTreeMixin implements Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
+    TResult Function(LoadingList value)? loadingList,
     TResult Function(Success value)? success,
     TResult Function(RemoveImage value)? removeImage,
     TResult Function(Failure value)? failure,
