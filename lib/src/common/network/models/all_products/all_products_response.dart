@@ -14,7 +14,7 @@ class AllProductsResponse {
     if (data.products.isEmpty) {
       return [];
     } else {
-      return data.products;
+      return data.products.reversed.toList();
     }
   }
 }

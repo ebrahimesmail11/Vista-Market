@@ -7,6 +7,7 @@ import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/view/products/widgets/delete_product_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
@@ -15,6 +16,7 @@ class ProductAdminItem extends StatelessWidget {
     required this.title,
     required this.categoryName,
     required this.price,
+    required this.productId,
     super.key,
   });
 
@@ -22,6 +24,7 @@ class ProductAdminItem extends StatelessWidget {
   final String title;
   final String categoryName;
   final String price;
+  final String productId;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -35,14 +38,7 @@ class ProductAdminItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 25,
-                    color: Colors.red,
-                  ),
-                ),
+                DeleteProductWidget(productId: productId),
                 IconButton(
                   onPressed: () {
                     CustomBottomSheet.showModelBottomSheetContainer(
@@ -125,3 +121,5 @@ class ProductAdminItem extends StatelessWidget {
     );
   }
 }
+
+

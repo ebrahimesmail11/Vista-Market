@@ -73,6 +73,7 @@ class ProductsBody extends StatelessWidget {
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return ProductAdminItem(
+                                  productId: data[index].id ?? '',
                                   imageUrl: data[index].images?.first ?? '',
                                   categoryName:
                                       data[index].category!.name ?? '',
