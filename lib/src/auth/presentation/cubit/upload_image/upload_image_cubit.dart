@@ -11,7 +11,8 @@ class UploadImageCubit extends Cubit<UploadImageState> {
   UploadImageCubit(this._repos) : super(const UploadImageState.initial());
   final UploadRepos _repos;
   String getimageUrl = '';
-  final List<String> images = ['', '', ''];
+   List<String> images = ['', '', ''];
+   List<String> updateProductImage = [];
   Future<void> uploadImage(BuildContext context) async {
     final pickedImage = await PickImage().pickImage();
     if (pickedImage == null) return;
@@ -39,6 +40,29 @@ class UploadImageCubit extends Cubit<UploadImageState> {
     result.when(
       success: (image) {
         images
+          ..removeAt(indexList)
+          ..insert(indexList, image.location ?? '');
+        emit(const UploadImageState.success());
+      },
+      error: (error) {
+        emit(UploadImageState.failure(error));
+      },
+    );
+  }
+
+  Future<void> updateImage(
+    BuildContext context, {
+    required int indexList,
+    required List<String> productImageList,
+  }) async {
+    final pickedImage = await PickImage().pickImage();
+    if (pickedImage == null) return;
+    emit(UploadImageState.loadingList(indexList));
+    final result = await _repos.uploadImage(context, pickedImage);
+    result.when(
+      success: (image) {
+        updateProductImage =productImageList;
+        updateProductImage
           ..removeAt(indexList)
           ..insert(indexList, image.location ?? '');
         emit(const UploadImageState.success());

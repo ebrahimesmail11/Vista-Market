@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/cubit/update_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/delete_product_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
+    required this.imageList,
     required this.imageUrl,
     required this.title,
     required this.categoryName,
@@ -28,6 +30,7 @@ class ProductAdminItem extends StatelessWidget {
   final String categoryName;
   final String price;
   final String productId;
+  final List<String> imageList;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -51,8 +54,11 @@ class ProductAdminItem extends StatelessWidget {
                           BlocProvider(
                             create: (context) => getIt<UpdateProductCubit>(),
                           ),
+                          BlocProvider(
+                            create: (context) => getIt<UploadImageCubit>(),
+                          ),
                         ],
-                        child: const UpdateProductBottomSheet(),
+                        child:  UpdateProductBottomSheet(imgList: imageList,),
                       ),
                     );
                   },
