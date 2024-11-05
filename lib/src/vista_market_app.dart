@@ -1,11 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vista_market/flavor.dart';
-import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
-import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
 import 'package:vista_market/src/auth/presentation/view/login/login_screen.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/generated/app_localizations.dart';
@@ -13,6 +10,8 @@ import 'package:vista_market/src/common/routing/route_manger.dart';
 import 'package:vista_market/src/common/storage/local_storage_helper.dart';
 import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
+import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
+
 import 'package:vista_market/src/resident/presentation/view/home/home_page_screen.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
@@ -29,7 +28,6 @@ class VistaMarketApp extends StatelessWidget {
   final Flavor flavor;
   Future<String?> getUserRole() async {
     final role = await LocalStorageHelper.read(PrefKeys.userRole);
-    log('User role: $role');
     if (role != null && role.isNotEmpty) {
       return role;
     }
@@ -40,17 +38,12 @@ class VistaMarketApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTitle =
         flavor == Flavor.admin ? 'Vista Market Admin' : 'Vista Market';
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<AppCubit>()
-            ..changeTheme(
-              sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-            )
-            ..savedlanguage(),
-        ),
-        BlocProvider(create: (context) => getIt<AuthCubit>()),
-      ],
+    return BlocProvider(
+      create: (context) => getIt<AppCubit>()
+        ..changeTheme(
+          sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
+        )
+        ..savedlanguage(),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -85,8 +78,7 @@ class VistaMarketApp extends StatelessWidget {
                             ConnectivityController.instance.isConnected,
                         builder: (context, isConnected, child) {
                           if (!isConnected) {
-                            return  const NoNetworkScreen();
-                            
+                            return const NoNetworkScreen();
                           } else {
                             return FutureBuilder<String?>(
                               future: getUserRole(),

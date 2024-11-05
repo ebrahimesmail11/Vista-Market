@@ -9,4 +9,5 @@ class AppRegex {
       r'^\d{6}$',
     ).hasMatch(password);
   }
+  
 }

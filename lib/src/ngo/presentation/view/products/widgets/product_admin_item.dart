@@ -1,20 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/view/products/widgets/delete_product_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
+    required this.imageList,
     required this.imageUrl,
     required this.title,
     required this.categoryName,
     required this.price,
+    required this.productId,
     super.key,
   });
 
@@ -22,6 +29,8 @@ class ProductAdminItem extends StatelessWidget {
   final String title;
   final String categoryName;
   final String price;
+  final String productId;
+  final List<String> imageList;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -35,19 +44,22 @@ class ProductAdminItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 25,
-                    color: Colors.red,
-                  ),
-                ),
+                DeleteProductWidget(productId: productId),
                 IconButton(
                   onPressed: () {
                     CustomBottomSheet.showModelBottomSheetContainer(
                       context: context,
-                      widget: const UpdateProductBottomSheet(),
+                      widget: MultiBlocProvider(
+                        providers: [
+                          BlocProvider(
+                            create: (context) => getIt<UpdateProductCubit>(),
+                          ),
+                          BlocProvider(
+                            create: (context) => getIt<UploadImageCubit>(),
+                          ),
+                        ],
+                        child:  UpdateProductBottomSheet(imgList: imageList,),
+                      ),
                     );
                   },
                   icon: const Icon(
@@ -63,7 +75,7 @@ class ProductAdminItem extends StatelessWidget {
               child: CachedNetworkImage(
                 height: 200.h,
                 width: 120.w,
-                imageUrl: imageUrl,
+                imageUrl: imageUrl.imageProductFormat(),
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,

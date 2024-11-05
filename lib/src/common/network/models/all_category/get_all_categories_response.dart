@@ -17,6 +17,10 @@ class GetAllCategoriesResponse {
     }
     return data.categoriesList.reversed.toList();
   }
+  List<String> get categoriesListName {
+    final list = data.categoriesList.map((e)=>e.name??'').toList();
+    return list;
+  }
 }
 
 @JsonSerializable()

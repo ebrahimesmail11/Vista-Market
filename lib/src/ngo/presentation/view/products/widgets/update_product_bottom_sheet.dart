@@ -9,8 +9,8 @@ import 'package:vista_market/src/common/widgets/text_app.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_image.dart';
 
 class UpdateProductBottomSheet extends StatefulWidget {
-  const UpdateProductBottomSheet({super.key});
-
+  const UpdateProductBottomSheet({required this.imgList, super.key});
+final List<String> imgList ;
   @override
   State<UpdateProductBottomSheet> createState() =>
       _UpdateProductBottomSheetState();
@@ -61,7 +61,9 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                     ),
                   ),
               SizedBox(height: 10.h),
-              const UpdateProductImage(),
+               UpdateProductImage(
+                imageList: widget.imgList,
+               ),
               15.verticalSpace,
               TextApp(
                 text: 'Title',
