@@ -31,14 +31,14 @@ class ProductsQuires {
   }) {
     return {
       'query': r'''
-        mutation AddProduct($title:String!,$description:String!,$price:Float!,$images:[String]!,$categoryId:Float!){
+        mutation AddProduct($title:String!,$description:String!,$price:Float!,$images:[String!]!,$categoryId:Float!){
           addProduct(
           data: {
             title: $title, 
             description: $description,
             price: $price,
             images: $images, 
-            category: $categoryId
+            categoryId: $categoryId
           }) {
             title
           }
@@ -46,6 +46,10 @@ class ProductsQuires {
       ''',
       'variables': {
         'title': body.title,
+        'description': body.description,
+        'price': body.price,
+        'images': body.images,
+        'categoryId': body.categoryId,
       },
     };
   }

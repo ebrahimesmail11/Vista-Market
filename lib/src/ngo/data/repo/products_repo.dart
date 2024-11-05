@@ -27,7 +27,7 @@ class ProductsRepo {
       }
     }
   }
-  Future<ApiResult<CreateProductResponse>> createProduct(
+  Future<ApiResult<void>> createProduct(
     BuildContext context,
     CreateProductRequestBody body,
   ) async {

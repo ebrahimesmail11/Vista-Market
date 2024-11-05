@@ -62,7 +62,7 @@ abstract class ApiService {
     @Body() Map<String, dynamic> query,
   );
   @POST(AppConstants.graphql)
-  Future<CreateProductResponse> createProduct(
+  Future<void> createProduct(
     @Body() Map<String, dynamic> mutation,
   );
 }

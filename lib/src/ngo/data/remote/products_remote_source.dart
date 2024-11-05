@@ -18,7 +18,7 @@ class ProductsRemoteSource {
     return response;
   }
 
-  Future<CreateProductResponse> createProduct({
+  Future<void> createProduct({
     required CreateProductRequestBody body,
   }) async {
     final response = await _apiService.createProduct(

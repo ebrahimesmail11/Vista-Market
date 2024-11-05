@@ -9,6 +9,8 @@ import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/custom_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/create_product_bottom_sheet.dart';
 
 class CreateProduct extends StatelessWidget {
@@ -39,11 +41,20 @@ class CreateProduct extends StatelessWidget {
                   BlocProvider(
                     create: (context) => getIt<CreateProductCubit>(),
                   ),
-                  BlocProvider(create: (context) => getIt<UploadImageCubit>()),
+                  BlocProvider(create: (context) => getIt<UploadImageCubit>(),),
+                  BlocProvider(
+                      create: (context) => getIt<GetAllCategoriesCubit>()
+                        ..getAllCategories(context, isNotLoading: false),),
                 ],
                 child: const CreateProductBottomSheet(),
               ),
+              whenComplete: () {
+                context
+                    .read<GetAllProductsCubit>()
+                    .getAllProducts(context, isNotLoading: false);
+              },
             );
+            
           },
           height: 35.h,
           width: 90.w,

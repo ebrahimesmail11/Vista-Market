@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vista_market/src/auth/data/repo/upload_image_repo/upload_repos.dart';
 import 'package:vista_market/src/utils/image_picker.dart';
-
 part 'upload_image_state.dart';
 part 'upload_image_cubit.freezed.dart';
 
@@ -35,11 +34,13 @@ class UploadImageCubit extends Cubit<UploadImageState> {
   }) async {
     final pickedImage = await PickImage().pickImage();
     if (pickedImage == null) return;
-    emit( UploadImageState.loadingList(indexList));
+    emit(UploadImageState.loadingList(indexList));
     final result = await _repos.uploadImage(context, pickedImage);
     result.when(
       success: (image) {
-        images..removeAt(indexList)..insert(indexList, image.location??''); 
+        images
+          ..removeAt(indexList)
+          ..insert(indexList, image.location ?? '');
         emit(const UploadImageState.success());
       },
       error: (error) {
