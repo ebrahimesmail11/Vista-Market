@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/cubit/update_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/delete_product_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
 
@@ -43,7 +46,14 @@ class ProductAdminItem extends StatelessWidget {
                   onPressed: () {
                     CustomBottomSheet.showModelBottomSheetContainer(
                       context: context,
-                      widget: const UpdateProductBottomSheet(),
+                      widget: MultiBlocProvider(
+                        providers: [
+                          BlocProvider(
+                            create: (context) => getIt<UpdateProductCubit>(),
+                          ),
+                        ],
+                        child: const UpdateProductBottomSheet(),
+                      ),
                     );
                   },
                   icon: const Icon(
@@ -121,5 +131,3 @@ class ProductAdminItem extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,4 +1,5 @@
 import 'package:vista_market/src/common/network/models/create_product/create_product_request_body.dart';
+import 'package:vista_market/src/common/network/models/update_product/update_product_request_body.dart';
 
 class ProductsQuires {
   factory ProductsQuires() {
@@ -62,6 +63,38 @@ class ProductsQuires {
         }
       ''',
       'variables': {'productId': productId},
+    };
+  }
+
+  Map<String, dynamic> updateProductMapQuery({
+    required UpdateProductRequestBody body,
+  }) {
+    return {
+      'query': r'''
+        mutation UpdateProduct($productId: ID!,$title: String!, $description: String!, $price: Float!, $images: [String!]!, $categoryId: Float!) {
+          updateProduct(
+          id: $productId,
+           changes: {
+            categoryId: $categoryId,
+            title: $title,
+            description: $description, 
+            price: $price,
+            images: $images
+           }) {
+            
+            title
+            
+          }
+        }
+        ''',
+      'variables': {
+        'productId': body.productId,
+        'categoryId': body.categoryId,
+        'title': body.title,
+        'description': body.description,
+        'price': body.price,
+        'images': body.images,
+      },
     };
   }
 }
