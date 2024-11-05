@@ -27,4 +27,12 @@ class ProductsRemoteSource {
 
     return response;
   }
+
+  Future<void> deleteProduct({required String productId}) async {
+    final response = await _apiService.deleteProduct(
+      ProductsQuires().deleteProductMapQuery(productId: productId),
+    );
+
+    return response;
+  }
 }
