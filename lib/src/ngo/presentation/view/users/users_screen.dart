@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
+import 'package:vista_market/src/ngo/presentation/view/users/widgets/user_admin_body.dart';
 
 class UsersScreen extends StatelessWidget {
   const UsersScreen({super.key});
@@ -14,7 +15,7 @@ class UsersScreen extends StatelessWidget {
         backgroundColor: context.colors.mainColor!,
         title: 'Users',
       ),
-      body: const Center(child: Text('Users'),),
+      body: const UserAdminBody(),
     );
   }
 }
