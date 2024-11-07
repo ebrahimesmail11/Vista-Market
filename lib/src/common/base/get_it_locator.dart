@@ -11,20 +11,22 @@ import 'package:vista_market/src/common/network/service/graphql/dio_factory.dart
 import 'package:vista_market/src/ngo/data/remote/categories_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/dashboard_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/products_remote_source.dart';
+import 'package:vista_market/src/ngo/data/remote/users_remote_source.dart';
 import 'package:vista_market/src/ngo/data/repo/categories_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/dashboard_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/products_repo.dart';
+import 'package:vista_market/src/ngo/data/repo/users_repo.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_users/get_all_users_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_category/delete_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_product/delete_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
-
 import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_category_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
@@ -36,6 +38,7 @@ Future<void> initGetIt() async {
   await _initDashboard();
   await _initCategories();
   await _initProducts();
+  await _initUsers();
 }
 
 Future<void> _initCore() async {
@@ -86,6 +89,13 @@ Future<void> _initProducts() async {
     ..registerLazySingleton(() => ProductsRepo(getIt()))
     ..registerFactory(() => GetAllProductsCubit(getIt()))
     ..registerFactory(() => CreateProductCubit(getIt()))
-    ..registerFactory(()=>DeleteProductCubit(getIt()))
+    ..registerFactory(() => DeleteProductCubit(getIt()))
     ..registerFactory(() => UpdateProductCubit(getIt()));
+}
+
+Future<void> _initUsers() async {
+  getIt
+    ..registerLazySingleton(() => UsersRemoteSource(getIt()))
+    ..registerLazySingleton(() => UsersRepo(getIt()))
+    ..registerFactory(() => GetAllUsersCubit(getIt()));
 }
