@@ -10,6 +10,8 @@ import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/common/widgets/custom_bottom_sheet.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/delete_product_widget.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_bottom_sheet.dart';
@@ -22,6 +24,7 @@ class ProductAdminItem extends StatelessWidget {
     required this.categoryName,
     required this.price,
     required this.productId,
+    required this.description,
     super.key,
   });
 
@@ -31,6 +34,7 @@ class ProductAdminItem extends StatelessWidget {
   final String price;
   final String productId;
   final List<String> imageList;
+  final String description;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -57,9 +61,25 @@ class ProductAdminItem extends StatelessWidget {
                           BlocProvider(
                             create: (context) => getIt<UploadImageCubit>(),
                           ),
+                          BlocProvider(
+                            create: (context) => getIt<GetAllCategoriesCubit>()
+                              ..getAllCategories(context, isNotLoading: false),
+                          ),
                         ],
-                        child:  UpdateProductBottomSheet(imgList: imageList,),
+                        child: UpdateProductBottomSheet(
+                          imgList: imageList,
+                          title: title,
+                          categoryId: categoryName,
+                          price: price,
+                          productId: productId,
+                          description: description,
+                        ),
                       ),
+                      whenComplete: () {
+                        context
+                            .read<GetAllProductsCubit>()
+                            .getAllProducts(context, isNotLoading: false);
+                      },
                     );
                   },
                   icon: const Icon(

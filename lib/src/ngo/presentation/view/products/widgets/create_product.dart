@@ -22,7 +22,7 @@ class CreateProduct extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextApp(
-          text: context.tr.create_categories,
+          text: 'Get All Products',
           theme: context.displaySmall!.copyWith(
             color: context.colors.textColor,
             fontSize: 18.h,
