@@ -8,4 +8,7 @@ class GetAllUsersState with _$GetAllUsersState {
   }) = Success;
   const factory GetAllUsersState.empty() = Empty;
   const factory GetAllUsersState.failure({required String error}) = Failure;
+  const factory GetAllUsersState.search({
+    required List<AllUsersResponseDataUsers> usersList,
+  }) = SearchUser;
 }

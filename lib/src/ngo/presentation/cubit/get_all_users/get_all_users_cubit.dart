@@ -10,6 +10,8 @@ part 'get_all_users_cubit.freezed.dart';
 class GetAllUsersCubit extends Cubit<GetAllUsersState> {
   GetAllUsersCubit(this._repo) : super(const GetAllUsersState.loading());
   final UsersRepo _repo;
+  List<AllUsersResponseDataUsers> usersList = [];
+    final TextEditingController searchController = TextEditingController();
 
   Future<void> getAllUsers(
     BuildContext context, {
@@ -20,7 +22,7 @@ class GetAllUsersCubit extends Cubit<GetAllUsersState> {
     }
     final result = await _repo.getAllUsers(context);
     result.when(
-      success: (users){
+      success: (users) {
         if (users.data.users.isEmpty) {
           emit(const GetAllUsersState.empty());
         } else {
@@ -30,4 +32,22 @@ class GetAllUsersCubit extends Cubit<GetAllUsersState> {
       error: (error) => emit(GetAllUsersState.failure(error: error)),
     );
   }
+searchUsers(BuildContext context, String? searchName) async {
+  if (searchName == null || searchName.trim().isEmpty) {
+    emit(const GetAllUsersState.empty());
+    return;
+  }
+
+  final searchTerm = searchName.toLowerCase().trim();
+  final searchList = usersList.where(
+    (e) => e.name!.toLowerCase().startsWith(searchTerm) ||
+            e.email!.toLowerCase().startsWith(searchTerm),
+  ).toList();
+
+  if (searchList.isEmpty) {
+    emit(const GetAllUsersState.empty());
+  } else {
+    emit(GetAllUsersState.success(usersList: searchList));
+  }
+}
 }

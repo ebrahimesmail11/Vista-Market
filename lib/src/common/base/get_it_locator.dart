@@ -19,11 +19,13 @@ import 'package:vista_market/src/ngo/data/repo/users_repo.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/get_all_users/get_all_users_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_category/delete_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_product/delete_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/delete_users/delete_users_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_users/get_all_users_cubit.dart';
+
 import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
@@ -97,5 +99,6 @@ Future<void> _initUsers() async {
   getIt
     ..registerLazySingleton(() => UsersRemoteSource(getIt()))
     ..registerLazySingleton(() => UsersRepo(getIt()))
-    ..registerFactory(() => GetAllUsersCubit(getIt()));
+    ..registerFactory(() => GetAllUsersCubit(getIt()))
+    ..registerFactory(()=> DeleteUsersCubit(getIt()));
 }

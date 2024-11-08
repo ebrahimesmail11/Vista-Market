@@ -19,4 +19,20 @@ class UsersRepo {
       }
     }
   }
+
+  Future<ApiResult<void>> deleteUser(
+    BuildContext context, {
+    required String userId,
+  }) async {
+    try {
+      final response = await _remoteSource.deleteUser(userId: userId);
+      return ApiResult.success(response);
+    } catch (e) {
+      if (context.mounted) {
+        return ApiResult.error(context.tr.error_msg);
+      } else {
+        return const ApiResult.error('An unexpected error occurred');
+      }
+    }
+  }
 }

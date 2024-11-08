@@ -11,4 +11,10 @@ class UsersRemoteSource {
     );
     return response;
   }
+  Future<void> deleteUser({required String userId}) async {
+    final response = await _apiService.deleteUser(
+      UsersQuires().deleteUserMapQuery(userId: userId),
+    );
+    return response;
+  }
 }

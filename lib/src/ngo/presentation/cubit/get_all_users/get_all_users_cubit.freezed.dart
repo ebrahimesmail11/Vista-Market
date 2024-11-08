@@ -23,6 +23,7 @@ mixin _$GetAllUsersState {
         success,
     required TResult Function() empty,
     required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +32,7 @@ mixin _$GetAllUsersState {
     TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult? Function()? empty,
     TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +41,7 @@ mixin _$GetAllUsersState {
     TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult Function()? empty,
     TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +51,7 @@ mixin _$GetAllUsersState {
     required TResult Function(Success value) success,
     required TResult Function(Empty value) empty,
     required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,7 @@ mixin _$GetAllUsersState {
     TResult? Function(Success value)? success,
     TResult? Function(Empty value)? empty,
     TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +69,7 @@ mixin _$GetAllUsersState {
     TResult Function(Success value)? success,
     TResult Function(Empty value)? empty,
     TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +142,7 @@ class _$LoadingImpl implements Loading {
         success,
     required TResult Function() empty,
     required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
   }) {
     return loading();
   }
@@ -147,6 +154,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult? Function()? empty,
     TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
   }) {
     return loading?.call();
   }
@@ -158,6 +166,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult Function()? empty,
     TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -173,6 +182,7 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Success value) success,
     required TResult Function(Empty value) empty,
     required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
   }) {
     return loading(this);
   }
@@ -184,6 +194,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Success value)? success,
     TResult? Function(Empty value)? empty,
     TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
   }) {
     return loading?.call(this);
   }
@@ -195,6 +206,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(Success value)? success,
     TResult Function(Empty value)? empty,
     TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -290,6 +302,7 @@ class _$SuccessImpl implements Success {
         success,
     required TResult Function() empty,
     required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
   }) {
     return success(usersList);
   }
@@ -301,6 +314,7 @@ class _$SuccessImpl implements Success {
     TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult? Function()? empty,
     TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
   }) {
     return success?.call(usersList);
   }
@@ -312,6 +326,7 @@ class _$SuccessImpl implements Success {
     TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult Function()? empty,
     TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -327,6 +342,7 @@ class _$SuccessImpl implements Success {
     required TResult Function(Success value) success,
     required TResult Function(Empty value) empty,
     required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
   }) {
     return success(this);
   }
@@ -338,6 +354,7 @@ class _$SuccessImpl implements Success {
     TResult? Function(Success value)? success,
     TResult? Function(Empty value)? empty,
     TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
   }) {
     return success?.call(this);
   }
@@ -349,6 +366,7 @@ class _$SuccessImpl implements Success {
     TResult Function(Success value)? success,
     TResult Function(Empty value)? empty,
     TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -418,6 +436,7 @@ class _$EmptyImpl implements Empty {
         success,
     required TResult Function() empty,
     required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
   }) {
     return empty();
   }
@@ -429,6 +448,7 @@ class _$EmptyImpl implements Empty {
     TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult? Function()? empty,
     TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
   }) {
     return empty?.call();
   }
@@ -440,6 +460,7 @@ class _$EmptyImpl implements Empty {
     TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult Function()? empty,
     TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -455,6 +476,7 @@ class _$EmptyImpl implements Empty {
     required TResult Function(Success value) success,
     required TResult Function(Empty value) empty,
     required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
   }) {
     return empty(this);
   }
@@ -466,6 +488,7 @@ class _$EmptyImpl implements Empty {
     TResult? Function(Success value)? success,
     TResult? Function(Empty value)? empty,
     TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
   }) {
     return empty?.call(this);
   }
@@ -477,6 +500,7 @@ class _$EmptyImpl implements Empty {
     TResult Function(Success value)? success,
     TResult Function(Empty value)? empty,
     TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -563,6 +587,7 @@ class _$FailureImpl implements Failure {
         success,
     required TResult Function() empty,
     required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
   }) {
     return failure(error);
   }
@@ -574,6 +599,7 @@ class _$FailureImpl implements Failure {
     TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult? Function()? empty,
     TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
   }) {
     return failure?.call(error);
   }
@@ -585,6 +611,7 @@ class _$FailureImpl implements Failure {
     TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
     TResult Function()? empty,
     TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -600,6 +627,7 @@ class _$FailureImpl implements Failure {
     required TResult Function(Success value) success,
     required TResult Function(Empty value) empty,
     required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
   }) {
     return failure(this);
   }
@@ -611,6 +639,7 @@ class _$FailureImpl implements Failure {
     TResult? Function(Success value)? success,
     TResult? Function(Empty value)? empty,
     TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
   }) {
     return failure?.call(this);
   }
@@ -622,6 +651,7 @@ class _$FailureImpl implements Failure {
     TResult Function(Success value)? success,
     TResult Function(Empty value)? empty,
     TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -640,5 +670,175 @@ abstract class Failure implements GetAllUsersState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchUserImplCopyWith<$Res> {
+  factory _$$SearchUserImplCopyWith(
+          _$SearchUserImpl value, $Res Function(_$SearchUserImpl) then) =
+      __$$SearchUserImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<AllUsersResponseDataUsers> usersList});
+}
+
+/// @nodoc
+class __$$SearchUserImplCopyWithImpl<$Res>
+    extends _$GetAllUsersStateCopyWithImpl<$Res, _$SearchUserImpl>
+    implements _$$SearchUserImplCopyWith<$Res> {
+  __$$SearchUserImplCopyWithImpl(
+      _$SearchUserImpl _value, $Res Function(_$SearchUserImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetAllUsersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? usersList = null,
+  }) {
+    return _then(_$SearchUserImpl(
+      usersList: null == usersList
+          ? _value._usersList
+          : usersList // ignore: cast_nullable_to_non_nullable
+              as List<AllUsersResponseDataUsers>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchUserImpl implements SearchUser {
+  const _$SearchUserImpl(
+      {required final List<AllUsersResponseDataUsers> usersList})
+      : _usersList = usersList;
+
+  final List<AllUsersResponseDataUsers> _usersList;
+  @override
+  List<AllUsersResponseDataUsers> get usersList {
+    if (_usersList is EqualUnmodifiableListView) return _usersList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usersList);
+  }
+
+  @override
+  String toString() {
+    return 'GetAllUsersState.search(usersList: $usersList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchUserImpl &&
+            const DeepCollectionEquality()
+                .equals(other._usersList, _usersList));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_usersList));
+
+  /// Create a copy of GetAllUsersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchUserImplCopyWith<_$SearchUserImpl> get copyWith =>
+      __$$SearchUserImplCopyWithImpl<_$SearchUserImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList)
+        success,
+    required TResult Function() empty,
+    required TResult Function(String error) failure,
+    required TResult Function(List<AllUsersResponseDataUsers> usersList) search,
+  }) {
+    return search(usersList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? success,
+    TResult? Function()? empty,
+    TResult? Function(String error)? failure,
+    TResult? Function(List<AllUsersResponseDataUsers> usersList)? search,
+  }) {
+    return search?.call(usersList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? success,
+    TResult Function()? empty,
+    TResult Function(String error)? failure,
+    TResult Function(List<AllUsersResponseDataUsers> usersList)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(usersList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Empty value) empty,
+    required TResult Function(Failure value) failure,
+    required TResult Function(SearchUser value) search,
+  }) {
+    return search(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Empty value)? empty,
+    TResult? Function(Failure value)? failure,
+    TResult? Function(SearchUser value)? search,
+  }) {
+    return search?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Empty value)? empty,
+    TResult Function(Failure value)? failure,
+    TResult Function(SearchUser value)? search,
+    required TResult orElse(),
+  }) {
+    if (search != null) {
+      return search(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchUser implements GetAllUsersState {
+  const factory SearchUser(
+          {required final List<AllUsersResponseDataUsers> usersList}) =
+      _$SearchUserImpl;
+
+  List<AllUsersResponseDataUsers> get usersList;
+
+  /// Create a copy of GetAllUsersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchUserImplCopyWith<_$SearchUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

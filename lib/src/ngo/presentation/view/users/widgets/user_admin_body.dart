@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/empty_screen.dart';
@@ -38,6 +37,9 @@ class UserAdminBody extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             );
+                          },
+                          search: (usersList) {
+                            return TableAdminUsers(usersList:usersList,);
                           },
                           success: (users) {
                             return TableAdminUsers(usersList:users,);

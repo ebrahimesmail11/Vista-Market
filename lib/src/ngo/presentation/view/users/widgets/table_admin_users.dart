@@ -4,11 +4,12 @@ import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/network/models/all_users/all_users_response.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/view/users/widgets/delete_user_icon.dart';
 import 'package:vista_market/src/ngo/presentation/view/users/widgets/table_cell_title_widget.dart';
 
 class TableAdminUsers extends StatelessWidget {
   const TableAdminUsers({required this.usersList, super.key});
-final List<AllUsersResponseDataUsers> usersList;
+  final List<AllUsersResponseDataUsers> usersList;
   @override
   Widget build(BuildContext context) {
     return Table(
@@ -82,14 +83,9 @@ final List<AllUsersResponseDataUsers> usersList;
                   ),
                 ),
               ),
-              TableCell(
+               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
-                child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),),
+                child: DeleteUserIcon(userId: usersList[index].id!,),
               ),
             ],
           ),
