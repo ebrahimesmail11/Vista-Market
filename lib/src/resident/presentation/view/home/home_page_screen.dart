@@ -1,3 +1,5 @@
+import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HomePageScreen extends StatelessWidget {
@@ -5,9 +7,20 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('home page'),
+        child: TextButton(
+          child: const Text(
+            'Get Token',
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: () async{
+         
+           final token = await FirebaseMessaging.instance.getToken();
+           
+            log( token.toString() ,);
+          },
+        ),
       ),
     );
   }
