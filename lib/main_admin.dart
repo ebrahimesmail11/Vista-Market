@@ -7,6 +7,7 @@ import 'package:vista_market/firebase_options.dart';
 import 'package:vista_market/flavor.dart';
 
 import 'package:vista_market/src/common/base/get_it_locator.dart';
+import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
 
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/bloc_observer.dart';
@@ -16,7 +17,7 @@ import 'package:vista_market/src/vista_market_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await ConnectivityController.instance.init();
+  await ConnectivityController.instance.init();
   await Env.instance.init(envTypeEnum: EnvTypeEnum.admin);
   FlavorConfig.initialize(Flavor.admin);
   await Firebase.initializeApp(
@@ -25,12 +26,15 @@ void main() async {
   await SharedPref().instantiatePreferences();
 
   await initGetIt();
+  await FirebaseCloudMessaging().init();
   Bloc.observer = AppBlocObserver();
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],
   ).then((_) {
-    runApp(const VistaMarketApp(
-      flavor: Flavor.admin,
-    ),);
+    runApp(
+      const VistaMarketApp(
+        flavor: Flavor.admin,
+      ),
+    );
   });
 }

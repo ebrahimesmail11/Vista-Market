@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+	    <!-- تصريح الوصول إلى الميكروفون -->
 	    <key>NSMicrophoneUsageDescription</key>
 		<string>Allow camera access to capture your profile picture.</string>
+		 <!-- تصريح الوصول إلى مكتبة الصور -->
 	    <key>NSPhotoLibraryUsageDescription</key>
 		<string>Allow photos access to set your profile picture.</string>
 		<key>CFBundleDevelopmentRegion</key>
@@ -51,5 +53,19 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<!-- إضافة أكواد Firebase والإشعارات هنا -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>fetch</string>
+			<string>remote-notification</string>
+		</array>
+		<key>FirebaseAppDelegateProxyEnabled</key>
+		<false/>
+		<!-- إعدادات لتحميل الموارد من مصادر غير آمنة -->
+        <key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
 	</dict>
 </plist>

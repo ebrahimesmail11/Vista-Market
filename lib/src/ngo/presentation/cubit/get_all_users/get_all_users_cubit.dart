@@ -32,7 +32,7 @@ class GetAllUsersCubit extends Cubit<GetAllUsersState> {
       error: (error) => emit(GetAllUsersState.failure(error: error)),
     );
   }
-searchUsers(BuildContext context, String? searchName) async {
+Future<void> searchUsers(BuildContext context, String? searchName) async {
   if (searchName == null || searchName.trim().isEmpty) {
     emit(const GetAllUsersState.empty());
     return;
