@@ -17,7 +17,11 @@ class NotificatinsScreen extends StatelessWidget {
       ),
       body: InkWell(
         onTap: () async {
-             await FirebaseCloudMessaging().sendNotification();
+             await FirebaseCloudMessaging().sendNotification(
+               title: 'vista market title',
+               body: 'vista market body',
+               productId: -1,
+             );
         },
         child: const Center(
           child: Text('Notifications'),

@@ -7,6 +7,7 @@ import 'package:vista_market/firebase_options.dart';
 import 'package:vista_market/flavor.dart';
 
 import 'package:vista_market/src/common/base/get_it_locator.dart';
+import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
 
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/bloc_observer.dart';
@@ -25,6 +26,7 @@ void main() async {
   await SharedPref().instantiatePreferences();
 
   await initGetIt();
+  await FirebaseCloudMessaging().init();
   Bloc.observer = AppBlocObserver();
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],

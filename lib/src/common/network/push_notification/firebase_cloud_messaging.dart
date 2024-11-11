@@ -1,7 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:googleapis_auth/auth_io.dart' as auth;
@@ -17,14 +17,64 @@ class FirebaseCloudMessaging {
   // ignore: unused_element
   FirebaseCloudMessaging._();
   static FirebaseCloudMessaging? _instance;
+  static String subscribeKey = 'visita-market';
+  final _firebaseMessaging = FirebaseMessaging.instance;
+ bool isPremissionNotification = false;
+  ValueNotifier<bool> isNotificationScribed = ValueNotifier(true);
+  
+
+Future <void> init ()async{
+
+  await _premissionNotification();
+}
+
+Future<void> controllerForUserSubscribeNotification()async{
+  if(isPremissionNotification == false){
+    await _premissionNotification();
+  }else{
+    if(isNotificationScribed.value == false){
+     await  _subscribeNotification();
+    }else{
+      await _unSubscribeNotification();
+    }
+  }
+}
+
+
+  Future<void> _premissionNotification() async {
+
+    final settings = await _firebaseMessaging.requestPermission(
+      badge: false,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+          isPremissionNotification = true;
+     await  _subscribeNotification();
+    }  else {
+      isNotificationScribed.value = false;
+      isPremissionNotification = false;
+    }
+  }
+
+  Future<void> _subscribeNotification() async {
+    isNotificationScribed.value = true;
+    await _firebaseMessaging.subscribeToTopic(subscribeKey);
+    debugPrint('====🔔 Notification Subscribed 🔔=====');
+  }
+
+  Future<void> _unSubscribeNotification() async {
+    isNotificationScribed.value = false;
+    await _firebaseMessaging.unsubscribeFromTopic(subscribeKey);
+    debugPrint('====🔕 Notification Unsubscribed 🔕=====');
+  }
+
 
   Future<String> accessToken() async {
-    // final serviceAccountJson = jsonDecode(dotenv.env['SERVICE_ACCOUNT_JSON']!);
     final serviceAccountJson = {
       'type': dotenv.env['TYPE'],
       'project_id': dotenv.env['PROJECT_ID'],
       'private_key_id': dotenv.env['PRIVATE_KEY_ID'],
-      'private_key':dotenv.env['PRIVATE_KEY']?.replaceAll(r'\n', '\n'),
+      'private_key': dotenv.env['PRIVATE_KEY']?.replaceAll(r'\n', '\n'),
       'client_email': dotenv.env['CLIENT_EMAIL'],
       'client_id': dotenv.env['CLIENT_ID'],
       'auth_uri': dotenv.env['AUTH_URI'],
@@ -56,7 +106,13 @@ class FirebaseCloudMessaging {
     return credentials.accessToken.data;
   }
 
-  Future<void> sendNotification() async {
+  
+
+  Future<void> sendNotification({
+    required String title,
+    required String body,
+    required int productId,
+  }) async {
     try {
       final response = await Dio().post<dynamic>(
         'https://fcm.googleapis.com/v1/projects/vista-market/messages:send',
@@ -69,11 +125,13 @@ class FirebaseCloudMessaging {
         ),
         data: {
           'message': {
-            'token':
-                'c1POQpMHQ5KqC5WAx0G9Sw:APA91bFySMYFvEHsSwFyuIDQm_PJZQkg9QVj61ONALsgDm7CGYzwbTi6026fmVMZpj6sv7m67Kfx_e7ebc4giw0Xx4vtlJM5X0E5_DJME_xEb9wa95yyzwM',
+            'topic': subscribeKey,
             'notification': {
-              'title': 'Vista Market',
-              'body': 'New update from Vista Market',
+              'title': title,
+              'body': body,
+            },
+            'data': {
+              'productId': productId.toString(),
             },
           },
         },
