@@ -19,38 +19,34 @@ class FirebaseCloudMessaging {
   static FirebaseCloudMessaging? _instance;
   static String subscribeKey = 'visita-market';
   final _firebaseMessaging = FirebaseMessaging.instance;
- bool isPremissionNotification = false;
+  bool isPremissionNotification = false;
   ValueNotifier<bool> isNotificationScribed = ValueNotifier(true);
-  
 
-Future <void> init ()async{
-
-  await _premissionNotification();
-}
-
-Future<void> controllerForUserSubscribeNotification()async{
-  if(isPremissionNotification == false){
+  Future<void> init() async {
     await _premissionNotification();
-  }else{
-    if(isNotificationScribed.value == false){
-     await  _subscribeNotification();
-    }else{
-      await _unSubscribeNotification();
+  }
+
+  Future<void> controllerForUserSubscribeNotification() async {
+    if (isPremissionNotification == false) {
+      await _premissionNotification();
+    } else {
+      if (isNotificationScribed.value == false) {
+        await _subscribeNotification();
+      } else {
+        await _unSubscribeNotification();
+      }
     }
   }
-}
-
 
   Future<void> _premissionNotification() async {
-
     final settings = await _firebaseMessaging.requestPermission(
       badge: false,
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-          isPremissionNotification = true;
-     await  _subscribeNotification();
-    }  else {
+      isPremissionNotification = true;
+      await _subscribeNotification();
+    } else {
       isNotificationScribed.value = false;
       isPremissionNotification = false;
     }
@@ -67,7 +63,6 @@ Future<void> controllerForUserSubscribeNotification()async{
     await _firebaseMessaging.unsubscribeFromTopic(subscribeKey);
     debugPrint('====🔕 Notification Unsubscribed 🔕=====');
   }
-
 
   Future<String> accessToken() async {
     final serviceAccountJson = {
@@ -105,8 +100,6 @@ Future<void> controllerForUserSubscribeNotification()async{
     log('Access Token: ${credentials.accessToken.data}');
     return credentials.accessToken.data;
   }
-
-  
 
   Future<void> sendNotification({
     required String title,

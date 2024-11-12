@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
-import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
+import 'package:vista_market/src/ngo/presentation/view/notifications/widgets/add_notification_body.dart';
 
 class NotificatinsScreen extends StatelessWidget {
   const NotificatinsScreen({super.key});
@@ -15,18 +15,7 @@ class NotificatinsScreen extends StatelessWidget {
         backgroundColor: context.colors.mainColor!,
         title: 'Notifications',
       ),
-      body: InkWell(
-        onTap: () async {
-             await FirebaseCloudMessaging().sendNotification(
-               title: 'vista market title',
-               body: 'vista market body',
-               productId: -1,
-             );
-        },
-        child: const Center(
-          child: Text('Notifications'),
-        ),
-      ),
+      body:const AddNotificationBody(),
     );
   }
 }
