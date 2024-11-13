@@ -19,6 +19,8 @@ import 'package:vista_market/src/ngo/data/repo/users_repo.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/add_notification/add_notification_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_notification/get_all_notification_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_category/delete_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_product/delete_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_users/delete_users_cubit.dart';
@@ -41,6 +43,7 @@ Future<void> initGetIt() async {
   await _initCategories();
   await _initProducts();
   await _initUsers();
+  await _initAddNotification();
 }
 
 Future<void> _initCore() async {
@@ -101,4 +104,10 @@ Future<void> _initUsers() async {
     ..registerLazySingleton(() => UsersRepo(getIt()))
     ..registerFactory(() => GetAllUsersCubit(getIt()))
     ..registerFactory(()=> DeleteUsersCubit(getIt()));
+}
+
+Future<void> _initAddNotification() async {
+  getIt
+    ..registerFactory(AddNotificationCubit.new,)
+    ..registerFactory(GetAllNotificationCubit.new,);
 }

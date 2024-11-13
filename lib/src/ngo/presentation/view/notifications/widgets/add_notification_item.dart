@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/network/models/add_notification/add_notification_model.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_container_linear_admin.dart';
 import 'package:vista_market/src/ngo/presentation/view/notifications/widgets/edit_notification.dart';
 import 'package:vista_market/src/ngo/presentation/view/notifications/widgets/notification_info.dart';
 
 class AddNotificationItem extends StatelessWidget {
-  const AddNotificationItem({super.key});
-
+  const AddNotificationItem({required this.notificationModel, super.key});
+  final AddNotificationModel notificationModel;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -17,19 +19,19 @@ class AddNotificationItem extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Title: ',
-              body: 'title lasgcesese',
+              body: notificationModel.title,
             ),
             const Spacer(),
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Body:  ',
-              body: 'body lasgcesese',
+              body: notificationModel.body,
             ),
             const Spacer(),
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Create At: ',
-              body: '17-11-2022',
+              body: notificationModel.createdAt.getFormatDayMonth(),
             ),
             const Spacer(),
             Row(
@@ -43,7 +45,9 @@ class AddNotificationItem extends StatelessWidget {
                   ),
                 ),
                 40.verticalSpace,
-                const EditNotification(),
+                EditNotification(
+                  notificationModel: notificationModel,
+                ),
                 40.verticalSpace,
                 IconButton(
                   onPressed: () {},
