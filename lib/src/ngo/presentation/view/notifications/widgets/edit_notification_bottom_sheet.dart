@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion_toast/motion_toast.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/network/models/add_notification/add_notification_model.dart';
@@ -8,10 +9,11 @@ import 'package:vista_market/src/common/widgets/custom_text_field.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 
 class EditNotificationBottomSheet extends StatefulWidget {
-  const EditNotificationBottomSheet(
-      {required this.notificationModel,
-      super.key,});
-      final AddNotificationModel notificationModel;
+  const EditNotificationBottomSheet({
+    required this.notificationModel,
+    super.key,
+  });
+  final AddNotificationModel notificationModel;
   // final String title;
   // final String body;
   // final int productId;
@@ -34,6 +36,7 @@ class _EditNotificationBottomSheetState
     bodyController.text = widget.notificationModel.body;
     productIdController.text = widget.notificationModel.productId.toString();
   }
+
   @override
   void dispose() {
     titleController.dispose();
@@ -141,5 +144,21 @@ class _EditNotificationBottomSheetState
     );
   }
 
-  void _validateEditNotification(BuildContext context) {}
+  void _validateEditNotification(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      widget.notificationModel.title = titleController.text.isEmpty
+          ? widget.notificationModel.title
+          : titleController.text.trim();
+      widget.notificationModel.body = bodyController.text.isEmpty
+          ? widget.notificationModel.body
+          : bodyController.text.trim();
+      widget.notificationModel.productId = productIdController.text.isEmpty
+          ? widget.notificationModel.productId
+          : int.parse(productIdController.text.trim());
+      widget.notificationModel.save();
+      context.pop();
+      MotionToast.success(description: const Text('Notification Updated'))
+          .show(context);
+    }
+  }
 }
