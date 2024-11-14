@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion_toast/motion_toast.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
+import 'package:vista_market/src/common/network/models/add_notification/add_notification_model.dart';
 import 'package:vista_market/src/common/widgets/custom_button.dart';
 import 'package:vista_market/src/common/widgets/custom_text_field.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/add_notification/add_notification_cubit.dart';
 
 class CreateNotificationBottomSheet extends StatefulWidget {
   const CreateNotificationBottomSheet({super.key});
@@ -105,21 +109,73 @@ class _CreateNotificationBottomSheetState
               controller: productIdController,
               hintText: 'Product Id',
               validator: (p0) {
+                if (p0 == null || p0.isEmpty) {
+                  return 'Please Selected Your Product Id ';
+                }
                 return null;
               },
             ),
             20.verticalSpace,
-            CustomButton(
-              onPressed: () {
-                _validateAddNotification(context);
+            BlocConsumer<AddNotificationCubit, AddNotificationState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: () {
+                    context.pop();
+                    MotionToast.success(
+                      description: const Text(
+                        ' Notification Created Successfully.',
+                      ),
+                      animationDuration: const Duration(
+                        seconds: 2,
+                      ),
+                    ).show(context);
+                  },
+                  failure: (message) {
+                    MotionToast.error(
+                      description: Text(
+                        message,
+                        style: context.displayMedium!.copyWith(
+                          fontSize: 14.sp,
+                          color: context.colors.mainColor,
+                        ),
+                      ),
+                    ).show(context);
+                  },
+                );
               },
-              text: 'Create a new Notification',
-              textColor: context.colors.bluePinkDark,
-              backgroundColor: context.colors.textColor,
-              width: MediaQuery.sizeOf(context).width,
-              height: 50.h,
-              lastRadius: 20,
-              threeRadius: 20,
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loading: () {
+                    return Container(
+                      height: 50.h,
+                      width: MediaQuery.sizeOf(context).width,
+                      decoration: BoxDecoration(
+                        color: context.colors.textColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: context.colors.bluePinkDark,
+                        ),
+                      ),
+                    );
+                  },
+                  orElse: () {
+                    return CustomButton(
+                      onPressed: () {
+                        _validateAddNotification(context);
+                      },
+                      text: 'Create a new Notification',
+                      textColor: context.colors.bluePinkDark,
+                      backgroundColor: context.colors.textColor,
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 50.h,
+                      lastRadius: 20,
+                      threeRadius: 20,
+                    );
+                  },
+                );
+              },
             ),
           ],
         ),
@@ -127,5 +183,16 @@ class _CreateNotificationBottomSheetState
     );
   }
 
-  void _validateAddNotification(BuildContext context) {}
+  Future<void> _validateAddNotification(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      await context.read<AddNotificationCubit>().addNotification(
+            notificationModel: AddNotificationModel(
+              title: titleController.text.trim(),
+              body: bodyController.text.trim(),
+              productId: int.parse(productIdController.text.trim()),
+              createdAt: DateTime.now(),
+            ),
+          );
+    }
+  }
 }

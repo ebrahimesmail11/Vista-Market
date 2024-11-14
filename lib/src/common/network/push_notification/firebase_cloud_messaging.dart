@@ -47,8 +47,8 @@ class FirebaseCloudMessaging {
       isPremissionNotification = true;
       await _subscribeNotification();
     } else {
+       isPremissionNotification = false;
       isNotificationScribed.value = false;
-      isPremissionNotification = false;
     }
   }
 

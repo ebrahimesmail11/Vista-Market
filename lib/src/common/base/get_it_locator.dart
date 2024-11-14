@@ -8,17 +8,22 @@ import 'package:vista_market/src/auth/presentation/cubit/login/auth_cubit.dart';
 import 'package:vista_market/src/auth/presentation/cubit/upload_image/upload_image_cubit.dart';
 import 'package:vista_market/src/common/network/service/graphql/api_service.dart';
 import 'package:vista_market/src/common/network/service/graphql/dio_factory.dart';
+import 'package:vista_market/src/ngo/data/remote/add_notification_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/categories_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/dashboard_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/products_remote_source.dart';
 import 'package:vista_market/src/ngo/data/remote/users_remote_source.dart';
 import 'package:vista_market/src/ngo/data/repo/categories_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/dashboard_repo.dart';
+import 'package:vista_market/src/ngo/data/repo/notification_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/products_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/users_repo.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/add_notification/add_notification_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/send_notification/send_notification_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_notification/get_all_notification_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_category/delete_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_product/delete_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_users/delete_users_cubit.dart';
@@ -41,6 +46,7 @@ Future<void> initGetIt() async {
   await _initCategories();
   await _initProducts();
   await _initUsers();
+  await _initAddNotification();
 }
 
 Future<void> _initCore() async {
@@ -101,4 +107,13 @@ Future<void> _initUsers() async {
     ..registerLazySingleton(() => UsersRepo(getIt()))
     ..registerFactory(() => GetAllUsersCubit(getIt()))
     ..registerFactory(()=> DeleteUsersCubit(getIt()));
+}
+
+Future<void> _initAddNotification() async {
+  getIt
+    ..registerFactory(AddNotificationCubit.new,)
+    ..registerFactory(GetAllNotificationCubit.new,)
+    ..registerLazySingleton(AddNotificationRemoteSource.new)
+    ..registerLazySingleton(()=> NotificationRepo(getIt()),)
+    ..registerFactory(()=>SendNotificationCubit(getIt()),);
 }
