@@ -12,10 +12,22 @@ class AddNotificationCubit extends Cubit<AddNotificationState> {
     required AddNotificationModel notificationModel,
   }) async {
     emit(const AddNotificationState.loading());
-    try{
+    try {
       await HiveDatabase().notificationBox!.add(notificationModel);
       emit(const AddNotificationState.success());
-    }catch(e){
+    } catch (e) {
+      emit(AddNotificationState.failure(error: e.toString()));
+    }
+  }
+
+  Future<void> deleteNotification({
+    required AddNotificationModel notificationModel,
+  }) async {
+    emit(const AddNotificationState.loading());
+    try {
+      await notificationModel.delete();
+      emit(const AddNotificationState.success());
+    } catch (e) {
       emit(AddNotificationState.failure(error: e.toString()));
     }
   }
