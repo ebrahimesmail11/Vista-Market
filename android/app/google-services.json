@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "795870733108",
     "project_id": "vista-market",
-    "storage_bucket": "vista-market.appspot.com"
+    "storage_bucket": "vista-market.firebasestorage.app"
   },
   "client": [
     {

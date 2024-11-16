@@ -22,6 +22,7 @@ void main() async {
   await Env.instance.init(envTypeEnum: EnvTypeEnum.admin);
   FlavorConfig.initialize(Flavor.admin);
   await Firebase.initializeApp(
+    name: 'vista_market_admin',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await SharedPref().instantiatePreferences();
