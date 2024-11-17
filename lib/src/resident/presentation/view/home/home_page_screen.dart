@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
+import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/widgets/customer_widget/main_customer_app_bar.dart';
+import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_bottom_nav_bar.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -7,36 +9,21 @@ class HomePageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ValueListenableBuilder(
-        valueListenable: FirebaseCloudMessaging().isNotificationScribed,
-        builder: (_, value, __) {
-          return Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                 Text(
-                  value ? 'subScribed' : 'unSubscribed',
-                  style: const TextStyle(fontSize: 30),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Transform.scale(
-                  scale: 1.4,
-                  child: Switch.adaptive(
-                    value: value,
-                    inactiveTrackColor: Colors.red,
-                    activeColor: Colors.green,
-                    onChanged: (value) async {
-                      await FirebaseCloudMessaging()
-                          .controllerForUserSubscribeNotification();
-                    },
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+      appBar: const MainCustomerAppBar(),
+      body:Container(
+        constraints: const BoxConstraints.expand(),
+        decoration:  BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(context.images.homeBg!),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: const Column(
+          children: [
+            Expanded(child: Text('Main Screen'),),
+            MainBottomNavBar(),
+          ],
+        ),
       ),
     );
   }
