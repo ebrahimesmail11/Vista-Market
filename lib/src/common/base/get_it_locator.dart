@@ -36,6 +36,7 @@ import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_c
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -47,6 +48,7 @@ Future<void> initGetIt() async {
   await _initProducts();
   await _initUsers();
   await _initAddNotification();
+  await _initMain();
 }
 
 Future<void> _initCore() async {
@@ -106,14 +108,26 @@ Future<void> _initUsers() async {
     ..registerLazySingleton(() => UsersRemoteSource(getIt()))
     ..registerLazySingleton(() => UsersRepo(getIt()))
     ..registerFactory(() => GetAllUsersCubit(getIt()))
-    ..registerFactory(()=> DeleteUsersCubit(getIt()));
+    ..registerFactory(() => DeleteUsersCubit(getIt()));
 }
 
 Future<void> _initAddNotification() async {
   getIt
-    ..registerFactory(AddNotificationCubit.new,)
-    ..registerFactory(GetAllNotificationCubit.new,)
+    ..registerFactory(
+      AddNotificationCubit.new,
+    )
+    ..registerFactory(
+      GetAllNotificationCubit.new,
+    )
     ..registerLazySingleton(AddNotificationRemoteSource.new)
-    ..registerLazySingleton(()=> NotificationRepo(getIt()),)
-    ..registerFactory(()=>SendNotificationCubit(getIt()),);
+    ..registerLazySingleton(
+      () => NotificationRepo(getIt()),
+    )
+    ..registerFactory(
+      () => SendNotificationCubit(getIt()),
+    );
+}
+
+Future<void> _initMain() async {
+  getIt.registerFactory(MainCubitCubit.new);
 }

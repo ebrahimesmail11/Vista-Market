@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vista_market/src/common/animations/animate_do.dart';
 import 'package:vista_market/src/common/base/app_images.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/base/nav_bar_enum.dart';
+import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/widgets/icon_tab_nav_bar.dart';
 
 class MainBottomNavBar extends StatelessWidget {
@@ -41,30 +44,46 @@ class MainBottomNavBar extends StatelessWidget {
                     width: 300.w,
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconTabNavBar(
-                            onTap: () {},
-                            icon: AppImages.homeTab,
-                            isSelected: true,
-                          ),
-                          IconTabNavBar(
-                            onTap: () {},
-                            icon: AppImages.categoriesTab,
-                            isSelected: true,
-                          ),
-                          IconTabNavBar(
-                            onTap: () {},
-                            icon: AppImages.favouritesTab,
-                            isSelected: true,
-                          ),
-                          IconTabNavBar(
-                            onTap: () {},
-                            icon: AppImages.profileTab,
-                            isSelected: false,
-                          ),
-                        ],
+                      child: BlocBuilder<MainCubitCubit, MainCubitState>(
+                        builder: (context, state) {
+                          final cubit = context.read<MainCubitCubit>();
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconTabNavBar(
+                                onTap: () {
+                                  cubit.barSelectedIcon(NavBarEnum.home);
+                                },
+                                icon: AppImages.homeTab,
+                                isSelected: cubit.navBarEnum == NavBarEnum.home,
+                              ),
+                              IconTabNavBar(
+                                onTap: () {
+                                  cubit.barSelectedIcon(NavBarEnum.categories);
+                                },
+                                icon: AppImages.categoriesTab,
+                                isSelected:
+                                    cubit.navBarEnum == NavBarEnum.categories,
+                              ),
+                              IconTabNavBar(
+                                onTap: () {
+                                  cubit.barSelectedIcon(NavBarEnum.favorites);
+                                },
+                                icon: AppImages.favouritesTab,
+                                isSelected:
+                                    cubit.navBarEnum == NavBarEnum.favorites,
+                              ),
+                              IconTabNavBar(
+                                onTap: () {
+                                  cubit.barSelectedIcon(NavBarEnum.profile);
+                                },
+                                icon: AppImages.profileTab,
+                                isSelected:
+                                    cubit.navBarEnum == NavBarEnum.profile,
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ),
