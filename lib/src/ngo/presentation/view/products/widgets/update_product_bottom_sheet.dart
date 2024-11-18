@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,6 +52,10 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
     descriptionController.text = widget.description;
     categoryName = widget.categoryId;
     categoryValueId = widget.categoryId;
+    context.read<GetAllCategoriesCubit>().getAllCategories(
+          context,
+          isNotLoading: false,
+        );
   }
 
   @override
@@ -111,7 +117,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 hintText: 'title',
                 keyboardType: TextInputType.emailAddress,
                 validator: (p0) {
-                  if (p0 == null || p0.isEmpty || p0.length < 2) {
+                  if (p0 == null || p0.isEmpty) {
                     return 'Please Selected Your Product Name';
                   }
                   return null;
@@ -133,7 +139,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 hintText: 'Price',
                 keyboardType: TextInputType.emailAddress,
                 validator: (p0) {
-                  if (p0 == null || p0.isEmpty || p0.length < 2) {
+                  if (p0 == null || p0.isEmpty) {
                     return 'Please Selected Your Product Name';
                   }
                   return null;
@@ -177,8 +183,17 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 builder: (context, state) {
                   return state.maybeWhen(
                     success: (category) {
+                      final uniqueCategories =
+                          category.categoriesListName.toSet().toList();
+
+                      // التأكد من أن القيمة الافتراضية موجودة
+                      if (!uniqueCategories.contains(categoryName)) {
+                        categoryName = uniqueCategories.isNotEmpty
+                            ? uniqueCategories.first
+                            : null;
+                      }
                       return CustomCreateDropDown(
-                        items: category.categoriesListName,
+                        items: uniqueCategories,
                         hintText: '',
                         onChanged: (p0) {
                           setState(() {
@@ -187,7 +202,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                                 .firstWhere(
                                   (e) => e.name == p0,
                                 )
-                                .id!;
+                                .id;
                             categoryValueId = categoryString;
                           });
                         },
@@ -242,7 +257,21 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                     orElse: () {
                       return CustomButton(
                         onPressed: () async {
+                          // log('product id: ${widget.productId}');
+                          // log('Title: ${titleController.text.trim()}');
+                          // log('Price: ${priceController.text.trim()}');
+                          // log(
+                          //     'Description: ${descriptionController.text.trim()}');
+                          // log('Category ID: $categoryValueId');
+                          // log('images: ${context.read<UploadImageCubit>().updateProductImage}');
                           await _validUpdateProduct();
+                          // log('product id: ${widget.productId}');
+                          // log('Title: ${titleController.text}');
+                          // log('Price: ${priceController.text}');
+                          // log(
+                          //     'Description: ${descriptionController.text.trim()}');
+                          // log('Category ID: $categoryValueId');
+                          // log('images: ${context.read<UploadImageCubit>().updateProductImage}');
                         },
                         text: 'Update  product',
                         textColor: context.colors.bluePinkDark,
@@ -266,6 +295,27 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
 
   Future<void> _validUpdateProduct() async {
     if (fromKey.currentState!.validate()) {
+      // Ensure categoryValueId is not null or empty
+      if (categoryValueId == null || categoryValueId!.isEmpty) {
+        MotionToast.error(
+          description: const Text(
+            'Invalid category ID. Please select a valid category.',
+          ),
+        ).show(context);
+        return;
+      }
+
+      // التحقق من القيمة المدخلة
+      final categoryIdDouble = double.tryParse(categoryValueId!);
+      if (categoryIdDouble == null) {
+        MotionToast.error(
+          description: const Text(
+            'Invalid category ID. Please select a valid numeric category.',
+          ),
+        ).show(context);
+        return;
+      }
+
       await context.read<UpdateProductCubit>().updateProduct(
             context,
             body: UpdateProductRequestBody(
@@ -273,7 +323,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
               title: titleController.text.trim(),
               price: double.parse(priceController.text.trim()),
               description: descriptionController.text.trim(),
-              categoryId: double.parse(categoryValueId??''),
+              categoryId: categoryIdDouble,
               images:
                   context.read<UploadImageCubit>().updateProductImage.isEmpty
                       ? widget.imgList

@@ -11,8 +11,7 @@ import 'package:vista_market/src/common/storage/local_storage_helper.dart';
 import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
-
-import 'package:vista_market/src/resident/presentation/view/home/home_page_screen.dart';
+import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
 import 'package:vista_market/src/utils/env.dart';
@@ -106,7 +105,7 @@ class VistaMarketApp extends StatelessWidget {
                                     return const HomePageScreenAdmin();
                                   } else if (flavor == Flavor.customer &&
                                       role == 'customer') {
-                                    return const HomePageScreen();
+                                    return const MainScreen();
                                   } else {
                                     return const LoginScreen();
                                   }

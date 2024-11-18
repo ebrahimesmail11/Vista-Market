@@ -1,4 +1,4 @@
-import 'package:vista_market/src/auth/presentation/view/registration/widgets/user_avtar.dart';
+
 
 class AppImages {
 //Images
@@ -12,8 +12,8 @@ class AppImages {
       'assets/images/big_nav_bar_dark.png';
   static const bigIconNavBarLight =
       'assets/images/big_nav_bar_light.png';
-  static const homeBgDark = 'assets/images/customer/home_bg_dark.png';
-  static const homeBgLight = 'assets/images/customer/home_bg_light.png';
+  static const homeBgDark = 'assets/images/home_bg_dark.png';
+  static const homeBgLight = 'assets/images/home_bg_light.png';
 
   // Admin
   static const drawerImage = 'assets/images/drawer_image.png';

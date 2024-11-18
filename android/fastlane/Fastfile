@@ -7,7 +7,7 @@ platform :android do
     sh "flutter build apk --release --flavor admin --target lib/main_admin.dart --no-tree-shake-icons"
     firebase_app_distribution(
       app:"1:795870733108:android:42ebfa203237fd98487b61",
-      firebase_cli_token:"1//034l1wB3XBbMPCgYIARAAGAMSNwF-L9IrACbhgIXoRFHaRXdQWD2L6q3f1K2-SYjrKsoE3YK5BnA1fjyhvmlZTQ-gRNb1eYK9lcE",
+      firebase_cli_token:Env["FIREBASE_CLI_TOKEN"],
       android_artifact_type:"APK",
       android_artifact_path:"../build/app/outputs/flutter-apk/app-admin-release.apk",
       testers:"ya1513600@gmail.com",
