@@ -57,8 +57,8 @@ class UpdateProductImage extends StatelessWidget {
               return UpdateSelectedWidget(
                 index: index,
                 imageList: imageList,
-                onTap: () {
-                  context.read<UploadImageCubit>().updateImage(
+                onTap: () async{
+                  await context.read<UploadImageCubit>().updateImage(
                         context,
                         indexList: index,
                         productImageList: imageList,

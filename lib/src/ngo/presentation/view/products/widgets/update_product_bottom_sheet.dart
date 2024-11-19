@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +11,7 @@ import 'package:vista_market/src/common/widgets/custom_drop_down.dart';
 import 'package:vista_market/src/common/widgets/custom_text_field.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/view/products/widgets/update_product_image.dart';
 
@@ -52,10 +51,6 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
     descriptionController.text = widget.description;
     categoryName = widget.categoryId;
     categoryValueId = widget.categoryId;
-    context.read<GetAllCategoriesCubit>().getAllCategories(
-          context,
-          isNotLoading: false,
-        );
   }
 
   @override
@@ -203,7 +198,9 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                                   (e) => e.name == p0,
                                 )
                                 .id;
-                            categoryValueId = categoryString;
+                            if (categoryString != null) {
+                              categoryValueId = categoryString;
+                            }
                           });
                         },
                         value: categoryName,
@@ -257,21 +254,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                     orElse: () {
                       return CustomButton(
                         onPressed: () async {
-                          // log('product id: ${widget.productId}');
-                          // log('Title: ${titleController.text.trim()}');
-                          // log('Price: ${priceController.text.trim()}');
-                          // log(
-                          //     'Description: ${descriptionController.text.trim()}');
-                          // log('Category ID: $categoryValueId');
-                          // log('images: ${context.read<UploadImageCubit>().updateProductImage}');
                           await _validUpdateProduct();
-                          // log('product id: ${widget.productId}');
-                          // log('Title: ${titleController.text}');
-                          // log('Price: ${priceController.text}');
-                          // log(
-                          //     'Description: ${descriptionController.text.trim()}');
-                          // log('Category ID: $categoryValueId');
-                          // log('images: ${context.read<UploadImageCubit>().updateProductImage}');
                         },
                         text: 'Update  product',
                         textColor: context.colors.bluePinkDark,
@@ -295,17 +278,15 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
 
   Future<void> _validUpdateProduct() async {
     if (fromKey.currentState!.validate()) {
-      // Ensure categoryValueId is not null or empty
       if (categoryValueId == null || categoryValueId!.isEmpty) {
         MotionToast.error(
           description: const Text(
-            'Invalid category ID. Please select a valid category.',
+            'Please select a valid category.',
           ),
         ).show(context);
         return;
       }
 
-      // التحقق من القيمة المدخلة
       final categoryIdDouble = double.tryParse(categoryValueId!);
       if (categoryIdDouble == null) {
         MotionToast.error(
@@ -323,7 +304,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
               title: titleController.text.trim(),
               price: double.parse(priceController.text.trim()),
               description: descriptionController.text.trim(),
-              categoryId: categoryIdDouble,
+              categoryId: categoryIdDouble, // استخدام الـ double الذي تم تحليله
               images:
                   context.read<UploadImageCubit>().updateProductImage.isEmpty
                       ? widget.imgList
