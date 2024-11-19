@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -128,7 +127,7 @@ class RegistrationButton extends StatelessWidget {
       Navigator.of(context).pushReplacementNamed(Routes.homePageScreenAdmin);
     } else if (userRole == UserTypes.customer.name &&
         FlavorConfig.instance.flavor == Flavor.customer) {
-      Navigator.of(context).pushReplacementNamed(Routes.homePageScreen);
+      Navigator.of(context).pushReplacementNamed(Routes.mainNavbar);
     }
   }
 

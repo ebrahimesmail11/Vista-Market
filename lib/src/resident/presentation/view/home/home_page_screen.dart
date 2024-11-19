@@ -5,6 +5,6 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Home Page');
+   return const Text('Home Page');
   }
 }

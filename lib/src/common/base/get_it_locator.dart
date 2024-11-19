@@ -36,6 +36,9 @@ import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_c
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/resident/data/remote/profile_remote_source.dart';
+import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
+import 'package:vista_market/src/resident/presentation/cubit/profile_user/profile_user_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
 
@@ -49,6 +52,7 @@ Future<void> initGetIt() async {
   await _initUsers();
   await _initAddNotification();
   await _initMain();
+  await _initProfileUser();
 }
 
 Future<void> _initCore() async {
@@ -130,4 +134,11 @@ Future<void> _initAddNotification() async {
 
 Future<void> _initMain() async {
   getIt.registerFactory(MainCubitCubit.new);
+}
+
+Future<void> _initProfileUser() async {
+  getIt
+    ..registerLazySingleton(() => ProfileRemoteSource(getIt()))
+    ..registerLazySingleton(() => ProfileRepo(getIt()))
+    ..registerFactory(() => ProfileUserCubit(getIt()));
 }

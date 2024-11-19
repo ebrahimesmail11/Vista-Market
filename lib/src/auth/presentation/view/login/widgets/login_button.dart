@@ -127,7 +127,7 @@ class LoginButton extends StatelessWidget {
 
     } else if (userRole == UserTypes.customer.name &&
         FlavorConfig.instance.flavor == Flavor.customer) {
-      Navigator.of(context).pushReplacementNamed(Routes.homePageScreen);
+      Navigator.of(context).pushReplacementNamed(Routes.mainNavbar);
     }
   }
 

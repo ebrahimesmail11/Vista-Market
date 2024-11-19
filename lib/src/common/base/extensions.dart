@@ -99,6 +99,10 @@ extension StringFormatting on String {
   String imageProductFormat() {
     return replaceAll(RegExp(r'^\["?|"\]?|"$'), '');
   }
+
+  String toCapitalize() {
+    return '${this[0].toUpperCase()}${substring(1)}';
+  }
 }
 
 extension DataEx on DateTime {
