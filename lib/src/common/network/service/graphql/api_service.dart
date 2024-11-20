@@ -23,8 +23,6 @@ abstract class ApiService {
   Future<LoginResponse> login(@Body() Map<String, dynamic> mutation);
   @GET(AppConstants.profile)
   Future<UserRoleModel> userRole();
-    @GET(AppConstants.profile)
-  Future<UserRoleModel> getUserRole(@Header('Authorization') String token);
   @POST(AppConstants.uploadImage)
   Future<UploadImagePickerModel> uploadImage(@Body() FormData file);
   @POST(AppConstants.graphql)

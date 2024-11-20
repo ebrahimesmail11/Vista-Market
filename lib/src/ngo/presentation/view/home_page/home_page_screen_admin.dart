@@ -4,11 +4,9 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/network/models/admin_drawer/admin_drawer_model.dart';
-import 'package:vista_market/src/common/routing/routes.dart';
-import 'package:vista_market/src/common/storage/local_storage_helper.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/admin_app_bar_widget.dart';
 import 'package:vista_market/src/common/widgets/admin_widget/custom_dialogs.dart';
-import 'package:vista_market/src/localization/pref_keys.dart';
+import 'package:vista_market/src/common/widgets/app_logout.dart';
 import 'package:vista_market/src/ngo/presentation/view/dashboard/dash_board_screen.dart';
 
 class HomePageScreenAdmin extends StatefulWidget {
@@ -77,15 +75,7 @@ class MenueAdminScreen extends StatelessWidget {
                 textButton2: context.tr.no,
                 isLoading: false,
                 onPressed: () async {
-                  await Future.wait([
-                    LocalStorageHelper.delete(PrefKeys.userRole),
-                    LocalStorageHelper.delete(PrefKeys.userId),
-                    LocalStorageHelper.delete(PrefKeys.tokenKey),
-                  ]);
-                  await Navigator.of(context).pushNamedAndRemoveUntil(
-                    Routes.login,
-                    (route) => false,
-                  );
+                await AppLogout().logout();
                 },
               );
             },

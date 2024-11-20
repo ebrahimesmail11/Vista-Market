@@ -17,7 +17,7 @@ class ProfileRepo {
   }
 
     try {
-      final result = await _remoteSource.profileUser();
+      final result = await _remoteSource.userRole(token);
       return ApiResult.success(result);
     } catch (e) {
       if (context.mounted) {

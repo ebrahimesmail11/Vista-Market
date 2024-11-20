@@ -39,7 +39,7 @@ final UserRoleModel userModel;
         ),
           7.verticalSpace,
         TextApp(
-          text: userModel.email!.toLowerCase().toCapitalize(),
+          text: userModel.email!.toLowerCase().trim(),
           theme: context.displaySmall!.copyWith(
             fontSize: 14.sp,
             fontWeight: TextStyles.regular,

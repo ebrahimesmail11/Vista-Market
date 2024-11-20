@@ -16,6 +16,7 @@ extension Navigation on BuildContext {
   AppLocalizations get tr => AppLocalizations.of(this);
 // Localizations.localeOf(context)
   Locale get currentLocale => Localizations.localeOf(this);
+bool get isEnlocale => currentLocale.languageCode == 'en';
 
   //Navigation
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
@@ -69,11 +70,11 @@ extension Navigation on BuildContext {
 
   Future<dynamic> pushNamedAndRemoveUntil(
     String routeName, {
-    required Object? arguments,
-    required RoutePredicate predicate,
+     Object? arguments,
+     RoutePredicate? predicate,
   }) {
     return Navigator.of(this)
-        .pushNamedAndRemoveUntil(routeName, arguments: arguments, predicate);
+        .pushNamedAndRemoveUntil(routeName, predicate!, arguments: arguments);
   }
 
   Future<dynamic> pushReplacementNamed(
