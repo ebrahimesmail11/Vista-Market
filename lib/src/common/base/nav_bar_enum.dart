@@ -3,4 +3,5 @@ enum NavBarEnum {
   favorites,
   categories,
   profile,
+  none,
 }

@@ -58,6 +58,10 @@ final TextEditingController nameController = TextEditingController();
     BuildContext context,
   ) async {
     final token = loginModel.data?.login?.accessToken ?? '';
+    if (token.isEmpty) {
+    emit(const AuthState.failure(error: 'Token cannot be empty'));
+    return;
+  }
     final userResult = await _authRepos.userRole(token);
     await userResult.when(
       success: (user) async {

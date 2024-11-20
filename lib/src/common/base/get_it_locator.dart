@@ -18,25 +18,30 @@ import 'package:vista_market/src/ngo/data/repo/dashboard_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/notification_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/products_repo.dart';
 import 'package:vista_market/src/ngo/data/repo/users_repo.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/add_notification/add_notification_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/categories_number/categories_number_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_add_category/create_add_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/create_product/create_product_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/add_notification/add_notification_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/send_notification/send_notification_cubit.dart';
-import 'package:vista_market/src/ngo/presentation/cubit/get_all_notification/get_all_notification_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_category/delete_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_product/delete_product_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/delete_users/delete_users_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_categories/get_all_categories_cubit.dart';
+import 'package:vista_market/src/ngo/presentation/cubit/get_all_notification/get_all_notification_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_products/get_all_products_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/get_all_users/get_all_users_cubit.dart';
-
 import 'package:vista_market/src/ngo/presentation/cubit/products_number/products_number_cubit.dart';
+
+import 'package:vista_market/src/ngo/presentation/cubit/send_notification/send_notification_cubit.dart';
+
 import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_category_cubit.dart';
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/resident/data/remote/profile_remote_source.dart';
+import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/profile_user/profile_user_cubit.dart';
+
 import 'package:vista_market/src/utils/cubit/app_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -49,6 +54,7 @@ Future<void> initGetIt() async {
   await _initUsers();
   await _initAddNotification();
   await _initMain();
+  await _initProfileUser();
 }
 
 Future<void> _initCore() async {
@@ -130,4 +136,11 @@ Future<void> _initAddNotification() async {
 
 Future<void> _initMain() async {
   getIt.registerFactory(MainCubitCubit.new);
+}
+
+Future<void> _initProfileUser() async {
+  getIt
+    ..registerLazySingleton(ProfileRemoteSource.new)
+    ..registerLazySingleton(() => ProfileRepo(getIt()))
+    ..registerFactory(() => ProfileUserCubit(getIt()));
 }

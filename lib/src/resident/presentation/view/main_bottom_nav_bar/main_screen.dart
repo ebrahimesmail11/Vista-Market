@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MainCubitCubit>(),
+      create: (context) => getIt<MainCubitCubit>()..navBarEnum,
       child: Scaffold(
         appBar: const MainCustomerAppBar(),
         body: Container(
@@ -47,7 +47,7 @@ class MainScreen extends StatelessWidget {
                         return const ProfileScreen();
                       // ignore: no_default_cases
                       default:
-                        return const HomePageScreen();
+                        return const Center(child: Text('invalid state'));
                     }
                   },
                 ),

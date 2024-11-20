@@ -8,7 +8,9 @@ import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/routing/base_route.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
-import 'package:vista_market/src/resident/presentation/view/home/home_page_screen.dart';
+
+import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
+
 
 class RouteManger {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -36,9 +38,9 @@ class RouteManger {
         return BaseRoute(
           page: const HomePageScreenAdmin(),
         );
-      case Routes.homePageScreen:
+      case Routes.mainNavbar:
         return BaseRoute(
-          page: const HomePageScreen(),
+          page: const MainScreen(),
         );
       default:
         return MaterialPageRoute(

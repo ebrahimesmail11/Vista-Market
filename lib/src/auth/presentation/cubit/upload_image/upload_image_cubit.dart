@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,17 +62,23 @@ class UploadImageCubit extends Cubit<UploadImageState> {
     emit(UploadImageState.loadingList(indexList));
     final result = await _repos.uploadImage(context, pickedImage);
     result.when(
-      success: (image) {
-        updateProductImage =productImageList;
-        updateProductImage
-          ..removeAt(indexList)
-          ..insert(indexList, image.location ?? '');
-        emit(const UploadImageState.success());
-      },
-      error: (error) {
-        emit(UploadImageState.failure(error));
-      },
-    );
+  success: (image) {
+    log('Old product image list: $productImageList');
+    if (image.location != null && image.location!.isNotEmpty) {
+      updateProductImage = productImageList;
+      updateProductImage
+        ..removeAt(indexList)
+        ..insert(indexList, image.location!);
+      log('Updated product image list: $updateProductImage');
+      emit(const UploadImageState.success());
+    } else {
+      emit(const UploadImageState.failure('Invalid image location.'));
+    }
+  },
+  error: (error) {
+    emit(UploadImageState.failure(error));
+  },
+);
   }
 
   void removeImage() {
