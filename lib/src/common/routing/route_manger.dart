@@ -10,11 +10,12 @@ import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
 
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
+import 'package:vista_market/src/utils/custom_web_view.dart';
 
 
 class RouteManger {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final arguments = settings.arguments;
+    final arg = settings.arguments;
     switch (settings.name) {
       case Routes.login:
         return BaseRoute(
@@ -42,6 +43,12 @@ class RouteManger {
         return BaseRoute(
           page: const MainScreen(),
         );
+        case Routes.webView:
+        return BaseRoute(
+          page:  CustomWebView(
+            url: arg! as String,
+          ),
+       );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(),

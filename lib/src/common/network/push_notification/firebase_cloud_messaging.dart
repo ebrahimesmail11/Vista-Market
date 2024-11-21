@@ -4,9 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:http/http.dart' as http;
+import 'package:motion_toast/motion_toast.dart';
+import 'package:vista_market/src/common/base/extensions.dart';
 
 class FirebaseCloudMessaging {
   factory FirebaseCloudMessaging() {
@@ -26,14 +29,39 @@ class FirebaseCloudMessaging {
     await _premissionNotification();
   }
 
-  Future<void> controllerForUserSubscribeNotification() async {
+  Future<void> controllerForUserSubscribeNotification(
+    BuildContext context,
+  ) async {
     if (isPremissionNotification == false) {
       await _premissionNotification();
     } else {
       if (isNotificationScribed.value == false) {
         await _subscribeNotification();
+
+        if (!context.mounted) return;
+        MotionToast.success(
+            animationDuration: const Duration(seconds: 2),
+            description: Text(
+              context.tr.subscribed_to_notifications,
+              style: context.displayMedium!.copyWith(
+                fontSize: 14.sp,
+                color: context.colors.textColor, 
+              ),
+            ),
+          ).show(context);
       } else {
         await _unSubscribeNotification();
+         if (!context.mounted) return;
+          MotionToast.success(
+            animationDuration: const Duration(seconds: 2),
+            description: Text(
+              context.tr.unsubscribed_to_notifications,
+               style: context.displayMedium!.copyWith(
+                fontSize: 14.sp,
+                color: context.colors.textColor, 
+              ),
+            ),
+          ).show(context);
       }
     }
   }
@@ -47,7 +75,7 @@ class FirebaseCloudMessaging {
       isPremissionNotification = true;
       await _subscribeNotification();
     } else {
-       isPremissionNotification = false;
+      isPremissionNotification = false;
       isNotificationScribed.value = false;
     }
   }
