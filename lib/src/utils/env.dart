@@ -17,6 +17,7 @@ class Env {
   String _authProviderX509CertUrl = '';
   String _clientX509CertUrl = '';
   String _universeDomain = '';
+  String _buildDev='';
   Future<void> init({required EnvTypeEnum envTypeEnum}) async {
     switch (envTypeEnum) {
       case EnvTypeEnum.admin:
@@ -36,6 +37,7 @@ class Env {
     _authProviderX509CertUrl = dotenv.get('AUTH_PROVIDER_X509_CERT_URL');
     _clientX509CertUrl = dotenv.get('CLIENT_X509_CERT_URL');
     _universeDomain = dotenv.get('UNIVERSE_DOMAIN');
+    _buildDev = dotenv.get('BUILD_DEV');
   }
 
   bool get depugMode => _envType == 'admin';
@@ -50,4 +52,5 @@ class Env {
   String get authProviderX509CertUrl => _authProviderX509CertUrl;
   String get clientX509CertUrl => _clientX509CertUrl;
   String get universeDomain => _universeDomain;
+  String get buildDev => _buildDev;
 }
