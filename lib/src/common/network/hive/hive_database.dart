@@ -17,6 +17,6 @@ class HiveDatabase {
         await Hive.openBox<AddNotificationModel>('notification_Box');
   }
   Future<void> clearAllBox()  async {
-    await notificationBox!.clear();
+    await notificationBox?.clear();
   }
 }

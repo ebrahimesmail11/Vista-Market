@@ -37,8 +37,12 @@ import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_c
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/resident/data/remote/home_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/profile_remote_source.dart';
+import 'package:vista_market/src/resident/data/repo/home_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
+import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/get_banners/get_banners_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/profile_user/profile_user_cubit.dart';
 
@@ -55,6 +59,7 @@ Future<void> initGetIt() async {
   await _initAddNotification();
   await _initMain();
   await _initProfileUser();
+  await _initHome();
 }
 
 Future<void> _initCore() async {
@@ -143,4 +148,12 @@ Future<void> _initProfileUser() async {
     ..registerLazySingleton(ProfileRemoteSource.new)
     ..registerLazySingleton(() => ProfileRepo(getIt()))
     ..registerFactory(() => ProfileUserCubit(getIt()));
+}
+
+Future<void> _initHome() async {
+  getIt
+    ..registerLazySingleton(() => HomeRemoteSource(getIt()))
+    ..registerLazySingleton(() => HomeRepo(getIt()))
+   ..registerFactory(() => GetBannersCubit(getIt()))
+   ..registerFactory(()=> GetCategoriesCustomerCubit(getIt()));
 }
