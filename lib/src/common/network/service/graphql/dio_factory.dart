@@ -19,7 +19,8 @@ class DioFactory {
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
       debugPrint(
-        "[USER Token] ====> ${SharedPref().getString(PrefKeys.tokenKey) ?? 'NULL TOKEN'}",
+        "[USER Token] ====> ${SharedPref().getString(PrefKeys.tokenKey) ??
+         'NULL TOKEN'}",
       );
 
       addDioInterceptor();

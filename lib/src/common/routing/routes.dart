@@ -4,4 +4,5 @@ class Routes {
   static const String homePageScreenAdmin = '/homePageScreenAdmin';
   static const String mainNavbar = '/mainNavbar';
   static const String webView='/webView';
+  static const String productDetails='/productDetails';
 }

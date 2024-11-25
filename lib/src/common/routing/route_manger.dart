@@ -10,6 +10,7 @@ import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
 
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
+import 'package:vista_market/src/resident/presentation/view/product_details/product_details_screen.dart';
 import 'package:vista_market/src/utils/custom_web_view.dart';
 
 
@@ -47,6 +48,12 @@ class RouteManger {
         return BaseRoute(
           page:  CustomWebView(
             url: arg! as String,
+          ),
+       );
+        case Routes.productDetails:
+        return BaseRoute(
+          page:  ProductDetailsScreen(
+            id: arg! as int,
           ),
        );
       default:

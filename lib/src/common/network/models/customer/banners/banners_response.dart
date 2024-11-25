@@ -28,7 +28,7 @@ class BannersResponseData {
   );
   factory BannersResponseData.fromJson(Map<String, dynamic> json) =>
       _$BannersResponseDataFromJson(json);
-  @JsonKey(name: 'Products')
+  @JsonKey(name: 'products')
   final List<BannersModel> bannersProducts;
 }
 

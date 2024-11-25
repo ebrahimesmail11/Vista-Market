@@ -18,7 +18,7 @@ Map<String, dynamic> _$BannersResponseToJson(BannersResponse instance) =>
 
 BannersResponseData _$BannersResponseDataFromJson(Map<String, dynamic> json) =>
     BannersResponseData(
-      (json['Products'] as List<dynamic>)
+      (json['products'] as List<dynamic>)
           .map((e) => BannersModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -26,7 +26,7 @@ BannersResponseData _$BannersResponseDataFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BannersResponseDataToJson(
         BannersResponseData instance) =>
     <String, dynamic>{
-      'Products': instance.bannersProducts,
+      'products': instance.bannersProducts,
     };
 
 BannersModel _$BannersModelFromJson(Map<String, dynamic> json) => BannersModel(

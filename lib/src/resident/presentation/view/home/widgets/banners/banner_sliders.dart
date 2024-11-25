@@ -6,25 +6,21 @@ import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_container_linear_customer.dart';
 
 class BannerSliders extends StatefulWidget {
-  const BannerSliders({super.key});
-
+  const BannerSliders({required this.bannersList, super.key});
+final  List<String> bannersList ;
   @override
   State<BannerSliders> createState() => _BannerSlidersState();
 }
 
 class _BannerSlidersState extends State<BannerSliders> {
   int activeIndex = 0;
-  List<String> imgList = [
-    'https://plus.unsplash.com/premium_photo-1672116453187-3aa64afe04ad?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1672116453187-3aa64afe04ad?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://plus.unsplash.com/premium_photo-1672116453187-3aa64afe04ad?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CarouselSlider.builder(
-          itemCount: imgList.length,
+          itemCount:widget.bannersList.length,
           itemBuilder: (context, index, realIndex) {
             return CustomContainerLinearCustomer(
               margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -33,7 +29,7 @@ class _BannerSlidersState extends State<BannerSliders> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.r),
                 child: CachedNetworkImage(
-                  imageUrl: imgList[index],
+                  imageUrl:widget.bannersList[index].imageProductFormat(),
                   fit: BoxFit.fill,
                   placeholder: (context, url) => const SizedBox.shrink(),
                   errorWidget: (context, url, error) => Icon(
@@ -50,22 +46,27 @@ class _BannerSlidersState extends State<BannerSliders> {
             reverse: true,
             height: 160.h,
             autoPlay: true,
-            onPageChanged: (index, reason) {},
+            onPageChanged: (index, reason) {
+               activeIndex = index;
+              setState(() {
+               
+              });
+            },
           ),
         ),
         10.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: imgList
+          children: widget.bannersList.asMap().entries
               .map(
                 (e) => Container(
-                  width: 10.w,
+                  width: 15.w,
                   height: 4.h,
                   margin:  EdgeInsets.symmetric(horizontal: 3.w),
                   decoration: BoxDecoration(
-                    color: activeIndex == imgList.indexOf(e)
+                    color: activeIndex == e.key
                         ? context.colors.bluePinkLight
-                        : Colors.white ,
+                        : Colors.grey ,
                     borderRadius: BorderRadius.circular(10.r),
                   ),
                 ),
