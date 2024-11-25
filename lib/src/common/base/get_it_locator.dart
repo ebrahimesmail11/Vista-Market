@@ -43,6 +43,7 @@ import 'package:vista_market/src/resident/data/repo/home_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_banners/get_banners_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/get_products/get_products_customer_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/profile_user/profile_user_cubit.dart';
 
@@ -155,5 +156,6 @@ Future<void> _initHome() async {
     ..registerLazySingleton(() => HomeRemoteSource(getIt()))
     ..registerLazySingleton(() => HomeRepo(getIt()))
    ..registerFactory(() => GetBannersCubit(getIt()))
-   ..registerFactory(()=> GetCategoriesCustomerCubit(getIt()));
+   ..registerFactory(()=> GetCategoriesCustomerCubit(getIt()))
+   ..registerFactory(()=> GetProductsCustomerCubit(getIt()));
 }
