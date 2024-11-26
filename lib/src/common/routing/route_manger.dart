@@ -8,11 +8,9 @@ import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/routing/base_route.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
-
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/product_details_screen.dart';
 import 'package:vista_market/src/utils/custom_web_view.dart';
-
 
 class RouteManger {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -44,18 +42,18 @@ class RouteManger {
         return BaseRoute(
           page: const MainScreen(),
         );
-        case Routes.webView:
+      case Routes.webView:
         return BaseRoute(
-          page:  CustomWebView(
+          page: CustomWebView(
             url: arg! as String,
           ),
-       );
-        case Routes.productDetails:
+        );
+      case Routes.productDetails:
         return BaseRoute(
-          page:  ProductDetailsScreen(
+          page: ProductDetailsScreen(
             id: arg! as int,
           ),
-       );
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(),

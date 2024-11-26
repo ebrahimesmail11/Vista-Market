@@ -19,8 +19,7 @@ class DioFactory {
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
       debugPrint(
-        "[USER Token] ====> ${SharedPref().getString(PrefKeys.tokenKey) ??
-         'NULL TOKEN'}",
+        "[USER Token] ====> ${SharedPref().getString(PrefKeys.tokenKey) ?? 'NULL TOKEN'}",
       );
 
       addDioInterceptor();
@@ -45,8 +44,7 @@ class DioFactory {
           return handler.next(options);
         },
         onError: (error, handler) async {
-          if (error.response?.statusCode == 400 ||
-              error.response?.statusCode == 401) {
+          if (error.response?.statusCode == 401) {
             await AppLogout().logout();
           }
         },

@@ -7,6 +7,7 @@ import 'package:vista_market/src/common/network/models/all_users/all_users_respo
 import 'package:vista_market/src/common/network/models/categories/categories_response.dart';
 import 'package:vista_market/src/common/network/models/create_category/create_category_response.dart';
 import 'package:vista_market/src/common/network/models/customer/banners/banners_response.dart';
+import 'package:vista_market/src/common/network/models/customer/product_details/product_details_response.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
 import 'package:vista_market/src/common/network/models/products/products_response.dart';
 import 'package:vista_market/src/common/network/models/profile/user_role_model.dart';
@@ -85,5 +86,9 @@ abstract class ApiService {
   @POST(AppConstants.graphql)
   Future<BannersResponse> getBanners(
     @Body() Map<String, dynamic> query,
+  );
+  @POST(AppConstants.graphql)
+  Future<ProductDetailsResponse> getProductDetails(
+    @Body() Map<String,dynamic> query,
   );
 }

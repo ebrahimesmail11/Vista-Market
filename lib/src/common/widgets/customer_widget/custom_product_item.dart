@@ -6,6 +6,8 @@ import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_container_linear_customer.dart';
+import 'package:vista_market/src/common/widgets/customer_widget/custom_favorite_button.dart';
+import 'package:vista_market/src/common/widgets/customer_widget/custom_share_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 
 class CustomProductItem extends StatelessWidget {
@@ -35,23 +37,11 @@ class CustomProductItem extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.share,
-                      color: context.colors.textColor,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite_outline,
-                      color: context.colors.textColor,
-                    ),
-                  ),
+                  CustomShareButton(size: 25,),
+                  CustomFavoriteButton(size: 25,),
                 ],
               ),
             ),

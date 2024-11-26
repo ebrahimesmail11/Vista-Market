@@ -98,7 +98,8 @@ extension ListExtension<T> on List<T>? {
 
 extension StringFormatting on String {
   String imageProductFormat() {
-    return replaceAll(RegExp(r'^\["?|"\]?|"$'), '');
+    final image= replaceAll(RegExp(r'^\["?|"\]?|"$'), '');
+    return image.trim();
   }
 
   String toCapitalize() {
