@@ -37,13 +37,16 @@ import 'package:vista_market/src/ngo/presentation/cubit/update_category/update_c
 import 'package:vista_market/src/ngo/presentation/cubit/update_product/update_product_cubit.dart';
 
 import 'package:vista_market/src/ngo/presentation/cubit/users_number/users_number_cubit.dart';
+import 'package:vista_market/src/resident/data/remote/category_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/home_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/product_details_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/profile_remote_source.dart';
+import 'package:vista_market/src/resident/data/repo/category_repo.dart';
 import 'package:vista_market/src/resident/data/repo/home_repo.dart';
 import 'package:vista_market/src/resident/data/repo/product_details_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
-import 'package:vista_market/src/resident/presentation/cubit/cubit/get_product_details_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/get_category/get_category_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/get_product_details/get_product_details_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_banners/get_banners_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_products/get_products_customer_cubit.dart';
@@ -65,6 +68,7 @@ Future<void> initGetIt() async {
   await _initProfileUser();
   await _initHome();
   await _initProductDetails();
+  await _initGetCategory();
 }
 
 Future<void> _initCore() async {
@@ -168,5 +172,12 @@ Future<void> _initProductDetails() async {
   getIt
     ..registerLazySingleton(() => ProductDetailsRemoteSource(getIt()))
     ..registerLazySingleton(() => ProductDetailsRepo(getIt()))
-    ..registerFactory(()=> GetProductDetailsCubit(getIt()));
+    ..registerFactory(() => GetProductDetailsCubit(getIt()));
+}
+
+Future<void> _initGetCategory() async {
+  getIt
+    ..registerLazySingleton(() => CategoryRemoteSource(getIt()))
+    ..registerLazySingleton(() => CategoryRepo(getIt()))
+    ..registerFactory(() => GetCategoryCubit(getIt()));
 }

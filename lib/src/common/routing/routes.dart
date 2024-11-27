@@ -5,4 +5,6 @@ class Routes {
   static const String mainNavbar = '/mainNavbar';
   static const String webView='/webView';
   static const String productDetails='/productDetails';
+  static const String categoryScreen='/categoryScreen';
+  static const String productsViewAllScreen='/viewAll';
 }

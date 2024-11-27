@@ -8,8 +8,10 @@ import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/routing/base_route.dart';
 import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/ngo/presentation/view/home_page/home_page_screen_admin.dart';
+import 'package:vista_market/src/resident/presentation/view/category/category_screen.dart';
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/product_details_screen.dart';
+import 'package:vista_market/src/resident/presentation/view/products_view_all/products_view_all_screen.dart';
 import 'package:vista_market/src/utils/custom_web_view.dart';
 
 class RouteManger {
@@ -54,6 +56,18 @@ class RouteManger {
             id: arg! as int,
           ),
         );
+        case Routes.categoryScreen:
+        return BaseRoute(
+          page: CategoryScreen(
+            categoryInfo: arg! as ({String categoryName, int categoryId}),
+          ),
+        );
+        
+        case Routes.productsViewAllScreen:
+        return BaseRoute(
+          page: const ProductsViewAllScreen(),
+        );
+        
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(),

@@ -47,22 +47,25 @@ class CustomProductItem extends StatelessWidget {
             ),
             Expanded(
               child: Center(
-                child: CachedNetworkImage(
-                  height: 200.h,
-                  width: 120.w,
-                  imageUrl: imageUrl.imageProductFormat(),
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      height: 200.h,
-                      width: 120.w,
-                      color: Colors.white,
+                child: Hero(
+                  tag: 'image_$productId',
+                  child: CachedNetworkImage(
+                    height: 200.h,
+                    width: 120.w,
+                    imageUrl: imageUrl.imageProductFormat(),
+                    placeholder: (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        height: 200.h,
+                        width: 120.w,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(
-                    Icons.error,
-                    size: 70,
+                    errorWidget: (context, url, error) => const Icon(
+                      Icons.error,
+                      size: 70,
+                    ),
                   ),
                 ),
               ),

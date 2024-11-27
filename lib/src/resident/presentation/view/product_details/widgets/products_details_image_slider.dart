@@ -34,14 +34,17 @@ class _ProductsDetailsImageSliderState
                 width: MediaQuery.sizeOf(context).width,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.r),
-                  child: CachedNetworkImage(
-                    imageUrl:widget.images[index].imageProductFormat(),
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) => const SizedBox.shrink(),
-                    errorWidget: (context, url, error) => Icon(
-                      Icons.error,
-                      color: Colors.red,
-                      size: 30.sp,
+                  child: Hero(
+                     tag: 'image ${widget.images[index]}',
+                    child: CachedNetworkImage(
+                      imageUrl:widget.images[index].imageProductFormat(),
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => const SizedBox.shrink(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 30.sp,
+                      ),
                     ),
                   ),
                 ),
