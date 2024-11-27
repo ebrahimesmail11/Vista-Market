@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/custom_button.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_banners/get_banners_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
@@ -83,7 +84,9 @@ class HomeBody extends StatelessWidget {
                       .read<GetProductsCustomerCubit>()
                       .isProductListSmallerThan14) {
                     return CustomButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed(Routes.productsViewAllScreen);
+                      },
                       text: context.tr.view_all,
                       textColor: context.colors.textColor,
                       width: MediaQuery.of(context).size.width,

@@ -15,7 +15,7 @@ class GetAllCategoriesResponse {
     if (data.categoriesList.isEmpty) {
       return [];
     }
-    return data.categoriesList.reversed.toList();
+    return data.categoriesList;
   }
   List<String> get categoriesListName {
     final list = data.categoriesList.map((e)=>e.name??'').toList();
