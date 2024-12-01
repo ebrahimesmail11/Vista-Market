@@ -7,7 +7,7 @@ class ProductsViewAllQuires {
   Map<String, dynamic> viewAllProductsQuery({required int offset}) {
     return {
       'query': '''
-        products(limit: 6, offset: $offset){
+       { products(limit: 6, offset: $offset){
           id
           title
           price
@@ -18,6 +18,7 @@ class ProductsViewAllQuires {
            name
           }
         }
+      }
       ''',
     };
   }

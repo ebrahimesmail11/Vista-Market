@@ -1,16 +1,18 @@
+
+
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'package:vista_market/src/common/network/models/all_products/all_products_response.dart';
 import 'package:vista_market/src/resident/data/repo/products_view_all_repo.dart';
 
 part 'get_products_view_all_state.dart';
-part 'get_products_view_all_cubit.freezed.dart';
 
 class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
   GetProductsViewAllCubit(this._repo)
       : super(
-          const GetProductsViewAllState.initial(
+          const GetProductsViewAllStateIntitial(
             hasMoreData: true,
             productsList: [],
           ),
@@ -18,9 +20,10 @@ class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
   final ProductsViewAllRepo _repo;
   int offset = 6;
 
+
   Future<void> getProductsViewAll(BuildContext context) async {
     emit(
-      const GetProductsViewAllState.loading(
+      const GetProductsViewAllStateLoading(
         hasMoreData: true,
         productsList: [],
       ),
@@ -29,15 +32,15 @@ class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
     result.when(
       success: (data) {
         emit(
-          GetProductsViewAllState.success(
-            hasMoreData: false,
+          GetProductsViewAllStateSuccess(
+            hasMoreData: true,
             productsList: data.products,
           ),
         );
       },
       error: (message) {
         emit(
-          GetProductsViewAllState.failure(
+          GetProductsViewAllStateFailure(
             error: message,
             hasMoreData: true,
             productsList: state.productsList,
@@ -48,28 +51,41 @@ class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
   }
 
   Future<void> loddedMoreProductsViewAll(BuildContext context) async {
+    // إذا لم يكن هناك المزيد من البيانات، قم بإيقاف العملية
     if (!state.hasMoreData) return;
+
+    // زيادة الـ offset لتحميل الصفحة التالية
     offset += 6;
+
     emit(
-      GetProductsViewAllState.loading(
+      GetProductsViewAllStateLoading(
         hasMoreData: state.hasMoreData,
         productsList: state.productsList,
       ),
     );
-    final result = await _repo.getProductsViewAll(context, offset: offset);
+
+    final result = await _repo.getProductsViewAll(
+      context,
+      offset: offset,
+    );
+
     result.when(
       success: (data) {
-        final moreProduct = [...state.productsList, ...data.products];
+        // إضافة المنتجات الجديدة إلى القائمة الحالية
+        final moreProducts = [...state.productsList, ...data.products];
+
+        // قم بإرسال الحالة الجديدة باستخدام emit
         emit(
-          GetProductsViewAllState.success(
+          GetProductsViewAllStateSuccess(
+            productsList: moreProducts,
+            // التحقق من وجود المزيد
             hasMoreData: !(data.products.length < 6),
-            productsList: moreProduct,
           ),
         );
       },
       error: (message) {
         emit(
-          GetProductsViewAllState.failure(
+          GetProductsViewAllStateFailure(
             error: message,
             hasMoreData: state.hasMoreData,
             productsList: state.productsList,
@@ -77,5 +93,19 @@ class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
         );
       },
     );
+  }
+
+  void handlerPaganation(
+    BuildContext context, {
+    required ScrollController scrollController,
+    required double loadMorePosition,
+  }) {
+    WidgetsBinding.instance.addPostFrameCallback((time) {
+      final offset = scrollController.offset;
+      final max = scrollController.position.maxScrollExtent;
+      if (offset >= max - loadMorePosition) {
+        loddedMoreProductsViewAll(context);
+      }
+    });
   }
 }
