@@ -1,10 +1,9 @@
-import 'dart:async';
+
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:rxdart/rxdart.dart';
 import 'package:vista_market/src/common/network/models/all_products/all_products_response.dart';
 import 'package:vista_market/src/resident/data/repo/products_view_all_repo.dart';
 
@@ -21,40 +20,6 @@ class GetProductsViewAllCubit extends Cubit<GetProductsViewAllState> {
   final ProductsViewAllRepo _repo;
   int offset = 6;
 
-// بيسمح لك بأرسال احداثات و استقبالها
-  final _eventController = PublishSubject<void>();
-
-  /// * هو اشتراك يتم من خلاله الاستماع إلى الأحداث التي تأتي من Stream (في هذه الحالة، الـ PublishSubject). *///
-  late final StreamSubscription<void> _eventSubscription;
-
-  void init(BuildContext context) {
-    _eventSubscription = _eventController
-        .exhaustMap((_) => loddedMoreProductsViewAll(context).asStream())
-        .listen(
-      null,
-      onError: (error) {
-        emit(
-          GetProductsViewAllStateFailure(
-            error: error.toString(),
-            productsList: state.productsList,
-            hasMoreData: state.hasMoreData,
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  Future<void> close() {
-    _eventSubscription.cancel();
-    _eventController.close();
-    return super.close();
-  }
-
-  /// Method to add events to the stream
-  void loadMoreProducts(BuildContext context) {
-    _eventController.add(null);
-  }
 
   Future<void> getProductsViewAll(BuildContext context) async {
     emit(
