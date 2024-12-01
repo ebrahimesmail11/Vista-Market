@@ -42,11 +42,13 @@ import 'package:vista_market/src/resident/data/remote/home_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/product_details_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/products_view_all_remote_source.dart';
 import 'package:vista_market/src/resident/data/remote/profile_remote_source.dart';
+import 'package:vista_market/src/resident/data/remote/search_remote_source.dart';
 import 'package:vista_market/src/resident/data/repo/category_repo.dart';
 import 'package:vista_market/src/resident/data/repo/home_repo.dart';
 import 'package:vista_market/src/resident/data/repo/product_details_repo.dart';
 import 'package:vista_market/src/resident/data/repo/products_view_all_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
+import 'package:vista_market/src/resident/data/repo/search_repo.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_category/get_category_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_product_details/get_product_details_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
@@ -73,6 +75,7 @@ Future<void> initGetIt() async {
   await _initProductDetails();
   await _initGetCategory();
   await _initProductsViewAll();
+  await _initSearchProducts();
 }
 
 Future<void> _initCore() async {
@@ -191,4 +194,10 @@ Future<void> _initProductsViewAll() async {
     ..registerLazySingleton(() => ProductsViewAllRemoteSource(getIt()))
     ..registerLazySingleton(() => ProductsViewAllRepo(getIt()))
     ..registerFactory(() => GetProductsViewAllCubit(getIt()));
+}
+Future<void> _initSearchProducts() async {
+  getIt
+    ..registerLazySingleton(() => SearchRemoteSource(getIt()))
+    ..registerLazySingleton(() => SearchRepo(getIt()));
+   // ..registerFactory(() => SearchProductsCubit(getIt()));
 }
