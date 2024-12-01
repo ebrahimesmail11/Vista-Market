@@ -43,6 +43,16 @@
     "failure_login": " كلمه المرور او البريد الالكتروني غير صحيحة " ,
     "dashboard":"داشبورد",
     "create_categories": "الحصول على كافة الفئات",
-    "add":"اضافه"
-
+    "add":"اضافه",
+    "search":"بحث",
+    "search_name":"بحث بالاسم ",
+    "search_price":" بحث بالسعر",
+    "search_hint": " ابحث عن اسم المنتج",
+    "search_validate":"لا يمكن أن يكون اسم البحث فارغًا",
+    "save":"حفظ",
+    "search_data": "البحث عن البيانات",
+    "price_hint":"الحد الأدنى للسعر",
+    "price_validate":"الحد الأدنى للسعر فارغ",
+    "price_hint_max":"الحد الأقصى للسعر",
+    "price_validate_max":"الحد الأقصى للسعر فارغ"
 }

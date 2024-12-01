@@ -12,6 +12,7 @@ import 'package:vista_market/src/resident/presentation/view/category/category_sc
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/main_screen.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/product_details_screen.dart';
 import 'package:vista_market/src/resident/presentation/view/products_view_all/products_view_all_screen.dart';
+import 'package:vista_market/src/resident/presentation/view/search/search_screen.dart';
 import 'package:vista_market/src/utils/custom_web_view.dart';
 
 class RouteManger {
@@ -67,7 +68,10 @@ class RouteManger {
         return BaseRoute(
           page: const ProductsViewAllScreen(),
         );
-        
+         case Routes.searchScreen:
+        return BaseRoute(
+          page: const SearchScreen(),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(),
