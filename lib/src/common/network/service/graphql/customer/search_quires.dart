@@ -7,14 +7,25 @@ class SearchQuires {
 
   Map<String, dynamic> searchMapQuery({required SearchRequestbody body}) {
     return {
-      'query': '''
-        {
-          products(price_min: ${body.priceMin}, price_max: ${body.priceMax},title: ${body.title}) {
+      'query': r'''
+        query SearchProudtc($title: String, $priceMin: Int, $priceMax: Int) {
+          products(price_min: $priceMin, price_max: $priceMax,title: $title) {
             title
             price
+             images
+          description
+          category{
+           id
+           name
+          }
           }
         }
       ''',
+      'variables': {
+        'title': body.title,
+        'priceMin': body.priceMin,
+        'priceMax': body.priceMax,
+      },
     };
   }
 }
