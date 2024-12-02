@@ -43,5 +43,16 @@
     "failure_login": " Password or email is incorrect ",
     "dashboard":"DashBoard",
     "create_categories":"Get All Categories",
-    "add":"Add"
+    "add":"Add",
+    "search": "Search",
+    "search_name":"Search Name",
+    "search_price":"Search Price",
+    "search_hint": "Search For Product Name",
+    "search_validate": "Search Name Can't Be Empty",
+    "save": "save",
+    "search_data":"Search For Data",
+    "price_hint":"price min",
+    "price_validate":"Price Min Empty",
+    "price_hint_max":"price max",
+    "price_validate_max":"Price Max Empty"
 }

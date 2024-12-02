@@ -7,6 +7,7 @@ import 'package:vista_market/src/common/base/app_images.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/nav_bar_enum.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
+import 'package:vista_market/src/common/routing/routes.dart';
 import 'package:vista_market/src/common/widgets/custom_linear_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
@@ -44,7 +45,9 @@ class MainCustomerAppBar extends StatelessWidget
               CustomFadeInLeft(
                 duration: 800,
                 child: CustomLinearButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pushNamed(Routes.searchScreen);
+                  },
                   child: Center(
                     child: SvgPicture.asset(
                       AppImages.search,
