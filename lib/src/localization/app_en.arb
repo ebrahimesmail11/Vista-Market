@@ -54,5 +54,6 @@
     "price_hint":"price min",
     "price_validate":"Price Min Empty",
     "price_hint_max":"price max",
-    "price_validate_max":"Price Max Empty"
+    "price_validate_max":"Price Max Empty",
+    "favoirtes":"Your Favoirtes"
 }

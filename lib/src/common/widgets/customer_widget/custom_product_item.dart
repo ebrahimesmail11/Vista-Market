@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
@@ -9,25 +10,27 @@ import 'package:vista_market/src/common/widgets/customer_widget/custom_container
 import 'package:vista_market/src/common/widgets/customer_widget/custom_favorite_button.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_share_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 
 class CustomProductItem extends StatelessWidget {
-  const CustomProductItem(
-      {required this.imageUrl,
-      required this.title,
-      required this.categoryName,
-      required this.price,
-      required this.productId,
-      super.key,});
+  const CustomProductItem({
+    required this.imageUrl,
+    required this.title,
+    required this.categoryName,
+    required this.price,
+    required this.productId,
+    super.key,
+  });
   final String imageUrl;
   final String title;
   final String categoryName;
   final double price;
-  final int  productId;
+  final int productId;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-       await context.pushNamed(Routes.productDetails, arguments: productId);
+        await context.pushNamed(Routes.productDetails, arguments: productId);
       },
       child: CustomContainerLinearCustomer(
         height: 250.h,
@@ -37,11 +40,34 @@ class CustomProductItem extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomShareButton(size: 25,),
-                  CustomFavoriteButton(size: 25,),
+                  const CustomShareButton(
+                    size: 25,
+                  ),
+                  BlocBuilder<FavoritesCubit, FavoritesState>(
+                    builder: (context, state) {
+                      final favoritesCubit = context.read<FavoritesCubit>();
+                      final isFavorites =
+                          favoritesCubit.isFavorite(productId.toString());
+                      return CustomFavoriteButton(
+                        isFavorites: isFavorites,
+                        onPressed: () async {
+                          await context
+                              .read<FavoritesCubit>()
+                              .addAndRemoveFavorites(
+                                id: productId.toString(),
+                                image: imageUrl,
+                                title: title,
+                                price: price.toString(),
+                                categoryName: categoryName,
+                              );
+                        },
+                        size: 30,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

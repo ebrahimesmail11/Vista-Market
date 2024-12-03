@@ -49,6 +49,7 @@ import 'package:vista_market/src/resident/data/repo/product_details_repo.dart';
 import 'package:vista_market/src/resident/data/repo/products_view_all_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
 import 'package:vista_market/src/resident/data/repo/search_repo.dart';
+import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_search/get_search_products_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_category/get_category_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_product_details/get_product_details_cubit.dart';
@@ -77,6 +78,7 @@ Future<void> initGetIt() async {
   await _initGetCategory();
   await _initProductsViewAll();
   await _initSearchProducts();
+  await _initFavorites();
 }
 
 Future<void> _initCore() async {
@@ -202,4 +204,8 @@ Future<void> _initSearchProducts() async {
     ..registerLazySingleton(() => SearchRemoteSource(getIt()))
     ..registerLazySingleton(() => SearchRepo(getIt()))
     ..registerFactory(() => GetSearchProductsCubit(getIt()));
+}
+
+Future<void> _initFavorites() async {
+  getIt.registerFactory(FavoritesCubit.new);
 }
