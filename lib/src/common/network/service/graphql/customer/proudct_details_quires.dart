@@ -9,6 +9,7 @@ class ProudctDetailsQuires {
       'query': '''
       {
         product(id: $id) {
+        id
         title
         price
         images

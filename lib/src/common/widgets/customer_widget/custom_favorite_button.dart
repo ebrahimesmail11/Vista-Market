@@ -2,16 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 
 class CustomFavoriteButton extends StatelessWidget {
-  const CustomFavoriteButton({required this.size ,super.key});
-final double size;
+  const CustomFavoriteButton({
+    required this.onPressed,
+    required this.isFavorites,
+    required this.size,
+    super.key,
+  });
+  final double size;
+  final bool isFavorites;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: onPressed,
       icon: Icon(
-        Icons.favorite_outline,
-        color: context.colors.textColor,
-        size:30,
+        isFavorites ? Icons.favorite : Icons.favorite_outline,
+        color: isFavorites
+            ? context.colors.bluePinkLight
+            : context.colors.textColor,
+        size: 30,
       ),
     );
   }

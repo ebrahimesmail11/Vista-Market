@@ -20,15 +20,30 @@ class ProductDetailsResponseData {
 @JsonSerializable()
 class ProductDetailsResponseProduct {
   ProductDetailsResponseProduct(
+    this.id,
     this.description,
     this.images,
     this.price,
     this.title,
+    this.category,
   );
   factory ProductDetailsResponseProduct.fromJson(Map<String, dynamic> json) =>
       _$ProductDetailsResponseProductFromJson(json);
+  final String? id;
   final String? title;
   final double? price;
   final List<String>? images;
   final String? description;
+  final CategoryDetailsModel? category;
+}
+
+@JsonSerializable()
+class CategoryDetailsModel {
+  CategoryDetailsModel(
+    this.name,
+  );
+  factory CategoryDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryDetailsModelFromJson(json);
+
+  final String? name;
 }

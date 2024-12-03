@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/text_styles.dart';
@@ -6,6 +7,7 @@ import 'package:vista_market/src/common/network/models/customer/product_details/
 import 'package:vista_market/src/common/widgets/customer_widget/custom_favorite_button.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_share_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/widgets/products_details_image_slider.dart';
 
 class ProductsDetailsBody extends StatelessWidget {
@@ -19,14 +21,32 @@ class ProductsDetailsBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomShareButton(
+                const CustomShareButton(
                   size: 30,
                 ),
-                CustomFavoriteButton(
-                  size: 30,
+                BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    return CustomFavoriteButton(
+                      isFavorites: context.read<FavoritesCubit>().isFavorite(
+                            product.id.toString(),
+                          ),
+                      onPressed: () async {
+                        await context
+                            .read<FavoritesCubit>()
+                            .addAndRemoveFavorites(
+                              id: product.id.toString(),
+                              image: product.images?[0] ?? '',
+                              title: product.title ?? '',
+                              price: product.price.toString(),
+                              categoryName: product.category?.name ?? '',
+                            );
+                      },
+                      size: 30,
+                    );
+                  },
                 ),
               ],
             ),

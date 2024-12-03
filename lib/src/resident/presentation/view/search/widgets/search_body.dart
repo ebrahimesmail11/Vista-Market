@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +36,9 @@ class SearchBody extends StatelessWidget {
                   return Expanded(
                     child: GridView.builder(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 15.w, vertical: 20.h),
+                        horizontal: 15.w,
+                        vertical: 20.h,
+                      ),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
