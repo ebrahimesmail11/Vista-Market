@@ -15,12 +15,9 @@ class ShareCubitCubit extends Cubit<ShareCubitState> {
   }) async {
     emit(ShareCubitState.loading(productId: productId));
     final productLink = Uri(
-      scheme: 'flutterDeepLink',
-      host: 'visita-market',
-      path: '/product/$productId',
-      // scheme: 'https',
-      // host: 'www.vista-market.com',
-      // path: '/product/$productId',
+      scheme: 'https',
+      host: 'vista-market.web.app',
+      path: '/blogs/$productId',
       queryParameters: {
         'title': title,
         'description': description,

@@ -55,3 +55,4 @@ lib/src/common/generated/*
 lib/firebase_options.dart
 .env.admin
 .env.resident
+public/.well-known/assetlinks.json
