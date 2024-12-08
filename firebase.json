@@ -1,1 +1,30 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"vista-market","appId":"1:795870733108:android:42ebfa203237fd98487b61","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"vista-market","configurations":{"android":"1:795870733108:android:42ebfa203237fd98487b61","ios":"1:795870733108:ios:cac722ed0e1b5d66487b61"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "vista-market",
+          "appId": "1:795870733108:android:42ebfa203237fd98487b61",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "vista-market",
+          "configurations": {
+            "android": "1:795870733108:android:42ebfa203237fd98487b61",
+            "ios": "1:795870733108:ios:cac722ed0e1b5d66487b61"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

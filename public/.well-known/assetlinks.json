@@ -5,7 +5,7 @@
         "namespace": "android_app",
         "package_name": "com.example.vista_market",
         "sha256_cert_fingerprints": [
-            "$SHA_FINGER_PRINTS"
+          "${{ secrets.SHA_FINGER_PRINTS }}"
         ]
       }
     }
