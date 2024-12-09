@@ -10,6 +10,7 @@ import 'package:vista_market/src/common/widgets/customer_widget/custom_container
 import 'package:vista_market/src/common/widgets/customer_widget/custom_favorite_button.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_share_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
+import 'package:vista_market/src/resident/presentation/cubit/cubit/share_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 
 class CustomProductItem extends StatelessWidget {
@@ -43,8 +44,54 @@ class CustomProductItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomShareButton(
-                    size: 25,
+                  BlocBuilder<ShareCubitCubit, ShareCubitState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () {
+                          return CustomShareButton(
+                            size: 25,
+                            onPressed: () {
+                              context.read<ShareCubitCubit>().shareProduct(
+                                    productId: productId,
+                                    title: title,
+                                    imageUrl: imageUrl,
+                                  );
+                            },
+                          );
+                        },
+                        loading: (id) {
+                          if (id == productId) {
+                            return Padding(
+                              padding: EdgeInsets.only(left: 10.w),
+                              child: SizedBox(
+                                height: 25.h,
+                                width: 25.w,
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return CustomShareButton(
+                              size: 25,
+                              onPressed: () {},
+                            );
+                          }
+                        },
+                        success: () {
+                          return CustomShareButton(
+                            size: 25,
+                            onPressed: () {
+                              context.read<ShareCubitCubit>().shareProduct(
+                                    productId: productId,
+                                    title: title,
+                                    imageUrl: imageUrl,
+                                  );
+                            },
+                          );
+                        },
+                      );
+                    },
                   ),
                   BlocBuilder<FavoritesCubit, FavoritesState>(
                     builder: (context, state) {

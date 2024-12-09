@@ -11,22 +11,22 @@ class ShareCubitCubit extends Cubit<ShareCubitState> {
   Future<void> shareProduct({
     required int productId,
     required String title,
-    required String description,
+    required String imageUrl,
   }) async {
     emit(ShareCubitState.loading(productId: productId));
     final productLink = Uri(
       scheme: 'https',
       host: 'vista-market.web.app',
-      path: '/blogs/$productId',
+      path: '/$productId',
       queryParameters: {
         'title': title,
-        'description': description,
+        'imageUrl': imageUrl,
       },
     );
 
     // نص المشاركة
     final shareContent =
-        '✨ $title ✨\n\n$description\n\n📎 رابط المنتج: $productLink';
+        '✨ $title ✨\n\n$imageUrl\n\n📎 رابط المنتج: $productLink';
 
     // استخدام share_plus للمشاركة
     await Share.share(shareContent);
