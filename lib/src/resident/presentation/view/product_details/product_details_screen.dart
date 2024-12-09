@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_app_bar.dart';
+import 'package:vista_market/src/resident/presentation/cubit/cubit/share_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_product_details/get_product_details_cubit.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/widgets/add_to_cart_button.dart';
@@ -20,6 +21,7 @@ class ProductDetailsScreen extends StatelessWidget {
     create: (context) =>
         getIt<GetProductDetailsCubit>()..getProductDetails(context, id: id),),
          BlocProvider(create: (context) => getIt<FavoritesCubit>()),
+         BlocProvider(create: (context) => getIt<ShareCubitCubit>()),
       ],
       child: BlocBuilder<GetProductDetailsCubit, GetProductDetailsState>(
         builder: (context, state) {
