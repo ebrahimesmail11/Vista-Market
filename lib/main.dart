@@ -11,7 +11,6 @@ import 'package:vista_market/src/common/network/hive/hive_database.dart';
 import 'package:vista_market/src/common/network/links_services/links_services.dart';
 import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
 
-
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/bloc_observer.dart';
 import 'package:vista_market/src/utils/connectivity_controller.dart';
