@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vista_market/src/common/animations/animate_do.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/get_it_locator.dart';
-import 'package:vista_market/src/resident/presentation/cubit/cubit/share_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_banners/get_banners_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_categories_customer/get_categories_customer_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_products/get_products_customer_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/share/share_cubit_cubit.dart';
+
 import 'package:vista_market/src/resident/presentation/view/home/widgets/home_body.dart';
 
 class HomePageScreen extends StatefulWidget {

@@ -10,6 +10,7 @@ import 'package:vista_market/src/common/base/get_it_locator.dart';
 import 'package:vista_market/src/common/network/hive/hive_database.dart';
 import 'package:vista_market/src/common/network/links_services/links_services.dart';
 import 'package:vista_market/src/common/network/push_notification/firebase_cloud_messaging.dart';
+import 'package:vista_market/src/common/network/push_notification/local_notification_service.dart';
 
 import 'package:vista_market/src/localization/shared_preferences.dart';
 import 'package:vista_market/src/utils/bloc_observer.dart';
@@ -31,8 +32,9 @@ void main() async {
   await initGetIt();
   await HiveDatabase().setUp();
   await FirebaseCloudMessaging().init();
-  Bloc.observer = AppBlocObserver();
   await LinksServices().initialize();
+  await LocalNotificationService.init();
+  Bloc.observer = AppBlocObserver();
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],
   ).then((_) {

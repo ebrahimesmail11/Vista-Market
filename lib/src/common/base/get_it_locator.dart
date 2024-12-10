@@ -49,7 +49,7 @@ import 'package:vista_market/src/resident/data/repo/product_details_repo.dart';
 import 'package:vista_market/src/resident/data/repo/products_view_all_repo.dart';
 import 'package:vista_market/src/resident/data/repo/profile_repo.dart';
 import 'package:vista_market/src/resident/data/repo/search_repo.dart';
-import 'package:vista_market/src/resident/presentation/cubit/cubit/share_cubit_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/share/share_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_search/get_search_products_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/get_category/get_category_cubit.dart';
