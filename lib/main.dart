@@ -26,14 +26,15 @@ void main() async {
   await Firebase.initializeApp(
     name: 'vista_market_resident',
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ).whenComplete((){
+    HiveDatabase().setUp();
+     FirebaseCloudMessaging().init();
+     LocalNotificationService.init();
+  });
   await SharedPref().instantiatePreferences();
 
   await initGetIt();
-  await HiveDatabase().setUp();
-  await FirebaseCloudMessaging().init();
   await LinksServices().initialize();
-  await LocalNotificationService.init();
   Bloc.observer = AppBlocObserver();
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp],

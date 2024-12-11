@@ -25,7 +25,7 @@ class LinksServices {
     _appLinks.uriLinkStream.listen(
       (Uri? uri) {
         if (uri != null) {
-          log('Received URI: ${uri.toString()}');
+          log('Received URI: $uri');
           _handleDeepLinkNavigation(uri.path);
         }
       },

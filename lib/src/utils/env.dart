@@ -37,7 +37,7 @@ class Env {
     _authProviderX509CertUrl = dotenv.get('AUTH_PROVIDER_X509_CERT_URL');
     _clientX509CertUrl = dotenv.get('CLIENT_X509_CERT_URL');
     _universeDomain = dotenv.get('UNIVERSE_DOMAIN');
-    _buildDev = dotenv.get('BUILD_DEV');
+    _buildDev = dotenv.get('BUILD_DEV',fallback: 'false');
   }
 
   bool get depugMode => _envType == 'admin';

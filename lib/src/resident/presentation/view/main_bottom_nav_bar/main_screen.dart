@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
@@ -29,7 +30,7 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           child: Column(
-           mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Expanded(
                 child: BlocBuilder<MainCubitCubit, MainCubitState>(

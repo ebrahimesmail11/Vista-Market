@@ -1,4 +1,10 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:vista_market/src/common/base/get_it_locator.dart';
+import 'package:vista_market/src/common/routing/routes.dart';
 
 class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -14,12 +20,28 @@ class LocalNotificationService {
     );
   }
 
-  static Future<void> onTap(NotificationResponse notificationResponse) async {}
-  static Future<void> showNotification() async {
+  static Future<void> onTap(NotificationResponse notificationResponse) async {
+    final payloadValue = int.tryParse(notificationResponse.payload ?? '');
+    if (payloadValue == null || payloadValue == -1) return;
+
+    //  if (int.parse(notificationResponse.payload.toString()) == -1) return;
+    log('response=====> ${notificationResponse.payload}');
+    await getIt<GlobalKey<NavigatorState>>().currentState!.pushNamed(
+          Routes.productDetails,
+          arguments: payloadValue,
+        );
+    log('response=====> ${notificationResponse.payload}');
+  }
+
+  static Future<void> showNotification({
+    required String title,
+    required String body,
+    required String payload,
+  }) async {
     const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'visita-market-id',
-        'Visita Market',
+        'Visita Market ',
         importance: Importance.max,
         priority: Priority.high,
       ),
@@ -31,9 +53,10 @@ class LocalNotificationService {
     );
     await flutterLocalNotificationsPlugin.show(
       0,
-      'title',
-      'body',
+      title,
+      body,
       notificationDetails,
+      payload: payload,
     );
   }
 }
