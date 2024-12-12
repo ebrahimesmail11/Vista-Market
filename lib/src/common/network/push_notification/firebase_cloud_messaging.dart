@@ -10,6 +10,7 @@ import 'package:googleapis_auth/auth_io.dart';
 import 'package:http/http.dart' as http;
 import 'package:motion_toast/motion_toast.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
+import 'package:vista_market/src/common/network/push_notification/firebase_messaging_navigate.dart';
 
 class FirebaseCloudMessaging {
   factory FirebaseCloudMessaging() {
@@ -27,6 +28,16 @@ class FirebaseCloudMessaging {
 
   Future<void> init() async {
     await _premissionNotification();
+    //forground
+    FirebaseMessaging.onMessage
+        .listen(FirebaseMessagingNavigate.forGroundMessage);
+    //terminated
+    await FirebaseMessaging.instance
+        .getInitialMessage()
+        .then(FirebaseMessagingNavigate.terminatedMessage);
+    //background
+    FirebaseMessaging.onMessageOpenedApp
+        .listen(FirebaseMessagingNavigate.backGroundMessage);
   }
 
   Future<void> controllerForUserSubscribeNotification(
@@ -40,28 +51,28 @@ class FirebaseCloudMessaging {
 
         if (!context.mounted) return;
         MotionToast.success(
-            animationDuration: const Duration(seconds: 2),
-            description: Text(
-              context.tr.subscribed_to_notifications,
-              style: context.displayMedium!.copyWith(
-                fontSize: 14.sp,
-                color: context.colors.textColor, 
-              ),
+          animationDuration: const Duration(seconds: 2),
+          description: Text(
+            context.tr.subscribed_to_notifications,
+            style: context.displayMedium!.copyWith(
+              fontSize: 14.sp,
+              color: context.colors.textColor,
             ),
-          ).show(context);
+          ),
+        ).show(context);
       } else {
         await _unSubscribeNotification();
-         if (!context.mounted) return;
-          MotionToast.success(
-            animationDuration: const Duration(seconds: 2),
-            description: Text(
-              context.tr.unsubscribed_to_notifications,
-               style: context.displayMedium!.copyWith(
-                fontSize: 14.sp,
-                color: context.colors.textColor, 
-              ),
+        if (!context.mounted) return;
+        MotionToast.success(
+          animationDuration: const Duration(seconds: 2),
+          description: Text(
+            context.tr.unsubscribed_to_notifications,
+            style: context.displayMedium!.copyWith(
+              fontSize: 14.sp,
+              color: context.colors.textColor,
             ),
-          ).show(context);
+          ),
+        ).show(context);
       }
     }
   }
@@ -82,13 +93,16 @@ class FirebaseCloudMessaging {
 
   Future<void> _subscribeNotification() async {
     isNotificationScribed.value = true;
-    await _firebaseMessaging.subscribeToTopic(subscribeKey);
+ 
+      await _firebaseMessaging.subscribeToTopic(subscribeKey);
+
     debugPrint('====🔔 Notification Subscribed 🔔=====');
   }
 
   Future<void> _unSubscribeNotification() async {
     isNotificationScribed.value = false;
     await _firebaseMessaging.unsubscribeFromTopic(subscribeKey);
+
     debugPrint('====🔕 Notification Unsubscribed 🔕=====');
   }
 

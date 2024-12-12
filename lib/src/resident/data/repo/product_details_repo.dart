@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:vista_market/src/common/base/extensions.dart';
@@ -11,11 +12,12 @@ class ProductDetailsRepo {
   final ProductDetailsRemoteSource _remoteSource;
   Future<ApiResult<ProductDetailsResponse>> getProductsDetails(
     BuildContext context, {
-    required int id,
+    required int productId,
   }) async {
     try {
-      final response = await _remoteSource.getProductsDetails(id: id);
-     return ApiResult.success(response);
+      final response = await _remoteSource.getProductsDetails(id: productId);
+      log('response::::::::::::::::::::::::::::::::: $response');
+      return ApiResult.success(response);
     } catch (e) {
       if (context.mounted) {
         return ApiResult.error(context.tr.error_msg);

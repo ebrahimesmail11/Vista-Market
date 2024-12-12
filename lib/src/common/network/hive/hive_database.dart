@@ -24,19 +24,19 @@ class HiveDatabase {
   }
 
   Future<void> clearAllBox() async {
-    await notificationBox?.clear();
+    await notificationBox!.clear();
     await favoritesBox?.clear();
   }
 
-  Future<void> compactAllBoxes() async {
-    // ضغط صندوق الإشعارات
-    if (notificationBox != null) {
-      await notificationBox!.compact();
-    }
+  // Future<void> compactAllBoxes() async {
+  //   // ضغط صندوق الإشعارات
+  //   if (notificationBox != null) {
+  //     await notificationBox!.compact();
+  //   }
 
-    // ضغط صندوق المفضلة
-    if (favoritesBox != null) {
-      await favoritesBox!.compact();
-    }
-  }
+  //   // ضغط صندوق المفضلة
+  //   if (favoritesBox != null) {
+  //     await favoritesBox!.compact();
+  //   }
+  // }
 }

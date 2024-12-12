@@ -7,7 +7,7 @@ import 'package:vista_market/src/common/network/models/customer/product_details/
 import 'package:vista_market/src/common/widgets/customer_widget/custom_favorite_button.dart';
 import 'package:vista_market/src/common/widgets/customer_widget/custom_share_button.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
-import 'package:vista_market/src/resident/presentation/cubit/cubit/share_cubit_cubit.dart';
+import 'package:vista_market/src/resident/presentation/cubit/share/share_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/cubit/favorites/favorites_cubit.dart';
 import 'package:vista_market/src/resident/presentation/view/product_details/widgets/products_details_image_slider.dart';
 

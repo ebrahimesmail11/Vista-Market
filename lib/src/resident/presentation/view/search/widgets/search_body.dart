@@ -12,63 +12,64 @@ class SearchBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
-      child: Column(
-        children: [
-          const FiltersButtons(),
-          BlocBuilder<GetSearchProductsCubit, GetSearchProductsState>(
-            builder: (context, state) {
-              return state.when(
-                initial: () {
-                  return const SizedBox.shrink();
-                },
-                loading: () {
-                  return Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: context.colors.textColor,
-                      ),
-                    ),
-                  );
-                },
-                success: (productsList) {
-                  return Expanded(
-                    child: GridView.builder(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 15.w,
-                        vertical: 20.h,
-                      ),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 15,
-                        childAspectRatio: 165 / 250,
-                      ),
-                      itemCount: productsList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return CustomProductItem(
-                          imageUrl: productsList[index].images?[0] ?? '',
-                          title: productsList[index].title ?? '',
-                          categoryName:
-                              productsList[index].category?.name ?? '',
-                          price: productsList[index].price ?? 0,
-                          productId:
-                              int.tryParse(productsList[index].id ?? '') ?? 0,
-                        );
-                      },
-                    ),
-                  );
-                },
-                empty: EmptyScreen.new,
-                failure: Text.new,
-              );
-            },
-          ),
-        ],
+    return ListView(
+      padding: EdgeInsetsDirectional.symmetric(
+        horizontal: 15.w,
+        vertical: 20.h,
       ),
+      children: [
+        const FiltersButtons(),
+        BlocBuilder<GetSearchProductsCubit, GetSearchProductsState>(
+          builder: (context, state) {
+            return state.when(
+              initial: () {
+                return const SizedBox.shrink();
+              },
+              loading: () {
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: context.colors.textColor,
+                    ),
+                  ),
+                );
+              },
+              success: (productsList) {
+                return Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.w,
+                      vertical: 20.h,
+                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 165 / 250,
+                    ),
+                    itemCount: productsList.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return CustomProductItem(
+                        imageUrl: productsList[index].images?[0] ?? '',
+                        title: productsList[index].title ?? '',
+                        categoryName:
+                            productsList[index].category?.name ?? '',
+                        price: productsList[index].price ?? 0,
+                        productId:
+                            int.tryParse(productsList[index].id ?? '') ?? 0,
+                      );
+                    },
+                  ),
+                );
+              },
+              empty: EmptyScreen.new,
+              failure: Text.new,
+            );
+          },
+        ),
+      ],
     );
   }
 }

@@ -54,7 +54,7 @@ class RouteManger {
       case Routes.productDetails:
         return BaseRoute(
           page: ProductDetailsScreen(
-            id: arg! as int,
+            productId: arg! as int,
           ),
         );
         case Routes.categoryScreen:

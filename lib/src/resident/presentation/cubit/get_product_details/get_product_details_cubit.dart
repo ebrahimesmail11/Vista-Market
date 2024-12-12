@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -14,10 +16,14 @@ class GetProductDetailsCubit extends Cubit<GetProductDetailsState> {
 
   Future<void> getProductDetails(
     BuildContext context, {
-    required int id,
+    required int productId,
   }) async {
     emit(const GetProductDetailsState.loading());
-    final result = await _repo.getProductsDetails(context, id: id);
+    final result = await _repo.getProductsDetails(
+      context,
+      productId: productId,
+    );
+    log('result::::::::::::::::::::::::::::::::: $result');
     result.when(
       success: (productDetails) {
         emit(

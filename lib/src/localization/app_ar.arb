@@ -55,5 +55,6 @@
     "price_validate":"الحد الأدنى للسعر فارغ",
     "price_hint_max":"الحد الأقصى للسعر",
     "price_validate_max":"الحد الأقصى للسعر فارغ",
-    "favoirtes":" المفضلة لديك"
+    "favoirtes":" المفضلة لديك",
+    "back":"الخروج"
 }
