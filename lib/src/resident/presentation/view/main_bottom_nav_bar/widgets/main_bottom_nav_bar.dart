@@ -8,6 +8,7 @@ import 'package:vista_market/src/common/base/extensions.dart';
 import 'package:vista_market/src/common/base/nav_bar_enum.dart';
 import 'package:vista_market/src/resident/presentation/cubit/main_nav_bar/main_cubit_cubit.dart';
 import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/widgets/icon_tab_nav_bar.dart';
+import 'package:vista_market/src/resident/presentation/view/main_bottom_nav_bar/widgets/notification_bar_icon.dart';
 
 class MainBottomNavBar extends StatelessWidget {
   const MainBottomNavBar({super.key});
@@ -57,13 +58,14 @@ class MainBottomNavBar extends StatelessWidget {
                                 icon: AppImages.homeTab,
                                 isSelected: cubit.navBarEnum == NavBarEnum.home,
                               ),
-                              IconTabNavBar(
+                              NotificationNavBar(
                                 onTap: () {
-                                  cubit.barSelectedIcon(NavBarEnum.categories);
+                                  cubit.barSelectedIcon(
+                                    NavBarEnum.notification,
+                                  );
                                 },
-                                icon: AppImages.categoriesTab,
                                 isSelected:
-                                    cubit.navBarEnum == NavBarEnum.categories,
+                                    cubit.navBarEnum == NavBarEnum.notification,
                               ),
                               IconTabNavBar(
                                 onTap: () {

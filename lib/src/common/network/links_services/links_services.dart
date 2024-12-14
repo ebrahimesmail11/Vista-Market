@@ -29,6 +29,7 @@ class LinksServices {
           _handleDeepLinkNavigation(uri.path);
         }
       },
+      // ignore: inference_failure_on_untyped_parameter
       onError: (error) {
         log('AppLinks Error: $error');
       },

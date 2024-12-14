@@ -56,5 +56,6 @@
     "price_hint_max":"price max",
     "price_validate_max":"Price Max Empty",
     "favoirtes":"Your Favoirtes",
-    "back":"back"
+    "back":"back",
+    "profile":" Profile Setting"
 }
