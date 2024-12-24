@@ -8,12 +8,13 @@ part 'add_notification_cubit.freezed.dart';
 
 class AddNotificationCubit extends Cubit<AddNotificationState> {
   AddNotificationCubit() : super(const AddNotificationState.initial());
+  
   Future<void> addNotification({
     required AddNotificationModel notificationModel,
   }) async {
     emit(const AddNotificationState.loading());
     try {
-      await HiveDatabase().notificationBox!.add(notificationModel);
+       await HiveDatabase().notificationBox!.add(notificationModel);
       emit(const AddNotificationState.success());
     } catch (e) {
       emit(AddNotificationState.failure(error: e.toString()));

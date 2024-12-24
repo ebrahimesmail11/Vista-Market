@@ -29,8 +29,13 @@ class SendNotificationCubit extends Cubit<SendNotificationState> {
       body: body,
       productId: productId,
     );
-    result.when(
-      success: (_) {
+    await result.when(
+      success: (_) async {
+        await _repo.addNotificationToAllUsersFirebase(
+          body: body,
+          title: title,
+          productId: productId,
+        );
         emit(const SendNotificationState.success());
       },
       error: (error) {

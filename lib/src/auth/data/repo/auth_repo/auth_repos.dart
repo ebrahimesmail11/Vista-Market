@@ -46,4 +46,7 @@ class AuthRepos {
       return const ApiResult.error('An unexpected error occurred.');
     }
   }
+  Future<void> addUserIdNotification({required String userId}) async {
+    await _remoteSource.addUserIdNotification(userId: userId);
+  }
 }

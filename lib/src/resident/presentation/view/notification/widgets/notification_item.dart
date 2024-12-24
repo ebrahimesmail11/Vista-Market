@@ -7,14 +7,26 @@ import 'package:vista_market/src/common/base/text_styles.dart';
 import 'package:vista_market/src/common/widgets/text_app.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
-
+  const NotificationItem(
+      {required this.title,
+      required this.body,
+      required this.createdAt,
+      required this.onTap,
+      required this.isSeen,
+      required this.onPressedRemoved,
+      super.key,});
+  final VoidCallback onTap;
+  final VoidCallback onPressedRemoved;
+  final String title;
+  final String body;
+final bool isSeen;
+  final String createdAt;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       isThreeLine: true,
-      onTap: () {},
+      onTap: onTap,
       leading: Container(
         height: 50.h,
         width: 50.w,
@@ -34,7 +46,7 @@ class NotificationItem extends StatelessWidget {
         ),
       ),
       title: TextApp(
-        text: 'Notification Title',
+        text: title,
         theme: context.displaySmall!.copyWith(
           fontSize: 12.sp,
           fontWeight: TextStyles.bold,
@@ -46,7 +58,7 @@ class NotificationItem extends StatelessWidget {
         children: [
           5.verticalSpace,
           TextApp(
-            text: 'Notification Description',
+            text: body,
             theme: context.displaySmall!.copyWith(
               fontSize: 12.sp,
               fontWeight: TextStyles.regular,
@@ -55,7 +67,7 @@ class NotificationItem extends StatelessWidget {
           ),
           5.verticalSpace,
           TextApp(
-            text: 'Notification Description',
+            text: createdAt,
             theme: context.displaySmall!.copyWith(
               fontSize: 12.sp,
               fontWeight: TextStyles.regular,
@@ -63,13 +75,13 @@ class NotificationItem extends StatelessWidget {
             ),
           ),
           5.verticalSpace,
-          const Divider(
-            color: Colors.white,
+           Divider(
+            color:isSeen? Colors.grey: Colors.white,
           ),
         ],
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: onPressedRemoved,
         icon: Icon(
           Icons.close,
           color: Colors.yellow,

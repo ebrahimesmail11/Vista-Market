@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:vista_market/src/common/base/app_constants.dart';
 import 'package:vista_market/src/common/network/models/login/login_request_body.dart';
 import 'package:vista_market/src/common/network/models/login/login_response.dart';
 import 'package:vista_market/src/common/network/models/profile/user_role_model.dart';
@@ -22,11 +24,12 @@ class AuthRemoteSource {
   Future<UserRoleModel> userRole(String token) async {
     final dio = Dio();
     dio.options.headers['Authorization'] = 'Bearer $token';
-    final client= ApiService(dio);
+    final client = ApiService(dio);
     final resonse = await client.userRole();
     debugPrint('User Role=> ${resonse.userRole}');
     return resonse;
   }
+
   Future<RegistrationResponse> registration({
     required RegistrationRequestBody body,
   }) async {
@@ -34,5 +37,12 @@ class AuthRemoteSource {
       AuthQueries().registrationMapQuery(body: body),
     );
     return response;
+  }
+
+  Future<void> addUserIdNotification({required String userId}) async {
+    await FirebaseFirestore.instance
+        .collection(AppConstants.userCollectionDataBase)
+        .doc(userId)
+        .set({});
   }
 }

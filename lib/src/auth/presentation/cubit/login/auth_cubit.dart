@@ -13,13 +13,20 @@ import 'package:vista_market/src/localization/pref_keys.dart';
 import 'package:vista_market/src/localization/shared_preferences.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit(this._authRepos,) : super(const AuthState.initial());
+  AuthCubit(
+    this._authRepos,
+  ) : super(const AuthState.initial());
 
   final AuthRepos _authRepos;
-final TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  void clearFields() {
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+  }
 
   Future<void> login(BuildContext context) async {
     if (!formKey.currentState!.validate()) {
@@ -59,9 +66,9 @@ final TextEditingController nameController = TextEditingController();
   ) async {
     final token = loginModel.data?.login?.accessToken ?? '';
     if (token.isEmpty) {
-    emit(const AuthState.failure(error: 'Token cannot be empty'));
-    return;
-  }
+      emit(const AuthState.failure(error: 'Token cannot be empty'));
+      return;
+    }
     final userResult = await _authRepos.userRole(token);
     await userResult.when(
       success: (user) async {
@@ -73,12 +80,16 @@ final TextEditingController nameController = TextEditingController();
           return;
         }
         final userId = user.userId?.toString() ?? '';
+        await SharedPref().setInt(PrefKeys.userId, user.userId??0);
         await LocalStorageHelper.write(PrefKeys.userId, userId);
         await LocalStorageHelper.write(PrefKeys.userRole, userRole);
         await LocalStorageHelper.write(PrefKeys.tokenKey, token);
         isLoggedInUser = true;
         await SharedPref()
             .setBoolean(AppConstants.userAlreadyLoggedInKey, true);
+        await _authRepos.addUserIdNotification(
+          userId: userId,
+        );
         emit(AuthState.success(userRole: userRole));
       },
       error: (error) async {
@@ -96,7 +107,7 @@ final TextEditingController nameController = TextEditingController();
     required String imageUrl,
   }) async {
     emit(const AuthState.loading());
-    
+
     final result = await _authRepos.registration(
       RegistrationRequestBody(
         name: nameController.text.trim(),
@@ -106,16 +117,15 @@ final TextEditingController nameController = TextEditingController();
       ),
       context,
     );
-     if (imageUrl.isEmpty) {
-        emit(const AuthState.failure( error:'Image URL cannot be empty'));
-        return;
-      }
+    if (imageUrl.isEmpty) {
+      emit(const AuthState.failure(error: 'Image URL cannot be empty'));
+      return;
+    }
     result.when(
       success: (signUpData) {
-      login(context);
+        login(context);
       },
       error: (error) {
-        
         emit(
           AuthState.failure(
             error: error,

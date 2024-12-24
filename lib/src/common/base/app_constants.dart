@@ -11,6 +11,7 @@ class AppConstants {
   static const String admin = 'admin';
   static const String searchBannersKeyWord = 't/banners';
   static const String userCollectionDataBase = 'Users';
+  static const String notificationCollection = 'Notifications';
   // static const String userAlreadyLoggedInKey = "USER_LOGGED_IN";
 //Api
   static const String baseUrl = 'https://api.escuelajs.co';
