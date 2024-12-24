@@ -105,6 +105,11 @@ extension StringFormatting on String {
   String toCapitalize() {
     return '${this[0].toUpperCase()}${substring(1)}';
   }
+     String convertDataFormate() {
+    final now = DateTime.now();
+
+    return DateFormat('d MMM, y - h:mm a').format(now);
+  }
 }
 
 extension DataEx on DateTime {
@@ -112,4 +117,5 @@ extension DataEx on DateTime {
     final formatter = DateFormat('dd/MM/yyyy');
     return formatter.format(this);
   }
+
 }

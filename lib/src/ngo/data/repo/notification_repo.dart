@@ -27,4 +27,18 @@ class NotificationRepo {
       }
     }
   }
+
+  Future<void> addNotificationToAllUsersFirebase({
+    required String body,
+    required String title,
+    required int productId,
+  }) async {
+   final response= await _remoteSource.addNotificationToAllUsersFirebase(
+      body: body,
+      title: title,
+      productId: productId,
+    );
+    return response;
+    
+  }
 }
