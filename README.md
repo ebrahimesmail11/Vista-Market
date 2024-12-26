@@ -96,6 +96,7 @@ Here're some of admin the project's best features:
 Technologies used in the project:
 
 *   animate\_do
+*   flavors
 *   cached\_network\_image
 *   connectivity\_plus
 *   dio
