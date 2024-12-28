@@ -7,7 +7,88 @@
   <li><code>flutter gen-l10n</code></li>
   <li><code>dart run build_runner build --delete-conflicting-outputs</code></li>
 </ul>
+<h2>Customer Project Screenshots:</h2>
+<h2>
+<img src="https://i.postimg.cc/k539D2s2/Screenshot-1735322856.png" alt="project-screenshot" width="170" height="400/">
 
+<img src="https://i.postimg.cc/d02FCJN4/Screenshot-1735322874.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/yd7HX2wB/Screenshot-1735322877.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/XJx02Qb5/Screenshot-1735322885.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/C5Qp05dL/Screenshot-1735322915.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/JnrfBZkz/Screenshot-1735322928.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/JhzwsjJ4/Screenshot-1735322951.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/bJZKT837/Screenshot-1735322952.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/zBDfXLDn/Screenshot-1735323045.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/rs3yJQ1J/Screenshot-1735323048.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/tRMgpCKx/Screenshot-1735323049.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/rmyHp4dC/Screenshot-1735323053.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/90Kg1NLJ/Screenshot-1735323054.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/Bv4YhFC9/Screenshot-1735323061.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/fbCH1bH3/Screenshot-1735323062.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/wvbwTGYg/Screenshot-1735323072.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/qqPQ267F/Screenshot-1735323083.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/GhYnVkvH/Screenshot-1735323263.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/FR12Zc9F/Screenshot-1735323279.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/qR9Zx5bQ/Screenshot-1735323327.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/Pfw75dJ7/Screenshot-1735323334.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/dtcx7gTV/Screenshot-1735323339.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/cJC9ySPX/Screenshot-1735323343.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/9QnP9qNY/Screenshot-1735323437.png" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/8cNLGdjN/search.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/QCm1dBT5/search1.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/L43zTWbX/search2.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/XNLCFCrB/search3.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/yYFYcqQQ/searchloading.jpg" alt="project-screenshot" width="170" height="40/">
+
+<img src="https://i.postimg.cc/TwFYqTvS/search5.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/MTCqftyJ/donesearch.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/DzDKR5p4/profile1.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/0j11yjs8/profile2.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/KctysPP4/profile3.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/5tDZsyjw/addLink.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/TwRrMqyG/addlink1.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/hGMXxFjW/addlink2.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/c4YM3HGp/applinks1.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/QMNpvJKD/linkwths.jpg" alt="project-screenshot" width="170" height="400/">
+
+<img src="https://i.postimg.cc/MTNVMkPZ/onpressedlink.jpg" alt="project-screenshot" width="170" height="400/">
+</h2>
 <h2>Admin Project Screenshots:</h2>
 <h2>
 <img src="https://i.postimg.cc/XvRdXGHc/Screenshot-1735226810.png" alt="project-screenshot" width="170" height="400/">
@@ -76,6 +157,17 @@
 
 <img src="https://i.postimg.cc/WbYnT3vS/Screenshot-1735232254.png" alt="project-screenshot" width="170" height="400/">
 </h2>
+
+<h2>🧐 Features Customer</h2>
+
+Here're some of admin the project's best features:
+
+*   Auth
+*   Home
+*   Search
+*   Favoirtes
+*   Notifications
+*   Profile
   
 <h2>🧐 Features Admin</h2>
 
@@ -96,6 +188,9 @@ Here're some of admin the project's best features:
 Technologies used in the project:
 
 *   animate\_do
+*   CI/CD=Fastlane
+*   GraphQl Api
+*   Hosting
 *   flavors
 *   cached\_network\_image
 *   connectivity\_plus
